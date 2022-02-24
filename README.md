@@ -27,7 +27,21 @@ This is an e-commerce website made to practice concepts that ive learned in Reac
 
 ### Challenges
 
+- Problem: How to add a background image using styled components?
+    - Solution: In my style.js file I had to add the following line:
+
+    ```
+        import Img from '../../images/heroDesktop.jpg';
+    ```
+    Then inside of the container where I wanted to add the background image I had to add the following line:
+
+    ```
+        background-image: url(${Img});
+    ```
+
 ### What I learned
+
+- When you import an image using styled components the name you chose has to start with a capital letter, I noticed I received errors if it was lowercase.
 
 ### Continued Development
 

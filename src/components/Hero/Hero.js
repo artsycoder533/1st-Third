@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Heading, Subheading, Icon } from './style';
 
 
+
 function Hero() {
   return (
       <Container>
