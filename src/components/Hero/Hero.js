@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { Container, Heading, Subheading, Icon } from './style';
+
 
 function Hero() {
   return (
-    <div>Hero</div>
+      <Container>
+          <Heading>This is the Hero</Heading>
+          <Subheading>This is the subheading</Subheading>
+          <button>Shop Now
+            <Icon />
+          </button>
+    </Container>
   )
 }
 
