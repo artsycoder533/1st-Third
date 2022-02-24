@@ -8,7 +8,7 @@ function Hero() {
   return (
       <Container>
           <Heading>Fashion for the Millenial</Heading>
-          <Subheading>This is the subheading</Subheading>
+          <Subheading>Trendy Styles. Low Prices.</Subheading>
           <Button>Shop Now
             <Icon />
           </Button>
