@@ -5,14 +5,15 @@ import Img from '../../images/heroDesktop.jpg';
 
 export const Container = styled.section`
   min-height: 100vh;
-  border: 2px solid blue;
-  background-image: url(${Img});
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Img}) no-repeat center / cover;
+  color: white;
 
   &::before {
   }
 `;
 
 export const Heading = styled.h1`
+    font-size: 5rem;
 `;
 
 export const Subheading = styled.p`

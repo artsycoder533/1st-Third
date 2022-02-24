@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../Button/style';
 import { Container, Heading, Subheading, Icon } from './style';
 
 
@@ -6,11 +7,11 @@ import { Container, Heading, Subheading, Icon } from './style';
 function Hero() {
   return (
       <Container>
-          <Heading>This is the Hero</Heading>
+          <Heading>Fashion for the Millenial</Heading>
           <Subheading>This is the subheading</Subheading>
-          <button>Shop Now
+          <Button>Shop Now
             <Icon />
-          </button>
+          </Button>
     </Container>
   )
 }
