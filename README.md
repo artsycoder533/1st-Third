@@ -23,6 +23,8 @@ This is an e-commerce website made to practice concepts that ive learned in Reac
 
 ## My Process
 
+To start the project I first thought about the different pieces I would need to make up the site.  I setup the file structure and added seperate folders for components, images, pages, and utilities.  I installed React Router v6, Styled Components, React Icons
+
 ### Built With
 
 ### Challenges
