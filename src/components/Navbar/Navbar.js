@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { StyledNav, NavLinks } from './style';
 
 function Navbar() {
   return (
-    <div>Navbar</div>
+      <StyledNav>
+          <NavLinks>
+              
+          </NavLinks>
+    </StyledNav>
   )
 }
 

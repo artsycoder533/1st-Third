@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         box-sizing: border-box;
     }
+
+    body {
+        font-family: 'Playfair Display', serif;
+    }
 `;
 
 export const Center = styled.div`

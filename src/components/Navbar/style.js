@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
-export const NavLinks = styled.nav`
-    
+export const StyledNav = styled.nav`
+
+`;
+
+export const NavLinks = styled.ul`
+
 `;
