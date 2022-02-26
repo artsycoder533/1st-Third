@@ -6,11 +6,11 @@ import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <GlobalStyle />
-      <Hero />
-    </Router>
+      <Router>
+        <Header />
+        <GlobalStyle />
+        <Hero />
+      </Router>
   );
 }
 

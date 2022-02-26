@@ -1,16 +1,22 @@
 import React from 'react'
-import { StyledHeader, StyledLogo } from './style';
+import { StyledCartIcon, StyledHeader, StyledLogo, StyledSearchIcon, Container, SubContainer} from './style';
 import Navbar from '../Navbar/Navbar';
 import Hamburger from '../Hamburger/Hamburger';
 
 function Header() {
   return (
-      <StyledHeader>
+    <StyledHeader>
+      <Container>
+        <SubContainer>
           <StyledLogo>1st & Third</StyledLogo>
+          <StyledSearchIcon />
+          <StyledCartIcon />
           <Hamburger />
-          <Navbar />
+        </SubContainer>
+        <Navbar />
+      </Container>
     </StyledHeader>
-  )
+  );
 }
 
 export default Header

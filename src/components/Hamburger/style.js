@@ -10,6 +10,10 @@ export const StyledHamburger = styled.button`
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
+
+  @media all and (min-width: 992px){
+    display: none;
+  }
 `;
 
 export const Line = styled.span`
@@ -18,7 +22,6 @@ export const Line = styled.span`
   border-radius: 5px;
   background: black;
   transition: all 0.3s linear;
-  
 `;
 
 export const TopLine = styled(Line)`
@@ -26,6 +29,7 @@ export const TopLine = styled(Line)`
   content: "";
   transform: ${({ openMenu }) =>
     openMenu ? "rotate(-45deg)" : "translateY(-10px)"};
+  background: ${({ openMenu }) => (openMenu ? "#800020" : null)};
 `;
 
 export const MiddleLine = styled(Line)`
@@ -38,4 +42,5 @@ export const BottomLine = styled(Line)`
   content: "";
   transform: ${({ openMenu }) =>
     openMenu ? "rotate(45deg)" : "translateY(10px)"};
+  background: ${({ openMenu }) => (openMenu ? "#800020" : null)};
 `;

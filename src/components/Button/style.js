@@ -4,7 +4,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: blue;
+  background: #800020;
   border: 1px solid transparent;
   color: white;
   padding: 0.75rem;
@@ -13,7 +13,6 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-   
   }
 `;
 
