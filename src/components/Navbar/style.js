@@ -26,9 +26,15 @@ export const NavLink = styled(Link)`
   font-weight: bold;
   color: black;
   display: block;
-  padding: 1rem;
+  padding: 1rem 0;
+  text-align: center;
 
   &:active {
     color: black;
+  }
+
+  @media all and (min-width: 992px){
+      text-align: left;
+      padding: 0;
   }
 `;

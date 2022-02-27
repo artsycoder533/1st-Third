@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import Hamburger from '../Hamburger/Hamburger';
 
 function Header() {
+
   return (
     <StyledHeader>
       <Container>

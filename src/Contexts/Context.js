@@ -1,5 +1,3 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
-const initialState = {
-    
-}
+export const AppContext = React.createContext();
