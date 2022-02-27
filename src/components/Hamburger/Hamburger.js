@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../Contexts/Context';
+import React from 'react';
 import { StyledHamburger, MiddleLine, TopLine, BottomLine } from './style';
 
 function Hamburger({openMenu, setOpenMenu}) {

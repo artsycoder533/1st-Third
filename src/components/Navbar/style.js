@@ -18,6 +18,9 @@ export const NavLinks = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  justify-content: center;
+  /* border: 1px solid red; */
+  height: calc(100vh - 59px);
 
   @media all and (min-width: 992px) {
       flex-direction: row;

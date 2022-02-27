@@ -3,7 +3,6 @@ import { StyledNav, NavLinks, NavLink } from './style';
 import { links } from './data';
 
 function Navbar({openMenu}) {
-    
    
   return (
       <StyledNav openMenu={openMenu}>
