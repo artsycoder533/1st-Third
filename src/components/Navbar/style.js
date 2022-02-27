@@ -3,9 +3,13 @@ import { NavLink as Link } from "react-router-dom";
 
 export const StyledNav = styled.nav`
   width: 100%;
-  
-  @media all and (min-width: 992px){
-      width: auto;
+  height: ${({ openMenu }) => (openMenu ? "100vh" : "0")};
+  overflow: hidden;
+  transition: all 0.3s linear;
+  transform: ${({openMenu})=> openMenu ? "scale(1)" : "scale(0)"};
+
+  @media all and (min-width: 992px) {
+    width: auto;
   }
 `;
 
