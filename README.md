@@ -23,7 +23,7 @@ This is an e-commerce website made to practice concepts that ive learned in Reac
 
 ## My Process
 
-To start the project I first thought about the different pieces I would need to make up the site.  I setup the file structure and added seperate folders for components, images, pages, and utilities.  I installed React Router v6, Styled Components, React Icons
+To start the project I first thought about the different pieces I would need to make up the site.  I setup the file structure and added seperate folders for components, images, pages, and utilities.  I installed React Router v6, Styled Components, React Icons.  I first setup the Hero Section and then moved to the Hero.
 
 ### Built With
 
@@ -40,6 +40,9 @@ To start the project I first thought about the different pieces I would need to 
     ```
         background-image: url(${Img});
     ```
+
+- Problem:  Where should I hold the state for the hamburger button?
+    - Solution:  I decided to hold the state in Header Component because it is the most common parent for both the Navbar and Hamburger components.  I use props with styled components so I needed both components to have access to the state.
 
 ### What I learned
 
