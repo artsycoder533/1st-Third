@@ -9,7 +9,9 @@ export const StyledNav = styled.nav`
   transform: ${({openMenu})=> openMenu ? "scale(1)" : "scale(0)"};
 
   @media all and (min-width: 992px) {
-    width: auto;
+    width: 100%;
+    transform: none;
+    height: auto;
   }
 `;
 
@@ -19,12 +21,13 @@ export const NavLinks = styled.ul`
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
-  /* border: 1px solid red; */
   height: calc(100vh - 59px);
 
   @media all and (min-width: 992px) {
       flex-direction: row;
     gap: 2rem;
+    height: auto;
+    justify-content: flex-end;
   }
 `;
 

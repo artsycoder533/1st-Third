@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     position: fixed;
     top: 0;
     left: 0;
@@ -24,8 +24,22 @@ export const Container = styled(Center)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid red; */
     flex-direction: column;
+
+    @media all and (min-width: 992px){
+        flex-direction: row;
+    }
+`;
+
+export const SubContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  @media all and (min-width: 992px){
+      
+  }
 `;
 
 export const StyledLogo = styled.h1`
@@ -40,10 +54,3 @@ export const StyledSearchIcon = styled(FiSearch)`
   font-size: 1.3rem;
 `;
 
-export const SubContainer = styled.div`
-    display: flex;
-    /* border: 1px solid red; */
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-`;
