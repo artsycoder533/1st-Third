@@ -5,6 +5,8 @@ import {
   StyledAttrition,
   StyledExternalLink,
   StyledFooter,
+  StyledHeading,
+  FooterLogo,
 } from "./style";
 import { Center } from "../App/style";
 import { social } from "./footerdata";
@@ -16,8 +18,9 @@ function Footer() {
     <StyledFooter>
       <Center>
         <FooterContainer>
+          <FooterLogo>1st & Third</FooterLogo>
           <FooterSection>
-            <h2>Quick Links</h2>
+            <StyledHeading>Quick Links</StyledHeading>
             {links.map((link, index) => {
               const { url, text, icon } = link;
               return (
@@ -28,7 +31,7 @@ function Footer() {
             })}
           </FooterSection>
           <FooterSection>
-            <h2>Let's Connect!</h2>
+            <StyledHeading>Let's Connect!</StyledHeading>
             {social.map((link, index) => {
               const { url, icon } = link;
               return (

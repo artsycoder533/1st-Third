@@ -21,8 +21,12 @@ export const FooterContainer = styled.div`
 export const FooterSection = styled.section`
   display: flex;
   flex-direction: column;
-`;
+  gap: 1rem;
 
+  @media all and (min-width: 992px){
+      flex-direction: row;
+  }
+`;
 
 export const StyledHeading = styled.h2`
     color: white;
@@ -32,6 +36,7 @@ export const NavLink = styled(Link)`
     color: snow;
     text-decoration: none;
     font-weight: bold;
+    display: block;
 `;
 
 export const StyledInstagram = styled(FiInstagram)`
@@ -44,9 +49,18 @@ export const StyledTwitter = styled(FiTwitter)`
 
 export const StyledAttrition = styled.small`
     text-align: center;
+    margin-top: 1rem;
+    display: block;
+    padding: 1rem;
 `;
 
 export const StyledExternalLink = styled.a`
     color: white;
+    font-weight: bold;
+`;
+
+export const FooterLogo = styled.p`
+    color: white;
+    font-size: 3rem;
     font-weight: bold;
 `;
