@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../Button/style';
+import { ButtonLink } from '../Button/style';
 import { Container, Heading, Subheading, Icon, HeroWrapper } from './style';
 import { Center } from '../App/style';
 
@@ -11,10 +11,10 @@ function Hero() {
         <HeroWrapper>
           <Heading>Fashion for the Millenial</Heading>
           <Subheading>Trendy Styles. Low Prices.</Subheading>
-          <Button>
+          <ButtonLink to="/shop">
             Shop Now
             <Icon />
-          </Button>
+          </ButtonLink>
         </HeroWrapper>
       </Center>
     </Container>
