@@ -3,6 +3,7 @@ import { GlobalStyle } from "./components/App/style";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Shop from "./pages/Shop/Shop";
 import Contact from "./pages/Contact/Contact";
 import CartPage from "./pages/Cart/CartPage";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
+        <Footer />
       </Router>
     </AppContext.Provider>
   );
