@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Card = styled.article`
   display: flex;
@@ -28,4 +29,11 @@ export const CardTitle = styled.h3`
 export const Price = styled.p`
     font-weight: bold;
     font-size: 1.1rem;
+`;
+
+export const CardLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+
+    
 `;
