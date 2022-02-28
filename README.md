@@ -30,6 +30,7 @@ To start the project I first thought about the different pieces I would need to 
 ### Challenges
 
 - Problem: How to add a background image using styled components?
+
     - Solution: In my style.js file I had to add the following line:
 
     ```
@@ -42,7 +43,12 @@ To start the project I first thought about the different pieces I would need to 
     ```
 
 - Problem:  Where should I hold the state for the hamburger button?
+
     - Solution:  I decided to hold the state in Header Component because it is the most common parent for both the Navbar and Hamburger components.  I use props with styled components so I needed both components to have access to the state.
+
+- Problem:  How to get the mobile menu to close after clicking on a link?
+
+    -Solution:  I added an onClick handler to the NavLink that toggled the state as if the hamburger button had been clicked.
 
 ### What I learned
 
