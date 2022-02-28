@@ -14,10 +14,9 @@ function Products() {
     }
     
     useEffect(() => {
-        getProducts()
+        getProducts();
     }, []);
 
-    console.log(products);
   return (
       <Cards>
           {products.map(product => {

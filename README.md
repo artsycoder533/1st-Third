@@ -48,7 +48,11 @@ To start the project I first thought about the different pieces I would need to 
 
 - Problem:  How to get the mobile menu to close after clicking on a link?
 
-    -Solution:  I added an onClick handler to the NavLink that toggled the state as if the hamburger button had been clicked.
+    - Solution:  I added an onClick handler to the NavLink that toggled the state as if the hamburger button had been clicked.
+
+- Problem:  How do you navigate to a single product page when you click on a product on the shop page?
+
+    - Solution: 
 
 ### What I learned
 

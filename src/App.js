@@ -8,6 +8,7 @@ import Shop from "./pages/Shop/Shop";
 import Contact from "./pages/Contact/Contact";
 import CartPage from "./pages/Cart/CartPage";
 import { AppContext } from "./Contexts/Context";
+import SingleProductPage from "./pages/SingleProductPage/SingleProductPage";
 
 const initialState = {
     menuStatus: false,
@@ -30,7 +31,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop" element={<Shop />}>
+            <Route path=":id" element={<SingleProductPage />} />
+          </Route>
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
