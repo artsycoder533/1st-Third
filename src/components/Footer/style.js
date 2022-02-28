@@ -16,6 +16,11 @@ export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    @media all and (min-width: 992px){
+        flex-direction: row;
+        justify-content: space-between;
+    }
 `;
 
 export const FooterSection = styled.section`
@@ -24,7 +29,7 @@ export const FooterSection = styled.section`
   gap: 1rem;
 
   @media all and (min-width: 992px){
-      flex-direction: row;
+      flex-direction: column;
   }
 `;
 
@@ -63,4 +68,5 @@ export const FooterLogo = styled.p`
     color: white;
     font-size: 3rem;
     font-weight: bold;
+    align-self: center;
 `;
