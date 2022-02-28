@@ -13,7 +13,7 @@ function Header() {
           <StyledLogo>1st & Third</StyledLogo>
           <Hamburger openMenu={openMenu} setOpenMenu={setOpenMenu} />
         </SubContainer>
-        <Navbar openMenu={openMenu} />
+        <Navbar openMenu={openMenu} setOpenMenu={setOpenMenu}/>
       </Container>
     </StyledHeader>
   );

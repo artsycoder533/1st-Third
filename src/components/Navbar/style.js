@@ -22,9 +22,11 @@ export const NavLinks = styled.ul`
   gap: 1rem;
   justify-content: center;
   height: calc(100vh - 59px);
+  align-items: center;
+  
 
   @media all and (min-width: 992px) {
-      flex-direction: row;
+    flex-direction: row;
     gap: 2rem;
     height: auto;
     justify-content: flex-end;
@@ -42,13 +44,17 @@ export const NavLink = styled(Link)`
   align-items: center;
   gap: 0.2rem;
   height: 100%;
+  color: #800020;
+  font-size: 1.5rem;
 
   &:active {
     color: black;
   }
 
-  @media all and (min-width: 992px){
-      text-align: left;
-      padding: 0;
+  @media all and (min-width: 992px) {
+    text-align: left;
+    padding: 0;
+    color: black;
+    font-size: 1rem;
   }
 `;
