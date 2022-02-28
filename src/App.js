@@ -3,6 +3,7 @@ import { GlobalStyle } from "./components/App/style";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
+import Shop from "./pages/Shop/Shop";
 import { AppContext } from "./Contexts/Context";
 
 const initialState = {
@@ -26,7 +27,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-      
+          <Route path="/shop" element={<Shop />} />
         </Routes>
       </Router>
     </AppContext.Provider>
