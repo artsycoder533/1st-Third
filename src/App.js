@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import Shop from "./pages/Shop/Shop";
 import Contact from "./pages/Contact/Contact";
+import CartPage from "./pages/Cart/CartPage";
 import { AppContext } from "./Contexts/Context";
 
 const initialState = {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </Router>
     </AppContext.Provider>
