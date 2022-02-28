@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
 export const Card = styled.article`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    transform: translateY(-5px);
+  }
 `;
 
 export const Img = styled.img`
@@ -20,4 +27,5 @@ export const CardTitle = styled.h3`
 
 export const Price = styled.p`
     font-weight: bold;
+    font-size: 1.1rem;
 `;
