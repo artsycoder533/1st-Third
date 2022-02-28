@@ -1,4 +1,4 @@
-
+ import {FiShoppingBag, FiShoppingCart} from "react-icons/fi";
 
 export const links = [
   {
@@ -8,10 +8,17 @@ export const links = [
   {
     url: "/shop",
     text: "Shop",
+    icon: <FiShoppingBag />
   },
   {
     url: "/contact",
     text: "Contact",
+
+  },
+  {
+    url: "/cart",
+    text: "Cart",
+    icon: <FiShoppingCart />,
   },
 ];
 

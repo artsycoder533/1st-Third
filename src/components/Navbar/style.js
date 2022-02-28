@@ -38,6 +38,10 @@ export const NavLink = styled(Link)`
   display: block;
   padding: 1rem 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 100%;
 
   &:active {
     color: black;

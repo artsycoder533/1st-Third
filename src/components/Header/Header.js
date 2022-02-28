@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyledCartIcon, StyledHeader, StyledLogo, StyledSearchIcon, Container, SubContainer} from './style';
+import { StyledHeader, StyledLogo, Container, SubContainer } from './style';
 import Navbar from '../Navbar/Navbar';
 import Hamburger from '../Hamburger/Hamburger';
 
@@ -11,11 +11,9 @@ function Header() {
       <Container>
         <SubContainer>
           <StyledLogo>1st & Third</StyledLogo>
-          <StyledSearchIcon />
-          <StyledCartIcon />
-          <Hamburger openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+          <Hamburger openMenu={openMenu} setOpenMenu={setOpenMenu} />
         </SubContainer>
-        <Navbar openMenu={openMenu}/>
+        <Navbar openMenu={openMenu} />
       </Container>
     </StyledHeader>
   );

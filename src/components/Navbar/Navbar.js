@@ -8,10 +8,10 @@ function Navbar({openMenu}) {
       <StyledNav openMenu={openMenu}>
           <NavLinks>
               {links.map(link => {
-                  const { url, text } = link;
+                  const { url, text, icon } = link;
                   return (
                       <li key={text}>
-                          <NavLink to={url}>{text}</NavLink>
+                      <NavLink to={url}>{text} {icon}</NavLink>
                     </li>
                 )
             })}

@@ -45,9 +45,6 @@ export const StyledLogo = styled.h1`
   color: #800020;
 `;
 
-export const StyledCartIcon = styled(FiShoppingCart)`
-    font-size: 1.3rem;
-`;
 
 export const StyledSearchIcon = styled(FiSearch)`
   font-size: 1.3rem;
