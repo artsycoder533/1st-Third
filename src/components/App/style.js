@@ -1,4 +1,4 @@
-import styled, {createGlobalStyle} from "styled-components";
+import styled, {createGlobalStyle, keyframes} from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     *,
@@ -18,4 +18,13 @@ export const Center = styled.div`
     max-width: 1400px;
     width: 90vw;
     margin: 0 auto;
+`;
+
+export const blink = keyframes`
+   from {
+        transform: scale(1.2);
+    }
+    to {
+        transform: scale(0.75);
+    }
 `;

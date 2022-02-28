@@ -11,6 +11,7 @@ export const Button = styled.button`
   font-weight: bold;
   font-size: 1.2rem;
   cursor: pointer;
+  align-self: center;
 
   &:hover {
   }
