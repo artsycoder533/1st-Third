@@ -1,4 +1,5 @@
 import React from "react";
+import { StarFilled } from "../Star/style";
 
 function StarFilter({ stars, title }) {
   return (
@@ -8,8 +9,7 @@ function StarFilter({ stars, title }) {
         return (
           <div key={star}>
             <input type="checkbox" id={star}></input>
-            <label htmlFor={star}>
-              {star}
+            <label htmlFor={star}>{star}
             </label>
           </div>
         );
