@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Cards = styled.section`
   display: grid;
@@ -11,3 +12,7 @@ export const Cards = styled.section`
   }
 `;
 
+export const CardLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;

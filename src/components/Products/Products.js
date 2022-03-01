@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SingleProduct from '../SingleProduct/SingleProduct';
 import { Cards } from './style';
 import Loading from '../Loading/Loading';
+import { CardLink } from './style';
 
 const url = "https://fakestoreapi.com/products";
 
@@ -35,13 +36,15 @@ function Products() {
               const { id, title, price, description, category, image, rating } =
                 product;
               const { rate, count } = rating;
-              return (
-                <SingleProduct
-                  key={id}
-                  title={title}
-                  price={price}
-                  image={image}></SingleProduct>
-              );
+                return (
+                  <CardLink to={`/shop/${id}`}>
+                    <SingleProduct
+                    key={`id${id}`}
+                      title={title}
+                      price={price}
+                      image={image}></SingleProduct>
+                  </CardLink>
+                );
             })}
           </Cards>
             )}

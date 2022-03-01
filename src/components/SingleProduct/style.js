@@ -31,9 +31,3 @@ export const Price = styled.p`
     font-size: 1.1rem;
 `;
 
-export const CardLink = styled(Link)`
-    text-decoration: none;
-    color: black;
-
-    
-`;

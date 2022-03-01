@@ -27,16 +27,15 @@ function App() {
   return (
     <AppContext.Provider value={""}>
       <GlobalStyle />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="shop" element={<Shop />}>
-            <Route path="product" element={<SingleProductPage />} />
-          </Route>
-          <Route path="contact" element={<Contact />} />
-          <Route path="cart" element={<CartPage />} />
-        </Routes>
-        <Footer />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<SingleProductPage />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="cart" element={<CartPage />} />
+      </Routes>
+      <Footer />
     </AppContext.Provider>
   );
 }
