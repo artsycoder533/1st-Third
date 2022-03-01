@@ -6,6 +6,10 @@ export const Cards = styled.section`
   grid-template-columns: 1fr;
   padding-bottom: 4rem;
 
+  @media all and (min-width: 768px){
+    grid-template-columns: 1fr 1fr;
+  }
+
   @media all and (min-width: 992px) {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 4rem;
