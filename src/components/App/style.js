@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Playfair Display', serif;
+        min-height: 100vh;
     }
 `;
 
