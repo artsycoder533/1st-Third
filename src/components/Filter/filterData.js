@@ -46,3 +46,5 @@ export const prices = [
     highPrice:"and up",
   },
 ];
+
+export const stars = [5, 4, 3, 2, 1];

@@ -6,13 +6,16 @@ import Filter from '../../components/Filter/Filter';
 import PriceFilter from '../../components/PriceFilter/PriceFilter';
 import { category } from '../../components/Filter/filterData';
 import { prices } from '../../components/Filter/filterData';
+import { stars } from '../../components/Filter/filterData';
+import StarFilter from '../../components/StarFilter/StarFilter';
 
 function Shop() {
   return (
     <Center>
       <StyledTitle>All Products</StyledTitle>
       <Filter category={category} title={"Category"}/>
-      <PriceFilter prices={prices} title={"Price"}/>
+      <PriceFilter prices={prices} title={"Price"} />
+      <StarFilter stars={stars} title={"Customer Ratings"}/>
       <Products />
     </Center>
   );
