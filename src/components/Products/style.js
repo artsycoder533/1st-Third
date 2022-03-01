@@ -17,7 +17,7 @@ export const Cards = styled.section`
   }
 
   @media all and (min-width: 1200px){
-    grid-template-columns: 1fr 1fr 1fr 1f4;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 
