@@ -1,14 +1,14 @@
 import React, { useReducer } from "react";
-import { GlobalStyle } from "./components/App/style";
+import { GlobalStyle } from "./style";
 import { Routes, Route } from 'react-router-dom';
-import Home from "./pages/Home/Home";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Shop from "./pages/Shop/Shop";
-import Contact from "./pages/Contact/Contact";
-import CartPage from "./pages/Cart/CartPage";
-import { AppContext } from "./Contexts/Context";
-import SingleProductPage from "./pages/SingleProductPage/SingleProductPage";
+import Home from "../../pages/Home/Home";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import Shop from "../../pages/Shop/Shop";
+import Contact from "../../pages/Contact/Contact";
+import CartPage from "../../pages/Cart/CartPage";
+import { AppContext } from "../../Contexts/Context";
+import SingleProductPage from "../../pages/SingleProductPage/SingleProductPage";
 
 const initialState = {
     menuStatus: false,

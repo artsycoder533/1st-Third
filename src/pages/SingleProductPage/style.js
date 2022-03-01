@@ -17,7 +17,7 @@ export const ProductContainer = styled.div`
   gap: 2rem;
   flex-grow: 1;
   height: 100%;
-  padding-bottom: 4rem;
+  padding: 4rem 0;
 `;
 
 export const Img = styled.img`

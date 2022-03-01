@@ -65,8 +65,9 @@ export const StyledExternalLink = styled.a`
 `;
 
 export const FooterLogo = styled.p`
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    align-self: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  align-self: center;
+  font-family: "Playfair Display", serif;
 `;

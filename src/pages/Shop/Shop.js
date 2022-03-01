@@ -9,7 +9,6 @@ function Shop() {
     <Center>
       <StyledTitle>All Products</StyledTitle>
       <Products />
-      <Outlet />
     </Center>
   );
 }
