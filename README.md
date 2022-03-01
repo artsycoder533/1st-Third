@@ -52,7 +52,9 @@ To start the project I first thought about the different pieces I would need to 
 
 - Problem:  How do you navigate to a single product page when you click on a product on the shop page?
 
-    - Solution: 
+    - Solution: Import the useParams Hook from React Router Dom so that we can create a dynamic route based on the products id.
+
+    - Resources: [https://www.youtube.com/playlist?list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG](https://www.youtube.com/playlist?list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG)
 
 ### What I learned
 
