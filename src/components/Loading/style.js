@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const Spinner = styled.div`
-    font-size: 9rem;
+    font-size: 5rem;
     text-align: center;
 `;
