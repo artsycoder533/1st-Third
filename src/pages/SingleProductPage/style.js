@@ -17,3 +17,11 @@ export const ProductContainer = styled.div`
   flex-grow: 1;
   height: 100%;
 `;
+
+export const Img = styled.img`
+    max-width: 100%;
+    width: 500px;
+`;
+
+export const ProductWrapper = styled.article`
+`;

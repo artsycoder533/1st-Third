@@ -33,9 +33,8 @@ function Products() {
       ) : (
         <Cards>
           {products.map((product) => {
-            const { id, title, price, description, category, image, rating } =
+            const { id, title, price, image } =
               product;
-            const { rate, count } = rating;
             return (
               <CardLink to={`/shop/${id}`} key={id}>
                 <SingleProduct
