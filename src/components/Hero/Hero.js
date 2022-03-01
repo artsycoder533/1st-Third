@@ -9,8 +9,8 @@ function Hero() {
     <Container>
       <Center>
         <HeroWrapper>
-          <Heading>Fashion for the Millenial</Heading>
-          <Subheading>Trendy Styles. Low Prices.</Subheading>
+          <Heading>Millenial's One Stop Shop</Heading>
+          <Subheading>Trendy. Affordable. Convenient.</Subheading>
           <ButtonLink to="/shop">
             Shop Now
             <Icon />
