@@ -21,11 +21,20 @@ This is an e-commerce website made to practice concepts that ive learned in Reac
 
 ### Links
 
+- Repository URL: [https://github.com/artsycoder533/1st-Third.git](https://github.com/artsycoder533/1st-Third.git)
+- Live Site: []()
+
 ## My Process
 
 To start the project I first thought about the different pieces I would need to make up the site.  I setup the file structure and added seperate folders for components, images, pages, and utilities.  I installed React Router v6, Styled Components, React Icons.  I first setup the Hero Section and then moved to the Hero.
 
 ### Built With
+
+- React
+- Styled Components
+- React Router v6
+- Context API
+- Hooks
 
 ### Challenges
 
