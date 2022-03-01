@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Center } from "../../components/App/style";
 import { Container, ProductContainer } from "./style";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 
 function SingleProductPage() {
   const params = useParams();
+  const navigate = useNavigate();
   const { id } = params;
 
   const [product, setProduct] = useState();
@@ -34,6 +35,7 @@ function SingleProductPage() {
         <Container>
           <Center>
             <ProductContainer>
+              <button onClick={() => navigate(-1)}>Back to All Products</button>
               <img src={product.image} alt={product.title} />
               <article>
                 <h2>{product.title}</h2>
