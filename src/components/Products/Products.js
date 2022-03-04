@@ -6,8 +6,7 @@ import { CardLink } from "./style";
 import { FilterContext } from "../../Contexts/FilterContext";
 
 function Products() {
-  const { products, loading, filteredProducts, setFilteredProducts, filterResult, filterCat } = useContext(FilterContext);
-  const [filProducts, setFilProducts] = useState([]);
+  const {loading, filteredProducts } = useContext(FilterContext);
 
   return (
     <>

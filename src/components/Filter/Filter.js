@@ -2,12 +2,12 @@ import React, { useState, useContext } from "react";
 import { FilterContext } from "../../Contexts/FilterContext";
 
 function Filter({ categories, title }) {
-  const { filterResult } =
+  const { filterResult, selectedCategory, setSelectedCategory } =
     useContext(FilterContext);
   const [selectedCat, setSelectedCat] = useState("");
 
   const handleChange = (e) => {
-    setSelectedCat(e.currentTarget.value);
+    setSelectedCategory(e.currentTarget.value);
     filterResult(e.currentTarget.value.toLowerCase());
     
   };
@@ -24,7 +24,7 @@ function Filter({ categories, title }) {
               name={title}
               value={cat}
               onChange={handleChange}
-              checked={selectedCat === cat}></input>
+              checked={selectedCategory === cat}></input>
             <label htmlFor={cat}>{cat}</label>
           </div>
         );

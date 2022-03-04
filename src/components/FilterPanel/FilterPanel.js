@@ -6,12 +6,12 @@ import { categories, prices, stars } from '../Filter/filterData';
 import { FilterContext } from '../../Contexts/FilterContext';
 
 const FilterPanel = () => {
-    const { filterResult} = useContext(FilterContext);
+    const { filterResult, setSelectedCategory} = useContext(FilterContext);
 
   const resetFilters = (e) => {
     e.preventDefault();
-      filterResult(null);
-        
+    filterResult(null);
+    setSelectedCategory("");
     }
     
   return (
