@@ -2,13 +2,11 @@ import React from 'react';
 import Products from '../../components/Products/Products';
 import { Center } from '../../components/App/style';
 import { StyledTitle } from './style';
-import Filter from '../../components/Filter/Filter';
-import PriceFilter from '../../components/PriceFilter/PriceFilter';
 import { category } from '../../components/Filter/filterData';
-import { prices } from '../../components/Filter/filterData';
-import { stars } from '../../components/Filter/filterData';
-import StarFilter from '../../components/StarFilter/StarFilter';
+
+
 import Star from '../../components/Star/Star';
+import FilterPanel from '../../components/FilterPanel/FilterPanel';
 
 function Shop() {
   return (
@@ -16,13 +14,11 @@ function Shop() {
       <StyledTitle>All Products</StyledTitle>
       <div style={{ display: "flex", gap: "2rem" }}>
         <div style={{ width: "600px", border: "2px solid red" }}>
-          <Filter category={category} title={"Category"} />
-          <PriceFilter prices={prices} title={"Price"} />
-          <StarFilter stars={stars} title={"Customer Ratings"} />
-          <Star />
+          <FilterPanel />
+          {/* <Star /> */}
         </div>
         
-        <Products category={category} />
+        <Products />
         
       </div>
     </Center>

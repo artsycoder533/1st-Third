@@ -1,11 +1,11 @@
 import React from "react";
 
 
-function Filter({category, title}) {
+function Filter({categories, title}) {
   return (
     <div>
       <h2>{title}</h2>
-      {category.map((cat) => {
+      {categories.map((cat) => {
         return (
           <div key={cat}>
             <input type="checkbox" id={cat}></input>

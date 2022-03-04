@@ -1,4 +1,4 @@
-export const category = ["Jewelry", "Electronics", "Women's Clothing", "Men's Clothing"];
+export const categories = ["Jewelry", "Electronics", "Women's Clothing", "Men's Clothing"];
 
 export const prices = [
   {
