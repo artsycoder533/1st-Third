@@ -65,6 +65,17 @@ To start the project I first thought about the different pieces I would need to 
 
     - Resources: [https://www.youtube.com/playlist?list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG](https://www.youtube.com/playlist?list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG)
 
+- Problem:  How do you style the active page link?
+
+    - Solution:  React Router has the NavLink which acts like Link, however this NavLink comes with an active class by default.  By giving the active class styling this class is automatically applied when you click on the corresponding NavLink.  Since I used StyledComponents, I figured out that to target the active class I could nest the styling for the active class inside of the StyledNavLink components.  To do this you i used the following code:
+
+    ```
+     &.active {
+        text-decoration: underline;
+        color: #800020;
+    }
+    ```
+
 ### What I learned
 
 - When you import an image using styled components the name you chose has to start with a capital letter, I noticed I received errors if it was lowercase.
