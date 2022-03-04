@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { StyledHamburger, MiddleLine, TopLine, BottomLine } from './style';
+import { FilterContext } from '../../Contexts/FilterContext';
 
-function Hamburger({openMenu, setOpenMenu}) {
+function Hamburger() {
+  const { openMenu, setOpenMenu } = useContext(FilterContext);
 
   return (
     <StyledHamburger

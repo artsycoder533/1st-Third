@@ -22,7 +22,7 @@ function Shop() {
           <Star />
         </div>
         
-          <Products />
+        <Products category={category} />
         
       </div>
     </Center>

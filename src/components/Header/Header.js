@@ -4,16 +4,16 @@ import Navbar from '../Navbar/Navbar';
 import Hamburger from '../Hamburger/Hamburger';
 
 function Header() {
-  const [openMenu, setOpenMenu] = useState(false);
+  // const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <StyledHeader>
       <Container>
         <SubContainer>
           <StyledLogo>1st & Third</StyledLogo>
-          <Hamburger openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <Hamburger />
         </SubContainer>
-        <Navbar openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+        <Navbar />
       </Container>
     </StyledHeader>
   );
