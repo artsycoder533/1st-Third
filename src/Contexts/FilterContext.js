@@ -8,13 +8,26 @@ const FilterContextProvider = (props) => {
     const [openMenu, setOpenMenu] = useState(false);
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedFilters, setSelectedFilters] = useState(
         {
-            categories: [],
+            categoryNames: [],
             prices: [],
             ratings: []
         }
     );
+    const [filterCat, setFilterCat] = useState("");
+
+    const filterResult = (filterCat) => {
+        if (!filterCat) {
+            setFilteredProducts([...products]);
+        }
+        else {
+            setFilteredProducts(products.filter(product => {
+               return filterCat === product.category;
+            }))
+        }
+    }
 
     //api call
     const fetchProducts = async () => {
@@ -23,6 +36,7 @@ const FilterContextProvider = (props) => {
             const response = await fetch(url);
             const products = await response.json();
             setProducts(products);
+            setFilteredProducts(products);
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -35,7 +49,7 @@ const FilterContextProvider = (props) => {
 
 
     return (
-        <FilterContext.Provider value={{ selectedFilters, setSelectedFilters, loading, products, openMenu, setOpenMenu }}>
+        <FilterContext.Provider value={{ selectedFilters, setSelectedFilters, loading, products, openMenu, setOpenMenu, setProducts, filteredProducts, setFilteredProducts, filterResult, setFilterCat }}>
             {props.children}
         </FilterContext.Provider>
     );
