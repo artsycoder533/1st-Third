@@ -11,7 +11,7 @@ function Shop() {
     <Center>
       <StyledTitle>All Products</StyledTitle>
       <div style={{ display: "flex", gap: "2rem" }}>
-        <div style={{ width: "600px", border: "2px solid red" }}>
+        <div style={{ width: "600px" }}>
           <FilterPanel />
         </div>
         <Products />
