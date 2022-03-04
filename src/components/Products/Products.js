@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {useContext } from "react";
 import SingleProduct from "../SingleProduct/SingleProduct";
 import { Cards } from "./style";
 import Loading from "../Loading/Loading";
 import { CardLink } from "./style";
-
+import { FilterContext } from "../../Contexts/FilterContext";
 
 function Products() {
-  const url = "https://fakestoreapi.com/products";
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const getProducts = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(url);
-      const products = await response.json();
-      setProducts(products);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { products , loading} = useContext(FilterContext);
 
   return (
     <>

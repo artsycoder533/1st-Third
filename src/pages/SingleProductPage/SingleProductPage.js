@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Center } from "../../components/App/style";
 import { Container, ProductContainer, Img, ProductWrapper, ProductTitle, StyledDetails, StyledParagraph } from "./style";
 import { useParams, useNavigate } from "react-router-dom";
@@ -6,15 +6,16 @@ import Loading from "../../components/Loading/Loading";
 import { PrimaryButton, SecondaryButton, SpecialButton, ToggleButton } from "../../components/Button/style";
 
 function SingleProductPage() {
-  const params = useParams();
+  const {id} = useParams();
   const navigate = useNavigate();
-  const { id } = params;
+  
   const url = `https://fakestoreapi.com/products/${id}`;
 
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
 
   const getProduct = async () => {
+    setLoading(true);
     try {
       // setLoading(true);
       const response = await fetch(url);
@@ -29,7 +30,7 @@ function SingleProductPage() {
 
   useEffect(() => {
     getProduct();
-  }, [params]);
+  }, [id]);
 
   return (
     <>
