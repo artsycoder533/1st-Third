@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink as Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const StyledNav = styled.nav`
   width: 100%;
@@ -33,7 +33,7 @@ export const NavLinks = styled.ul`
   }
 `;
 
-export const NavLink = styled(Link)`
+export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   font-weight: bold;
   color: black;
@@ -47,9 +47,11 @@ export const NavLink = styled(Link)`
   color: #800020;
   font-size: 1.5rem;
 
-  &:active {
-    color: black;
+  &.active {
+    text-decoration: underline;
+    color: #800020;
   }
+
 
   @media all and (min-width: 992px) {
     text-align: left;

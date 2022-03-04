@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { StyledNav, NavLinks, NavLink } from "./style";
+import { StyledNav, NavLinks, StyledNavLink } from "./style";
 import { links } from "./data";
 import { FilterContext } from "../../Contexts/FilterContext";
 
@@ -12,9 +12,11 @@ function Navbar() {
           const { url, text, icon } = link;
           return (
             <li key={text}>
-              <NavLink to={url} onClick={() => setOpenMenu(!openMenu)}>
+              <StyledNavLink
+                to={url}
+                onClick={() => setOpenMenu(!openMenu)}>
                 {text} {icon}
-              </NavLink>
+              </StyledNavLink>
             </li>
           );
         })}
