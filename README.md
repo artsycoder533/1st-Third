@@ -76,6 +76,14 @@ To start the project I first thought about the different pieces I would need to 
     }
     ```
 
+- Problem:  How do you filter the products by category so that each time you change the selection you're starting from the original array and not the filtered array.
+
+    - Solution: 
+
+- Problem: How to handle multiple checkboxes?
+
+    - Solution: 
+
 ### What I learned
 
 - When you import an image using styled components the name you chose has to start with a capital letter, I noticed I received errors if it was lowercase.

@@ -4,7 +4,7 @@ import { FilterContext } from "../../Contexts/FilterContext";
 function Filter({ categories, title }) {
   const { filterResult, selectedCategory, setSelectedCategory } =
     useContext(FilterContext);
-  const [selectedCat, setSelectedCat] = useState("");
+  // const [selectedCat, setSelectedCat] = useState("");
 
   const handleChange = (e) => {
     setSelectedCategory(e.currentTarget.value);

@@ -4,7 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import Hamburger from '../Hamburger/Hamburger';
 
 function Header() {
-  // const [openMenu, setOpenMenu] = useState(false);
+
 
   return (
     <StyledHeader>

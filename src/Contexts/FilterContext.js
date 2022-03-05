@@ -10,6 +10,7 @@ const FilterContextProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [selectedPrices, setSelectedPrices] = useState([]);
 
     const filterResult = (filterCat) => {
         if (!filterCat) {
@@ -42,7 +43,7 @@ const FilterContextProvider = (props) => {
 
 
     return (
-        <FilterContext.Provider value={{loading, products, openMenu, setOpenMenu, setProducts, filteredProducts, setFilteredProducts, filterResult, selectedCategory, setSelectedCategory }}>
+        <FilterContext.Provider value={{loading, products, openMenu, setOpenMenu, setProducts, filteredProducts, setFilteredProducts, filterResult, selectedCategory, setSelectedCategory, setSelectedPrices, selectedPrices }}>
             {props.children}
         </FilterContext.Provider>
     );
