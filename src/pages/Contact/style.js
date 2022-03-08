@@ -17,4 +17,5 @@ export const StyledHeading = styled.h2`
   align-items: center;
   background: #800020;
   color: white;
+  font-size: 2rem;
 `;
