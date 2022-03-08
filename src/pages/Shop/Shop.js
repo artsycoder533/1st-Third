@@ -8,15 +8,17 @@ import { FilterContext } from "../../Contexts/FilterContext";
 function Shop() {
   const { products } = useContext(FilterContext);
   return (
-    <Center>
-      <StyledTitle>All Products</StyledTitle>
-      <div style={{ display: "flex", gap: "2rem" }}>
-        <div style={{ width: "600px" }}>
-          <FilterPanel />
+    <main>
+      <Center>
+        <StyledTitle>All Products</StyledTitle>
+        <div style={{ display: "flex", gap: "2rem" }}>
+          <div style={{ width: "600px" }}>
+            <FilterPanel />
+          </div>
+          <Products />
         </div>
-        <Products />
-      </div>
-    </Center>
+      </Center>
+    </main>
   );
 }
 
