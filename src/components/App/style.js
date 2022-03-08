@@ -13,10 +13,20 @@ export const GlobalStyle = createGlobalStyle`
         scroll-behavior: smooth;
     }
 
+
     body {
         /* font-family: 'Playfair Display', serif; */
         min-height: 100vh;
         font-family: 'Roboto', sans-serif;
+        
+    }
+
+    main {
+        min-height: 100vh;
+        //border: 2px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     h1, h2, h3 {
