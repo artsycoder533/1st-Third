@@ -13,13 +13,27 @@ const FilterContextProvider = (props) => {
     const [selectedPrices, setSelectedPrices] = useState([]);
 
     const filterResult = (filterCat) => {
-        if (!filterCat) {
-            setFilteredProducts([...products]);
+        const copyOfProducts = [...products];
+        if (selectedPrices.length) {
+            console.log("selected prices has length");
+          setFilteredProducts(
+            filteredProducts.filter((product) => {
+              return filterCat === product.category;
+            })
+          );
         }
-        else {
-            setFilteredProducts(products.filter(product => {
-               return filterCat === product.category;
-            }))
+        if (filterCat) {
+            console.log("filterCat has a value", filterCat);
+            setFilteredProducts(
+              filteredProducts.filter((product) => {
+                return filterCat === product.category;
+              })
+            );
+        }
+        
+        if (!filterCat) {
+            console.log("no filter category present");
+            setFilteredProducts([...products]);
         }
     }
 

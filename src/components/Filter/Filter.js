@@ -6,9 +6,12 @@ function Filter({ categories, title }) {
     useContext(FilterContext);
   // const [selectedCat, setSelectedCat] = useState("");
 
+
   const handleChange = (e) => {
+    setSelectedCategory("");
     setSelectedCategory(e.currentTarget.value);
     filterResult(e.currentTarget.value.toLowerCase());
+    //remove seleceted value
     
   };
 

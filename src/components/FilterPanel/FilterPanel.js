@@ -4,18 +4,21 @@ import PriceFilter from '../PriceFilter/PriceFilter'
 import StarFilter from '../StarFilter/StarFilter'
 import { categories, prices, stars } from '../Filter/filterData';
 import { FilterContext } from '../../Contexts/FilterContext';
+import SortProducts from '../Sort/SortProducts';
 
 const FilterPanel = () => {
-    const { filterResult, setSelectedCategory} = useContext(FilterContext);
+    const { filterResult, setSelectedCategory, setFilteredProducts, filteredProducts} = useContext(FilterContext);
 
   const resetFilters = (e) => {
     e.preventDefault();
     filterResult(null);
     setSelectedCategory("");
+    setFilteredProducts(filteredProducts);
     }
     
   return (
-      <form>
+    <form>
+      <SortProducts />
           <Filter categories={categories} title={"Categories"} />
           <PriceFilter prices={prices} title={"Price"} /> 
           <StarFilter stars={stars} title={"Customer Ratings"} />
