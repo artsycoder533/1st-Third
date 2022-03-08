@@ -11,7 +11,10 @@ function SortProducts() {
         //sort filtered products
         const copyOfFilteredProducts = [...filteredProducts];
         switch (e.currentTarget.name) {
-            case 'low':
+          case 'low':
+            setFilteredProducts(filteredProducts.sort(function (a, b) {
+              return a.price - b.price;
+            }));
                 break;
             case 'high':
                 break;
