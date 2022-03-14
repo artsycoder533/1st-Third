@@ -16,21 +16,20 @@ const ProductContextProvider = ({ children }) => {
     //set up reducer
     const [state, dispatch] = useReducer(products_reducer, initialState);
    
-    //functions
+    // FUNCTIONS
+    //menu toggle
     const toggleMenu = () => {
         dispatch({ type: "TOGGLE_MENU" });
     }
 
- 
-
+    //get products from api
     const fetchProducts = async () => {
-        //setLoading(true);
+        //show loading
+        dispatch({ type: "SHOW_LOADING" });
         try {
             const response = await fetch(url);
             const products = await response.json();
-           // setProducts(products);
-           // setFilteredProducts(products);
-            //setLoading(false);
+            dispatch({ type: "GET_PRODUCTS", payload: products });
         } catch (error) {
            // setLoading(false);
         }
