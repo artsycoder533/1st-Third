@@ -1,16 +1,20 @@
-import React, { useContext, useState } from 'react';
-import { FilterContext } from '../../Contexts/FilterContext';
+import React, { useContext, useState, useEffect } from 'react';
+import {  ProductsContext } from '../../Contexts/ProductsContext';
 
 function SortProducts() {
-    const { filteredProducts, setFilteredProducts } = useContext(FilterContext);
-    const [sortValue, setSortValue] = useState("");
+    const { filteredProducts, setFilteredProducts } = useContext(ProductsContext);
+  const [sortValue, setSortValue] = useState("");
+  
+  useEffect(() => {
+    
+  });
 
     const sortProducts = (e) => {
         e.preventDefault();
-        setSortValue(e.currentTarget.name);
+        setSortValue(e.currentTarget.value);
         //sort filtered products
         const copyOfFilteredProducts = [...filteredProducts];
-        switch (e.currentTarget.name) {
+        switch (sortValue) {
           case 'low':
             setFilteredProducts(filteredProducts.sort(function (a, b) {
               return a.price - b.price;

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { FilterContext } from "../../Contexts/FilterContext";
+import {ProductsContext } from "../../Contexts/ProductsContext";
 
 function PriceFilter({ prices, title }) {
   const {
@@ -10,7 +10,7 @@ function PriceFilter({ prices, title }) {
     selectedPrices,
     setFilteredProducts,
     selectedCategory
-  } = useContext(FilterContext);
+  } = useContext(ProductsContext);
   const [isChecked, setIsChecked] = useState(
     new Array(prices.length).fill(false)
   );

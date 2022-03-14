@@ -3,10 +3,10 @@ import Products from "../../components/Products/Products";
 import { Center } from "../../components/App/style";
 import { StyledTitle } from "./style";
 import FilterPanel from "../../components/FilterPanel/FilterPanel";
-import { FilterContext } from "../../Contexts/FilterContext";
+import { ProductsContext } from "../../Contexts/ProductsContext";
 
 function Shop() {
-  const { products } = useContext(FilterContext);
+  const { products } = useContext(ProductsContext);
   return (
     <main>
       <Center>

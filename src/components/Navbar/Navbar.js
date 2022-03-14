@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
 import { StyledNav, NavLinks, StyledNavLink } from "./style";
 import { links } from "./data";
-import { FilterContext } from "../../Contexts/FilterContext";
+import { ProductsContext } from "../../Contexts/ProductsContext";
 
 function Navbar() {
-  const { openMenu, setOpenMenu } = useContext(FilterContext);
+  const { openMenu, setOpenMenu } = useContext(ProductsContext);
   return (
     <StyledNav openMenu={openMenu}>
       <NavLinks>

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { FilterContext } from "../../Contexts/FilterContext";
+import { FilterContext, ProductsContext } from "../../Contexts/ProductsContext";
 
 function Filter({ categories, title }) {
   const { filterResult, selectedCategory, setSelectedCategory } =
-    useContext(FilterContext);
+    useContext(ProductsContext);
   // const [selectedCat, setSelectedCat] = useState("");
 
 
