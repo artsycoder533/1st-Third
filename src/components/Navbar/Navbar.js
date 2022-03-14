@@ -4,7 +4,7 @@ import { links } from "./data";
 import { ProductsContext } from "../../Contexts/ProductsContext";
 
 function Navbar() {
-  const { openMenu, setOpenMenu } = useContext(ProductsContext);
+  const { openMenu, toggleMenu } = useContext(ProductsContext);
   return (
     <StyledNav openMenu={openMenu}>
       <NavLinks>
@@ -14,7 +14,7 @@ function Navbar() {
             <li key={text}>
               <StyledNavLink
                 to={url}
-                onClick={() => setOpenMenu(!openMenu)}>
+                onClick={toggleMenu}>
                 {text} {icon}
               </StyledNavLink>
             </li>

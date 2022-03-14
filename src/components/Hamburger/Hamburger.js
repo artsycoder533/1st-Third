@@ -3,11 +3,11 @@ import { StyledHamburger, MiddleLine, TopLine, BottomLine } from './style';
 import { ProductsContext } from '../../Contexts/ProductsContext';
 
 function Hamburger() {
-  const { openMenu, setOpenMenu } = useContext(ProductsContext);
+  const { openMenu, toggleMenu } = useContext(ProductsContext);
 
   return (
     <StyledHamburger
-      onClick={() => setOpenMenu(!openMenu)}
+      onClick={toggleMenu}
       aria-expanded={openMenu}>
       <TopLine openMenu={openMenu} />
       <MiddleLine openMenu={openMenu} />

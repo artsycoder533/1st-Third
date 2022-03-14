@@ -8,14 +8,14 @@ import Shop from "../../pages/Shop/Shop";
 import Contact from "../../pages/Contact/Contact";
 import CartPage from "../../pages/Cart/CartPage";
 import SingleProductPage from "../../pages/SingleProductPage/SingleProductPage";
-import ProductContextProvider from "../../Contexts/ProductsContext";
+import ProductsContextProvider from "../../Contexts/ProductsContext";
 
 
 function App() {
   
   return (
     <BrowserRouter>
-      <ProductContextProvider>
+      <ProductsContextProvider>
         <GlobalStyle />
         <Header />
         <Routes>
@@ -26,7 +26,7 @@ function App() {
           <Route path="cart" element={<CartPage />} />
         </Routes>
         <Footer />
-      </ProductContextProvider>
+      </ProductsContextProvider>
     </BrowserRouter>
   );
 }
