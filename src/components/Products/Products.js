@@ -4,9 +4,10 @@ import { Cards } from "./style";
 import Loading from "../Loading/Loading";
 import { CardLink } from "./style";
 import { ProductsContext } from "../../Contexts/ProductsContext";
+import { FilterContext } from "../../Contexts/FilterContext";
 
-function Products() {
-  const {products, loading} = useContext(ProductsContext);
+const Products = () => {
+  const {filtered_products, loading} = useContext(FilterContext);
 
   return (
     <>
@@ -14,7 +15,7 @@ function Products() {
         <Loading />
       ) : (
           <Cards>
-          {products.map((product) => {
+          {filtered_products.map((product) => {
             const { id, title, price, image } = product;
             return (
               <CardLink to={`/shop/${id}`} key={id}>

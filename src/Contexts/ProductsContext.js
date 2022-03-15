@@ -2,14 +2,14 @@ import React, { useReducer, createContext, useEffect } from "react";
 import products_reducer from "../reducers/product_reducer";
 import { url } from "../components/Filter/filterData";
 
+export const ProductsContext = createContext();
+
 const initialState = {
   openMenu: false,
   loading: false,
   products: [],
   singleProduct: {},
 };
-
-export const ProductsContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
   //set up reducer
@@ -40,13 +40,10 @@ const ProductContextProvider = ({ children }) => {
     dispatch({ type: "SHOW_LOADING" });
     try {
       const response = await fetch(url);
-      console.log(response);
       const singleProduct = await response.json();
-      console.log(singleProduct);
       dispatch({ type: "GET_SINGLE_PRODUCT", payload: singleProduct });
     } catch (error) {
       //handle error
-      console.log(error);
     }
   };
 
