@@ -3,18 +3,11 @@ import Filter from '../Filter/Filter'
 import PriceFilter from '../PriceFilter/PriceFilter'
 import StarFilter from '../StarFilter/StarFilter'
 import { categories, prices, stars } from '../Filter/filterData';
-import { FilterContext, ProductsContext } from '../../Contexts/ProductsContext';
 import SortProducts from '../Sort/SortProducts';
+import { FilterContext } from '../../Contexts/FilterContext';
 
 const FilterPanel = () => {
-    const { filterResult, setSelectedCategory, setFilteredProducts, filteredProducts} = useContext(ProductsContext);
-
-  const resetFilters = (e) => {
-    e.preventDefault();
-    filterResult(null);
-    setSelectedCategory("");
-    setFilteredProducts(filteredProducts);
-    }
+    const { resetFilters} = useContext(FilterContext);
     
   return (
     <div>

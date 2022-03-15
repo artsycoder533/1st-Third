@@ -34,7 +34,11 @@ const FilterContextProvider = ({ children }) => {
         dispatch({ type: "HANDLE_SORT", payload: value });
     }
 
-    return <FilterContext.Provider value={{...state, handleSort}}>
+    const resetFilters = () => {
+        dispatch({ type: "RESET_FILTERS" });
+    }
+
+    return <FilterContext.Provider value={{...state, handleSort, resetFilters}}>
         {children}
     </FilterContext.Provider>
 };
