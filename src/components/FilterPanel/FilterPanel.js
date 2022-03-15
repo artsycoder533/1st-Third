@@ -17,13 +17,13 @@ const FilterPanel = () => {
     }
     
   return (
-    <form>
+    <div>
       <SortProducts />
           <Filter categories={categories} title={"Categories"} />
           <PriceFilter prices={prices} title={"Price"} /> 
           <StarFilter stars={stars} title={"Customer Ratings"} />
           <button onClick={resetFilters}>Reset Filters</button>
-    </form>
+    </div>
   )
 }
 

@@ -1,30 +1,20 @@
-import React, { useContext, useState, useEffect } from 'react';
-import {  ProductsContext } from '../../Contexts/ProductsContext';
+import React, { useContext } from "react";
+import { FilterContext } from "../../Contexts/FilterContext";
 
 function SortProducts() {
-    const { filteredProducts, handleSort} = useContext(ProductsContext);
-  const [sortValue, setSortValue] = useState("");
-  
+  const { sort_type, handleSort } = useContext(FilterContext);
 
   return (
-    <div>
-      <label htmlFor="sortBy">Sort By:</label>
-      <select name="sortBy" id="sort">
-        <option value="low" onChange={handleSort}>
-          Price: (Lowest First)
-        </option>
-        <option value="high" onChange={handleSort}>
-          Price: (Highest First)
-        </option>
-        <option value="a-z" onChange={handleSort}>
-          Name: (A-Z)
-        </option>
-        <option value="z-a" onChange={handleSort}>
-          Name: (Z-A)
-        </option>
+    <form>
+      <label htmlFor="sort_type">Sort By:</label>
+      <select name="sort_type" id="sort_type" value={sort_type} onChange={handleSort}>
+        <option value="low">Price: (Lowest First)</option>
+        <option value="high">Price: (Highest First)</option>
+        <option value="a-z">Name: (A-Z)</option>
+        <option value="z-a">Name: (Z-A)</option>
       </select>
-    </div>
+    </form>
   );
 }
 
-export default SortProducts
+export default SortProducts;

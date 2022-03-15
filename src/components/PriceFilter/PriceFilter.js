@@ -88,6 +88,10 @@ function PriceFilter({ prices, title }) {
   //     setFilteredProducts(filteredProducts);
   //   }
   // };
+  
+  const handleInput = () => {
+    
+  }
 
   return (
     <div>
@@ -102,7 +106,7 @@ function PriceFilter({ prices, title }) {
               value={highPrice}
               checked={isChecked[index]}
               name={highPrice}
-              
+              onChange={handleInput}
               ></input>
             <label htmlFor={lowPrice}>
               ${lowPrice} - ${highPrice}

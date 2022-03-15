@@ -27,10 +27,10 @@ const FilterContextProvider = ({ children }) => {
     //filter dispatch/sort dispatch
     useEffect(() => {
         dispatch({ type: "SORT_PRODUCTS" });
-    }, [products, state.sort]);
+    }, [products, state.sort_type]);
 
     const handleSort = (e) => {
-        let value = e.currentTarget.value;
+        const value = e.target.value;
         dispatch({ type: "HANDLE_SORT", payload: value });
     }
 

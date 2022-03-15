@@ -10,10 +10,33 @@ const filter_reducer = (state, action) => {
     if (action.type === "SORT_PRODUCTS") {
         const { sort_type, filtered_products } = state;
         let copyOfFilteredProducts = [...filtered_products];
+
         if (sort_type === "low") {
             copyOfFilteredProducts = copyOfFilteredProducts.sort((current, next) => {
                 return current.price - next.price;
             });
+        }
+
+        if (sort_type === "high") {
+            copyOfFilteredProducts = copyOfFilteredProducts.sort((current, next) => {
+                return next.price - current.price;
+            });
+        }
+
+        if (sort_type === "a-z") {
+            copyOfFilteredProducts = copyOfFilteredProducts.sort(
+              (current, next) => {
+                    return current.title.localeCompare(next.title);
+              }
+            );
+        }
+
+        if (sort_type === "z-a") {
+            copyOfFilteredProducts = copyOfFilteredProducts.sort(
+              (current, next) => {
+                return next.title.localeCompare(current.title);
+              }
+            );
         }
 
         return { ...state, filtered_products: copyOfFilteredProducts };
