@@ -3,11 +3,12 @@ import SingleProduct from "../SingleProduct/SingleProduct";
 import { Cards } from "./style";
 import Loading from "../Loading/Loading";
 import { CardLink } from "./style";
-import { ProductsContext } from "../../Contexts/ProductsContext";
+//import { ProductsContext } from "../../Contexts/ProductsContext";
 import { FilterContext } from "../../Contexts/FilterContext";
 
 const Products = () => {
   const {filtered_products, loading} = useContext(FilterContext);
+  console.log(filtered_products);
 
   return (
     <>

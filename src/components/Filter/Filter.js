@@ -9,13 +9,11 @@ function Filter({ categories, title }) {
   return (
     <div>
       <h2>{title}</h2>
-      {categories.map((cat) => {
-        console.log(category, cat);
+      {categories.map((cat, index) => {
         return (
-          <div key={cat}>
+          <div key={index}>
             <input
               type="radio"
-              id={cat}
               name={title.toLowerCase()}
               value={cat.toLowerCase()}
               onChange={handleFilters}

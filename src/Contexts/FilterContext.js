@@ -26,8 +26,9 @@ const FilterContextProvider = ({ children }) => {
 
     //filter dispatch/sort dispatch
     useEffect(() => {
+        dispatch({ type: "FILTER_PRODUCTS" });
         dispatch({ type: "SORT_PRODUCTS" });
-    }, [products, state.sort_type]);
+    }, [products, state.sort_type, state.filters]);
 
     //onChange for sort select
     const handleSort = (e) => {
@@ -37,9 +38,7 @@ const FilterContextProvider = ({ children }) => {
 
     //onChange for filters
     const handleFilters = (e) => {
-        let name = e.target.name;
         let value = e.target.value;
-        console.log(name, value);
         dispatch({ type: "HANDLE_FILTERS", payload: { value } });
     }
 

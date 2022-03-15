@@ -43,9 +43,28 @@ const filter_reducer = (state, action) => {
   }
 
   if (action.type === "HANDLE_FILTERS") {
-    const { name, value } = action.payload;
+    const { value } = action.payload;
     return { ...state, filters: { ...state.filters, category: value } };
-  }
+    }
+    
+    if (action.type === "FILTER_PRODUCTS") {
+        //get all products from the state
+        const { products } = state;
+        //get all filter categories from the state
+        const { category, price, rating } = state.filters;
+        let copyOfProducts = [...products];
+
+        console.log(category === "all");
+        //category
+        if (category !== "all") {
+            copyOfProducts = copyOfProducts.filter(product => {
+                console.log(product.category, category);
+                return product.category === category.toLowerCase();
+            });
+        }
+
+        return { ...state, filtered_products: copyOfProducts };
+ }
 
   if (action.type === "RESET_FILTERS") {
     return {
