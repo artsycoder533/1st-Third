@@ -4,33 +4,20 @@ import { Container, ProductContainer, Img, ProductWrapper, ProductTitle, StyledD
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { PrimaryButton, SecondaryButton, SpecialButton, ToggleButton } from "../../components/Button/style";
+import { ProductsContext } from "../../Contexts/ProductsContext";
+import { url } from "../../components/Filter/filterData";
 
 function SingleProductPage() {
   const {id} = useParams();
   const navigate = useNavigate();
-  
-  const url = `https://fakestoreapi.com/products/${id}`;
-
-  const [product, setProduct] = useState();
-  const [loading, setLoading] = useState(true);
-
-  const getProduct = async () => {
-    setLoading(true);
-    try {
-      // setLoading(true);
-      const response = await fetch(url);
-      const product = await response.json();
-      setProduct(product);
-      product ? setLoading(false): setLoading(true);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+  const { singleProduct, fetchSingleProduct, loading } = useContext(ProductsContext);
 
   useEffect(() => {
-    getProduct();
+    fetchSingleProduct(`${url}${id}`);
   }, [id]);
+
+  const { image, title, rating, price,description, category } = singleProduct;
+  const { rate, count } = rating;
 
   return (
     <>
@@ -43,12 +30,12 @@ function SingleProductPage() {
             <Loading />
           ) : (
             <ProductContainer>
-              <Img src={product.image} alt={product.title} />
+              <Img src={image} alt={title} />
               <ProductWrapper>
-                <ProductTitle>{product.title}</ProductTitle>
-                <p>Rating {product.rating.rate} / 5 </p>
-                <p>{product.rating.count} reviews</p>
-                <p>${product.price.toFixed(2)}</p>
+                <ProductTitle>{title}</ProductTitle>
+                <p>Rating {rate} / 5 </p> 
+                <p>{count} reviews</p>
+                 <p>${price.toFixed(2)}</p> 
                 <PrimaryButton>Add to Cart</PrimaryButton>
                 {/* <SpecialButton>
                   <ToggleButton>-</ToggleButton>
@@ -58,11 +45,11 @@ function SingleProductPage() {
               </ProductWrapper>
               <StyledDetails>
                 <summary>Product Description</summary>
-                <StyledParagraph>{product.description}</StyledParagraph>
+                <StyledParagraph>{description}</StyledParagraph>
               </StyledDetails>
               <StyledDetails>
                 <summary>Specifications</summary>
-                <StyledParagraph>Category: {product.category}</StyledParagraph>
+                <StyledParagraph>Category: {category}</StyledParagraph>
               </StyledDetails>
             </ProductContainer>
           )}

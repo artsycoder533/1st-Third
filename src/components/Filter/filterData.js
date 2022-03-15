@@ -1,3 +1,5 @@
+export const url = "https://fakestoreapi.com/products/";
+
 export const categories = ["Jewelery", "Electronics", "Women's Clothing", "Men's Clothing"];
 
 export const prices = [
