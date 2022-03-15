@@ -12,7 +12,7 @@ const FilterPanel = () => {
   return (
     <div>
       <SortProducts />
-          <Filter categories={categories} title={"Categories"} />
+          <Filter categories={categories} title={"Category"} />
           <PriceFilter prices={prices} title={"Price"} /> 
           <StarFilter stars={stars} title={"Customer Ratings"} />
           <button onClick={resetFilters}>Reset Filters</button>

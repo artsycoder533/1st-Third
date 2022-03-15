@@ -1,33 +1,25 @@
 import React, { useState, useContext } from "react";
-import { FilterContext, ProductsContext } from "../../Contexts/ProductsContext";
+import { FilterContext } from "../../Contexts/FilterContext";
 
 function Filter({ categories, title }) {
-  const { filterResult, selectedCategory, setSelectedCategory } =
-    useContext(ProductsContext);
-  // const [selectedCat, setSelectedCat] = useState("");
-
-
-  const handleChange = (e) => {
-    setSelectedCategory("");
-    setSelectedCategory(e.currentTarget.value);
-    filterResult(e.currentTarget.value.toLowerCase());
-    //remove seleceted value
-    
-  };
+  const { filters, handleFilters } =
+    useContext(FilterContext);
+  const { category } = filters;
 
   return (
     <div>
       <h2>{title}</h2>
       {categories.map((cat) => {
+        console.log(category, cat);
         return (
           <div key={cat}>
             <input
               type="radio"
               id={cat}
-              name={title}
-              value={cat}
-              onChange={handleChange}
-              checked={selectedCategory === cat}></input>
+              name={title.toLowerCase()}
+              value={cat.toLowerCase()}
+              onChange={handleFilters}
+              checked={category === cat.toLowerCase()}></input>
             <label htmlFor={cat}>{cat}</label>
           </div>
         );

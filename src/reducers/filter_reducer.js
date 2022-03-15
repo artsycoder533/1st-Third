@@ -42,10 +42,15 @@ const filter_reducer = (state, action) => {
     return { ...state, filtered_products: copyOfFilteredProducts };
   }
 
+  if (action.type === "HANDLE_FILTERS") {
+    const { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, category: value } };
+  }
+
   if (action.type === "RESET_FILTERS") {
     return {
-        ...state,
-        sort_type: "low",
+      ...state,
+      sort_type: "low",
       filters: {},
     };
   }
