@@ -59,7 +59,7 @@ const filter_reducer = (state, action) => {
         if (category !== "all") {
             copyOfProducts = copyOfProducts.filter(product => {
                 console.log(product.category, category);
-                return product.category === category.toLowerCase();
+                return product.category === category;
             });
         }
 
@@ -70,7 +70,11 @@ const filter_reducer = (state, action) => {
     return {
       ...state,
       sort_type: "low",
-      filters: {},
+        filters: {
+            category: "all",
+            price: [],
+            rating: ""
+      },
     };
   }
 
