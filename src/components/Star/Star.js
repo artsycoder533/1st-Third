@@ -1,6 +1,5 @@
 import React from "react";
 import { StarOutline, StarFilled, StarHalf } from "./style";
-import { stars } from "../Filter/filterData";
 
 function Star({ rate }) {
   const tempStars = Array.from({ length: 5 }, (_, index) => {
