@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useContext, useEffect } from "react";
 import filter_reducer from "../reducers/filter_reducer";
 import { ProductsContext } from "./ProductsContext";
-import { prices } from "../components/Filter/filterData";
+import { prices, stars } from "../components/Filter/filterData";
 
 export const FilterContext = createContext();
 
@@ -10,10 +10,11 @@ const initialState = {
     filtered_products: [],
     sort_type: 'low',
     isChecked: new Array(prices.length).fill(false),
+    isRatingChecked: new Array(stars.length).fill(false),
     filters: {
         category: "all",
         selected_prices: [],
-        rating: ""
+        ratings: ""
     }
 };
 
@@ -43,14 +44,21 @@ const FilterContextProvider = ({ children }) => {
         let name = e.target.name;
         let value = e.target.value;
         let type = e.target.type;
+        console.log(name);
 
-        //if type is checkbox
-        if (type === "checkbox") {
+        //if price
+        if (name.toLowerCase() === "price") {
             dispatch({ type: "TOGGLE_CHECKED", payload: { index, value,  name } });
         }
+        //if category
         if(type === "radio") {
             dispatch({ type: "HANDLE_FILTERS", payload: { value } });
         }
+        //if rating
+        if (name) {
+            
+        }
+
     }
 
     const resetFilters = () => {

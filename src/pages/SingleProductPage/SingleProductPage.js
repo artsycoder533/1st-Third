@@ -6,11 +6,13 @@ import Loading from "../../components/Loading/Loading";
 import { PrimaryButton, SecondaryButton, SpecialButton, ToggleButton } from "../../components/Button/style";
 import { ProductsContext } from "../../Contexts/ProductsContext";
 import { url } from "../../components/Filter/filterData";
+import Star from "../../components/Star/Star";
 
 function SingleProductPage() {
   const {id} = useParams();
   const navigate = useNavigate();
   const { singleProduct, fetchSingleProduct, loading } = useContext(ProductsContext);
+  console.log(singleProduct);
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
@@ -33,8 +35,9 @@ function SingleProductPage() {
               <Img src={image} alt={title} />
               <ProductWrapper>
                 <ProductTitle>{title}</ProductTitle>
-                <p>Rating {rate} / 5 </p> 
-                <p>{count} reviews</p>
+                  {/* <p>Rating {rate} / 5 </p>  */}
+                  <Star rate={rate}/>
+                <span>{count} reviews</span>
                  <p>${price.toFixed(2)}</p> 
                 <PrimaryButton>Add to Cart</PrimaryButton>
                 {/* <SpecialButton>

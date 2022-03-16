@@ -31,6 +31,7 @@ const ProductContextProvider = ({ children }) => {
       dispatch({ type: "GET_PRODUCTS", payload: products });
     } catch (error) {
       // handle error
+      console.log(error);
     }
   };
 
