@@ -40,40 +40,42 @@ function SingleProductPage() {
   const { rate, count } = rating;
 
   return (
-    <Container>
-      <Center>
-        <SecondaryButton onClick={() => navigate(-1)}>
-          Back to All Products
-        </SecondaryButton>
+    <main>
+      <Container>
+        <Center>
+          <SecondaryButton onClick={() => navigate(-1)}>
+            Back to All Products
+          </SecondaryButton>
 
-        <ProductContainer>
-          <Img src={image} alt={title} />
-          <ProductWrapper>
-            <ProductTitle>{title}</ProductTitle>
+          <ProductContainer>
+            <Img src={image} alt={title} />
+            <ProductWrapper>
+              <ProductTitle>{title}</ProductTitle>
 
-            <span>
-              <Star rate={rate} />
-              {count} reviews
-            </span>
-            <p>${price.toFixed(2)}</p>
-            <PrimaryButton>Add to Cart</PrimaryButton>
-            {/* <SpecialButton>
+              <span>
+                <Star rate={rate} />
+                {count} reviews
+              </span>
+              <p>${price.toFixed(2)}</p>
+              <PrimaryButton>Add to Cart</PrimaryButton>
+              {/* <SpecialButton>
                   <ToggleButton>-</ToggleButton>
                   <span> 1 added </span>
                   <ToggleButton>+</ToggleButton>
                 </SpecialButton> */}
-          </ProductWrapper>
-          <StyledDetails>
-            <summary>Product Description</summary>
-            <StyledParagraph>{description}</StyledParagraph>
-          </StyledDetails>
-          <StyledDetails>
-            <summary>Specifications</summary>
-            <StyledParagraph>Category: {category}</StyledParagraph>
-          </StyledDetails>
-        </ProductContainer>
-      </Center>
-    </Container>
+            </ProductWrapper>
+            <StyledDetails>
+              <summary>Product Description</summary>
+              <StyledParagraph>{description}</StyledParagraph>
+            </StyledDetails>
+            <StyledDetails>
+              <summary>Specifications</summary>
+              <StyledParagraph>Category: {category}</StyledParagraph>
+            </StyledDetails>
+          </ProductContainer>
+        </Center>
+      </Container>
+    </main>
   );
   
 
