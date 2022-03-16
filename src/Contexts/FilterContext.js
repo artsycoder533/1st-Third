@@ -14,7 +14,8 @@ const initialState = {
     filters: {
         category: "all",
         selected_prices: [],
-        ratings: ""
+        selected_ratings: [],
+        // ratings: []
     }
 };
 
@@ -48,17 +49,16 @@ const FilterContextProvider = ({ children }) => {
 
         //if price
         if (name.toLowerCase() === "price") {
-            dispatch({ type: "TOGGLE_CHECKED", payload: { index, value,  name } });
+            dispatch({ type: "TOGGLE_PRICE", payload: { index, value,  name } });
         }
         //if category
         if(type === "radio") {
             dispatch({ type: "HANDLE_FILTERS", payload: { value } });
         }
         //if rating
-        if (name) {
-            
+        if (name.toLowerCase() === "customer ratings") {
+            dispatch({ type: "TOGGLE_RATING", payload: { index, value, name } });
         }
-
     }
 
     const resetFilters = () => {

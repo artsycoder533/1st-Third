@@ -42,7 +42,7 @@ const filter_reducer = (state, action) => {
     return { ...state, filtered_products: copyOfFilteredProducts };
   }
 
-  if (action.type === "TOGGLE_CHECKED") {
+  if (action.type === "TOGGLE_PRICE") {
     const { isChecked } = state;
     const { selected_prices } = state.filters;
     const { index, value, name } = action.payload;
@@ -70,6 +70,39 @@ const filter_reducer = (state, action) => {
     };
   }
 
+  if (action.type === "TOGGLE_RATING") {
+    const { isRatingChecked } = state;
+    const { selected_ratings } = state.filters;
+    const { name, index, value } = action.payload;
+    let copyOfIsRatingChecked = [...isRatingChecked];
+    copyOfIsRatingChecked[index] = !isRatingChecked[index];
+    let copyOfSelectedRatings = [...selected_ratings];
+
+    //if rating has been checked
+    if (copyOfIsRatingChecked[index]) {
+      console.log("checked");
+      copyOfSelectedRatings.push(value);
+    }
+
+    //if rating has been unchecked
+    if (!copyOfIsRatingChecked[index]) {
+      console.log("unchecked");
+      if (copyOfSelectedRatings.includes(value)) {
+        copyOfSelectedRatings = copyOfSelectedRatings.filter((rating) => {
+          return rating !== value;
+        });
+      }
+    }
+    return {
+      ...state,
+      isRatingChecked: copyOfIsRatingChecked,
+      filters: {
+        ...state.filters,
+        selected_ratings: [...copyOfSelectedRatings],
+      },
+    };
+  }
+
   if (action.type === "HANDLE_FILTERS") {
     const { value } = action.payload;
     return { ...state, filters: { ...state.filters, category: value } };
@@ -77,7 +110,7 @@ const filter_reducer = (state, action) => {
 
   if (action.type === "FILTER_PRODUCTS") {
     const { products } = state;
-    const { category, selected_prices, rating } = state.filters;
+    const { category, selected_prices, selected_ratings } = state.filters;
     let copyOfProducts = [...products];
 
     //category
@@ -100,10 +133,24 @@ const filter_reducer = (state, action) => {
                 product.price <= selectedPrice
               );
             }
-          }).length);
+          }).length
+      );
     }
 
-    return { ...state, filtered_products: copyOfProducts };
+    //rating
+    if (selected_ratings.length) {
+      copyOfProducts = copyOfProducts.filter(
+        (product) =>
+              selected_ratings.filter((selectedRating) => {
+                  console.log(Math.floor(product.rating.rate), selectedRating);
+                  return (
+                      Math.floor(product.rating.rate) === Number(selectedRating)
+            );
+          }).length
+      );
+    }
+
+    return { ...state, filtered_products: [...copyOfProducts] };
   }
 
   if (action.type === "RESET_FILTERS") {

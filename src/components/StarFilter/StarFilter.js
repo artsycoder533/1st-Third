@@ -1,21 +1,27 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { StarFilled } from "../Star/style";
 import { FilterContext } from "../../Contexts/FilterContext";
 import Star from "../../components/Star/Star";
 
 function StarFilter({ stars, title }) {
-  const { handleFilters, filters } = useContext(FilterContext);
-  const { ratings } = filters;
+  const { handleFilters, filters, isRatingChecked } = useContext(FilterContext);
+  const {  } = filters;
 
   return (
     <div>
       <h2>{title}</h2>
-      {stars.map((star) => {
+      {stars.map((star, index) => {
         return (
-          <div key={star}>
-            <input type="checkbox" id={star} value={star} onChange={handleFilters}></input>
+          <div key={index}>
+            <input
+              type="checkbox"
+              id={star}
+              value={star}
+              name={title}
+              onChange={(e) => handleFilters(e, index)}
+              checked={isRatingChecked[index]}></input>
             <label htmlFor={star}>
-              <Star rate={star}/>
+              <Star rate={star} />
             </label>
           </div>
         );
