@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { StarFilled } from "../Star/style";
 import { FilterContext } from "../../Contexts/FilterContext";
 import Star from "../../components/Star/Star";
 
 function StarFilter({ stars, title }) {
   const { handleFilters, filters, isRatingChecked } = useContext(FilterContext);
-  const {  } = filters;
+  const {} = filters;
 
   return (
     <div>

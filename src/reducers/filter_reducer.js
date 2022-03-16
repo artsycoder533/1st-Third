@@ -1,3 +1,5 @@
+import { stars, prices } from "../components/Filter/filterData";
+
 const filter_reducer = (state, action) => {
   if (action.type === "LOAD_PRODUCTS") {
     return {
@@ -45,7 +47,7 @@ const filter_reducer = (state, action) => {
   if (action.type === "TOGGLE_PRICE") {
     const { isChecked } = state;
     const { selected_prices } = state.filters;
-    const { index, value, name } = action.payload;
+    const { index, value } = action.payload;
     let copyOfIsChecked = [...isChecked];
     let copyOfSelectedPrices = [...selected_prices];
     copyOfIsChecked[index] = !isChecked[index];
@@ -73,7 +75,7 @@ const filter_reducer = (state, action) => {
   if (action.type === "TOGGLE_RATING") {
     const { isRatingChecked } = state;
     const { selected_ratings } = state.filters;
-    const { name, index, value } = action.payload;
+    const { index, value } = action.payload;
     let copyOfIsRatingChecked = [...isRatingChecked];
     copyOfIsRatingChecked[index] = !isRatingChecked[index];
     let copyOfSelectedRatings = [...selected_ratings];
@@ -141,11 +143,8 @@ const filter_reducer = (state, action) => {
     if (selected_ratings.length) {
       copyOfProducts = copyOfProducts.filter(
         (product) =>
-              selected_ratings.filter((selectedRating) => {
-                  console.log(Math.floor(product.rating.rate), selectedRating);
-                  return (
-                      Math.floor(product.rating.rate) === Number(selectedRating)
-            );
+          selected_ratings.filter((selectedRating) => {
+            return Math.floor(product.rating.rate) === Number(selectedRating);
           }).length
       );
     }
@@ -157,10 +156,12 @@ const filter_reducer = (state, action) => {
     return {
       ...state,
       sort_type: "low",
+      isChecked: new Array(prices.length).fill(false),
+      isRatingChecked: new Array(stars.length).fill(false),
       filters: {
         category: "all",
         selected_prices: [],
-        rating: "",
+        selected_ratings: [],
       },
     };
   }
