@@ -1,6 +1,6 @@
 import React from "react";
 import { GlobalStyle } from "./style";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -11,7 +11,7 @@ import SingleProductPage from "../../pages/SingleProductPage/SingleProductPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <GlobalStyle />
       <Header />
       <Routes>
@@ -22,7 +22,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
