@@ -1,6 +1,6 @@
 # 1st & Third
 
-This is an e-commerce website made to practice concepts that ive learned in React so far such as React Router v6 and Context API.
+1st & Third is an multi-page React E-Commerce website where the user can browse and filter products pulled from the Fake Store API based on category, price, and customer rating.  Coming Soon:  Add to cart and shopping cart functionality.
 
 ## Table of Concepts
 
