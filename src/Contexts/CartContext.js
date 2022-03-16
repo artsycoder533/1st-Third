@@ -9,6 +9,7 @@ const initialState = {
     cart: [],
     totalNumCartItems: 0,
     singleProductAmount: 0,
+    cartTotal: 0,
     shipping_fee: 5.99
 };
 

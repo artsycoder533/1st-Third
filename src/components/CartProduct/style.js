@@ -8,17 +8,20 @@ export const StyledArticle = styled.article`
 
     div {
         height: 200px;
+        width: 200px;
     }
 
     div:nth-of-type(2){
         flex: 1;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
+        margin-left: 2rem;
     }
 
     img {
         max-width: 100%;
         height: 100%;
+        object-fit: center;
     }
 `;
