@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   FooterContainer,
   FooterSection,
@@ -12,8 +12,11 @@ import { Center } from "../App/style";
 import { social } from "./footerdata";
 import { links } from "../Navbar/data";
 import { NavLink } from "./style";
+import { CartContext } from "../../Contexts/CartContext";
 
 function Footer() {
+  const { totalNumCartItems } = useContext(CartContext);
+
   return (
     <StyledFooter>
       <Center>
@@ -24,8 +27,13 @@ function Footer() {
             {links.map((link, index) => {
               const { url, text, icon } = link;
               return (
-                <NavLink to={url} key={text}>
+                <NavLink to={url} key={index}>
                   {text} {icon}
+                  {text === "Cart" ? (
+                    <span>
+                      {totalNumCartItems > 0 ? totalNumCartItems : null}
+                    </span>
+                  ) : null}
                 </NavLink>
               );
             })}
