@@ -43,35 +43,29 @@ const filter_reducer = (state, action) => {
   }
 
   if (action.type === "TOGGLE_CHECKED") {
-    console.log("TOGGLE_CHECKED clicked");
     const { isChecked } = state;
-
     const { selected_prices } = state.filters;
-    const { index, value,  name } = action.payload;
+    const { index, value, name } = action.payload;
     let copyOfIsChecked = [...isChecked];
     let copyOfSelectedPrices = [...selected_prices];
     copyOfIsChecked[index] = !isChecked[index];
-      console.log(value);
-      //check if value is not checked
-      if (copyOfIsChecked[index]) {
-          console.log("checkbox checked");
-          copyOfSelectedPrices.push(value);
+
+    //if price has been checked
+    if (copyOfIsChecked[index]) {
+      copyOfSelectedPrices.push(value);
+    }
+    //if price has been unchecked
+    if (!copyOfIsChecked[index]) {
+      if (copyOfSelectedPrices.includes(value)) {
+        copyOfSelectedPrices = copyOfSelectedPrices.filter((price) => {
+          return price !== value;
+        });
       }
-      if (!copyOfIsChecked[index]) {
-          console.log("checkbox unchecked");
-          if (copyOfSelectedPrices.includes(value)) {
-              console.log("name found");
-              copyOfSelectedPrices = copyOfSelectedPrices.filter(price => {
-                  return price !== value;
-              })
-          }
-      }
-    
-    console.log(copyOfSelectedPrices);
+    }
+
     return {
       ...state,
       isChecked: copyOfIsChecked,
-
       filters: { ...state.filters, selected_prices: [...copyOfSelectedPrices] },
     };
   }
@@ -82,14 +76,10 @@ const filter_reducer = (state, action) => {
   }
 
   if (action.type === "FILTER_PRODUCTS") {
-    console.log("HANDLE_FILTERS called");
-    //get all products from the state
     const { products } = state;
-    //get all filter categories from the state
     const { category, selected_prices, rating } = state.filters;
     let copyOfProducts = [...products];
 
-    console.log(selected_prices);
     //category
     if (category !== "all") {
       copyOfProducts = copyOfProducts.filter((product) => {
@@ -99,7 +89,6 @@ const filter_reducer = (state, action) => {
 
     //price
     if (selected_prices.length) {
-      console.log("selected prices has length");
       copyOfProducts = copyOfProducts.filter(
         (product) =>
           selected_prices.filter((selectedPrice) => {
@@ -123,7 +112,7 @@ const filter_reducer = (state, action) => {
       sort_type: "low",
       filters: {
         category: "all",
-        price: [],
+        selected_prices: [],
         rating: "",
       },
     };

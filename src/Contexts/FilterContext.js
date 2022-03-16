@@ -43,7 +43,6 @@ const FilterContextProvider = ({ children }) => {
         let name = e.target.name;
         let value = e.target.value;
         let type = e.target.type;
-        console.log(name, value, type, index);
 
         //if type is checkbox
         if (type === "checkbox") {
@@ -52,7 +51,6 @@ const FilterContextProvider = ({ children }) => {
         if(type === "radio") {
             dispatch({ type: "HANDLE_FILTERS", payload: { value } });
         }
-        
     }
 
     const resetFilters = () => {
