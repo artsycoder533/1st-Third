@@ -5,6 +5,7 @@ import { ProductsContext } from "./ProductsContext";
 export const CartContext = createContext();
 
 const initialState = {
+    products: [],
     cart: [],
     totalNumCartItems: 0,
     singleProductAmount: 0,
@@ -12,12 +13,12 @@ const initialState = {
 };
 
 const CartContextProvider = ({ children }) => {
-    const { singleProduct, filtered_products } = useContext(ProductsContext);
+    const { singleProduct, products } = useContext(ProductsContext);
     const [state, dispatch] = useReducer(cart_reducer, initialState);
     
     useEffect(() => {
-        
-    }, []);
+        dispatch({ type: "LOAD_PRODUCTS", payload: products });
+    }, [products]);
 
     const handleAddToCart = (id) => {
         console.log(id);
