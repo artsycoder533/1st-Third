@@ -76,13 +76,21 @@ To start the project I first thought about the different pieces I would need to 
     }
     ```
 
-- Problem:  How do you filter the products by category so that each time you change the selection you're starting from the original array and not the filtered array.
-
-    - Solution: 
-
 - Problem: How to handle multiple checkboxes?
 
-    - Solution: 
+    - Solution: To start, I gave all of the checkboxes in group the same name attribute.  I saved the checked state in an array and kept track of each individual checkbox but its index.  I used controlled inputs, so when a user clicks on a checkbox the value and the same index as the checkbox in the isChecked array is toggled.  
+
+- Problem: How do you implement a filter with multiple conditions?
+
+    - Solution:  To start any category that would need to be filtered with multiple conditions I used a checkbox.  I created a second array for each category that held only the values that corresponded to checkboxes that had been checked.  If a user deselects a checkbox I then search the array of selected values for that specific value and filter out and values that are equal to it.  As a result the the products displayed update based on only those that meet the criteria of selected filters.  To implement the filter functionality, I used a nested filter method on the original array of products.  The nested filter acts as a loop to iterate over the array of selected values and returns only those products who meet the criteria inside of the callback in the nested filter method.
+
+- Problem:  When I deployed to github the base url of my site was incorrect.
+
+    - Solution:  I discovered that GitHub pages behaves differently when the root url of your website contains a backslash follwed by more characters
+
+    Ex: https://artsycoder533.github.io/1st-Third/  vs https://artsycoder533.github.io
+
+    My initial issue was when the page loaded you would only see a blank white screen.  When you reloaded the page or clicked on any of the navigation links the url would change from https://artsycoder533.github.io/1st-Third/ to only https://artsycoder533.github.io which was incorrect.  I found out that React Router has a HashRouter made for this specific purpose.  When you site url goes beyong just the base HashRouter maintains the url structure.  I had to replace BrowserRouter with HashRouter and this fixed my issue.
 
 ### What I learned
 
