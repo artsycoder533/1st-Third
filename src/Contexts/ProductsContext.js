@@ -37,7 +37,6 @@ const ProductContextProvider = ({ children }) => {
 
   //get single product from api
   const fetchSingleProduct = async (url) => {
-    console.log(url);
     dispatch({ type: "SHOW_LOADING" });
     try {
       const response = await fetch(url);
@@ -45,6 +44,7 @@ const ProductContextProvider = ({ children }) => {
       dispatch({ type: "GET_SINGLE_PRODUCT", payload: singleProduct });
     } catch (error) {
       //handle error
+      console.log(error);
     }
   };
 
