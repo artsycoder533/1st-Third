@@ -95,6 +95,11 @@ To start the project I first thought about the different pieces I would need to 
 ### What I learned
 
 - When you import an image using styled components the name you chose has to start with a capital letter, I noticed I received errors if it was lowercase.
+- How to implement the Context API
+- How to use React Router v6
+- How to use useReducer instead of useState
+- React Router has a HashRouter for urls that go beyond the base
+
 
 ### Continued Development
 
