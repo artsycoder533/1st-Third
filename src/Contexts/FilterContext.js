@@ -1,6 +1,7 @@
 import React, { useReducer, createContext, useContext, useEffect } from "react";
 import filter_reducer from "../reducers/filter_reducer";
 import { ProductsContext } from "./ProductsContext";
+import { prices } from "../components/Filter/filterData";
 
 export const FilterContext = createContext();
 
@@ -8,9 +9,10 @@ const initialState = {
     products: [],
     filtered_products: [],
     sort_type: 'low',
+    isChecked: new Array(prices.length).fill(false),
     filters: {
         category: "all",
-        price: [],
+        selected_prices: [],
         rating: ""
     }
 };
@@ -28,7 +30,7 @@ const FilterContextProvider = ({ children }) => {
     useEffect(() => {
         dispatch({ type: "FILTER_PRODUCTS" });
         dispatch({ type: "SORT_PRODUCTS" });
-    }, [products, state.sort_type, state.filters]);
+    }, [ state.products, state.sort_type, state.filters, ]);
 
     //onChange for sort select
     const handleSort = (e) => {
@@ -37,9 +39,20 @@ const FilterContextProvider = ({ children }) => {
     }
 
     //onChange for filters
-    const handleFilters = (e) => {
+    const handleFilters = (e, index) => {
+        let name = e.target.name;
         let value = e.target.value;
-        dispatch({ type: "HANDLE_FILTERS", payload: { value } });
+        let type = e.target.type;
+        console.log(name, value, type, index);
+
+        //if type is checkbox
+        if (type === "checkbox") {
+            dispatch({ type: "TOGGLE_CHECKED", payload: { index, value,  name } });
+        }
+        if(type === "radio") {
+            dispatch({ type: "HANDLE_FILTERS", payload: { value } });
+        }
+        
     }
 
     const resetFilters = () => {

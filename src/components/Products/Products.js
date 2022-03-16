@@ -8,7 +8,7 @@ import { FilterContext } from "../../Contexts/FilterContext";
 
 const Products = () => {
   const {filtered_products, loading} = useContext(FilterContext);
-  console.log(filtered_products);
+  //console.log(filtered_products);
 
   return (
     <>

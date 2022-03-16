@@ -1,19 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import {ProductsContext } from "../../Contexts/ProductsContext";
+import { FilterContext } from "../../Contexts/FilterContext";
 
 function PriceFilter({ prices, title }) {
-  const {
-    products,
-    filteredProducts,
-    filterResult,
-    setSelectedPrices,
-    selectedPrices,
-    setFilteredProducts,
-    selectedCategory
-  } = useContext(ProductsContext);
-  const [isChecked, setIsChecked] = useState(
-    new Array(prices.length).fill(false)
-  );
+  const { handleFilters, isChecked } = useContext(FilterContext);
+
 
   // useEffect(() => {
   //   console.log(selectedPrices);
@@ -89,9 +79,6 @@ function PriceFilter({ prices, title }) {
   //   }
   // };
   
-  const handleInput = () => {
-    
-  }
 
   return (
     <div>
@@ -105,8 +92,8 @@ function PriceFilter({ prices, title }) {
               id={lowPrice}
               value={highPrice}
               checked={isChecked[index]}
-              name={highPrice}
-              onChange={handleInput}
+              name={title}
+              onChange={(e)=>handleFilters(e, index)}
               ></input>
             <label htmlFor={lowPrice}>
               ${lowPrice} - ${highPrice}

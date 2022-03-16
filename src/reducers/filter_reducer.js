@@ -42,38 +42,89 @@ const filter_reducer = (state, action) => {
     return { ...state, filtered_products: copyOfFilteredProducts };
   }
 
+  if (action.type === "TOGGLE_CHECKED") {
+    console.log("TOGGLE_CHECKED clicked");
+    const { isChecked } = state;
+
+    const { selected_prices } = state.filters;
+    const { index, value,  name } = action.payload;
+    let copyOfIsChecked = [...isChecked];
+    let copyOfSelectedPrices = [...selected_prices];
+    copyOfIsChecked[index] = !isChecked[index];
+      console.log(value);
+      //check if value is not checked
+      if (copyOfIsChecked[index]) {
+          console.log("checkbox checked");
+          copyOfSelectedPrices.push(value);
+      }
+      if (!copyOfIsChecked[index]) {
+          console.log("checkbox unchecked");
+          if (copyOfSelectedPrices.includes(value)) {
+              console.log("name found");
+              copyOfSelectedPrices = copyOfSelectedPrices.filter(price => {
+                  return price !== value;
+              })
+          }
+      }
+    
+    console.log(copyOfSelectedPrices);
+    return {
+      ...state,
+      isChecked: copyOfIsChecked,
+
+      filters: { ...state.filters, selected_prices: [...copyOfSelectedPrices] },
+    };
+  }
+
   if (action.type === "HANDLE_FILTERS") {
     const { value } = action.payload;
     return { ...state, filters: { ...state.filters, category: value } };
+  }
+
+  if (action.type === "FILTER_PRODUCTS") {
+    console.log("HANDLE_FILTERS called");
+    //get all products from the state
+    const { products } = state;
+    //get all filter categories from the state
+    const { category, selected_prices, rating } = state.filters;
+    let copyOfProducts = [...products];
+
+    console.log(selected_prices);
+    //category
+    if (category !== "all") {
+      copyOfProducts = copyOfProducts.filter((product) => {
+        return product.category === category;
+      });
     }
-    
-    if (action.type === "FILTER_PRODUCTS") {
-        //get all products from the state
-        const { products } = state;
-        //get all filter categories from the state
-        const { category, price, rating } = state.filters;
-        let copyOfProducts = [...products];
 
-        console.log(category === "all");
-        //category
-        if (category !== "all") {
-            copyOfProducts = copyOfProducts.filter(product => {
-                console.log(product.category, category);
-                return product.category === category;
-            });
-        }
+    //price
+    if (selected_prices.length) {
+      console.log("selected prices has length");
+      copyOfProducts = copyOfProducts.filter(
+        (product) =>
+          selected_prices.filter((selectedPrice) => {
+            if (selectedPrice === "and up") {
+              return product.price >= 500.0;
+            } else {
+              return (
+                product.price >= selectedPrice - 49.99 &&
+                product.price <= selectedPrice
+              );
+            }
+          }).length);
+    }
 
-        return { ...state, filtered_products: copyOfProducts };
- }
+    return { ...state, filtered_products: copyOfProducts };
+  }
 
   if (action.type === "RESET_FILTERS") {
     return {
       ...state,
       sort_type: "low",
-        filters: {
-            category: "all",
-            price: [],
-            rating: ""
+      filters: {
+        category: "all",
+        price: [],
+        rating: "",
       },
     };
   }
