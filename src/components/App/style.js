@@ -22,11 +22,11 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        min-height: 100vh;
-        //border: 2px solid red;
+        min-height: calc(100vh - 60px);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-top: 60px;
     }
 
     h1, h2, h3 {
