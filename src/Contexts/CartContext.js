@@ -13,16 +13,19 @@ const initialState = {
 };
 
 const CartContextProvider = ({ children }) => {
-    const { singleProduct, products } = useContext(ProductsContext);
+    const { singleProduct, products} = useContext(ProductsContext);
     const [state, dispatch] = useReducer(cart_reducer, initialState);
     
     useEffect(() => {
         dispatch({ type: "LOAD_PRODUCTS", payload: products });
     }, [products]);
 
+    useEffect(() => {
+        dispatch({type: "UPDATE_CART_COUNT"})
+    }, [state.cart]);
+
     const handleAddToCart = (id) => {
-        console.log(id);
-        dispatch({ type: "ADD_TO_CART", payload:id });
+        dispatch({ type: "ADD_TO_CART", payload: singleProduct });
     }
 
     return (
