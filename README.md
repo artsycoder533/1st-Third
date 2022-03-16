@@ -99,7 +99,7 @@ To start the project I first thought about the different pieces I would need to 
 - How to use React Router v6
 - How to use useReducer instead of useState
 - React Router has a HashRouter for urls that go beyond the base
-
+- How to display product rating stars with React Icons using Array.from
 
 ### Continued Development
 
