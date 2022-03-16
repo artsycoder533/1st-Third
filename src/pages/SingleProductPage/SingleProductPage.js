@@ -20,12 +20,14 @@ import {
 import { ProductsContext } from "../../Contexts/ProductsContext";
 import { url } from "../../components/Filter/filterData";
 import Star from "../../components/Star/Star";
+import { CartContext } from "../../Contexts/CartContext";
 
 function SingleProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { singleProduct, fetchSingleProduct, loading } =
     useContext(ProductsContext);
+  const { handleAddToCart } = useContext(CartContext);
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
@@ -57,7 +59,7 @@ function SingleProductPage() {
                 {count} reviews
               </span>
               <p>${price.toFixed(2)}</p>
-              <PrimaryButton>Add to Cart</PrimaryButton>
+              <PrimaryButton onClick={()=>handleAddToCart(id)}>Add to Cart</PrimaryButton>
               {/* <SpecialButton>
                   <ToggleButton>-</ToggleButton>
                   <span> 1 added </span>
