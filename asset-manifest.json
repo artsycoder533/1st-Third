@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/1st-Third/static/js/main.c13188ea.js",
+    "main.js": "/1st-Third/static/js/main.17f968d1.js",
     "static/media/heroDesktop.jpg": "/1st-Third/static/media/heroDesktop.29a4bcc1941ad7c6e5ed.jpg",
     "index.html": "/1st-Third/index.html",
-    "main.c13188ea.js.map": "/1st-Third/static/js/main.c13188ea.js.map"
+    "main.17f968d1.js.map": "/1st-Third/static/js/main.17f968d1.js.map"
   },
   "entrypoints": [
-    "static/js/main.c13188ea.js"
+    "static/js/main.17f968d1.js"
   ]
 }
