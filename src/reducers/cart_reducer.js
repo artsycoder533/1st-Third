@@ -1,3 +1,5 @@
+
+
 export const cart_reducer = (state, action) => {
   if (action.type === "LOAD_PRODUCTS") {
     const { products } = state;
@@ -8,20 +10,32 @@ export const cart_reducer = (state, action) => {
     const { cart } = state;
     const copyOfCart = [...cart];
 
-    //if cart isnt empty
-    if (cart.length) {
+    //if cart is empty
+    if (!cart.length) {
+      copyOfCart.push({
+        product: {
+          details: action.payload,
+          quantity: 1,
+        },
+      });
+    }
+    if(cart.length) {
       //check if it conains the item
       const index = copyOfCart.findIndex((item) => {
         console.log(item);
         return item.product.details.id === action.payload.id;
       });
-      console.log(index);
-      //if a match update the count
+      //if a match update the quantity
       if (index > -1) {
-        copyOfCart[index].product.quantity++;
+        copyOfCart[index] = {
+          product: {
+            details: action.payload,
+            quantity: copyOfCart[index].product.quantity + 1
+          }
+        }
       }
-      //not a match
-      else {
+      //if not a match, add new item
+      if(index === -1) {
         copyOfCart.push({
           product: {
             details: action.payload,
@@ -30,22 +44,17 @@ export const cart_reducer = (state, action) => {
         });
       }
     }
-    else {
-      copyOfCart.push({
-        product: {
-          details: action.payload,
-          quantity: 1,
-        },
-      });
-    }
 
     return { ...state, cart: [...copyOfCart] };
   }
 
   if (action.type === "UPDATE_CART_COUNT") {
     const { cart } = state;
-    const count = cart.length;
-    return { ...state, totalNumCartItems: count };
+    const total = cart.reduce((acc, curr) => {
+      return acc + curr.product.quantity;
+    }, 0)
+    console.log("total: ", total);
+    return { ...state, totalNumCartItems: total };
   }
 
   if (action.type === "REMOVE_CART") {

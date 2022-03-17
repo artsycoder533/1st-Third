@@ -30,6 +30,9 @@
       "react-app/jest"
     ]
   },
+  "browser": {
+    "fs":false
+  },
   "browserslist": {
     "production": [
       ">0.2%",

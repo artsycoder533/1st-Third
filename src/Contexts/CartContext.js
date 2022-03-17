@@ -22,7 +22,7 @@ const CartContextProvider = ({ children }) => {
     }, [products]);
 
     useEffect(() => {
-        dispatch({type: "UPDATE_CART_COUNT"})
+       dispatch({type: "UPDATE_CART_COUNT"})
     }, [state.cart]);
 
     const handleAddToCart = () => {

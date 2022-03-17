@@ -60,7 +60,7 @@ function SingleProductPage() {
               </span>
               <p>${price.toFixed(2)}</p>
               {/* if this item is in the cart switch the button */}
-              {cart.length === 0 ? (
+              {!cart.includes(singleProduct) ? (
                 <PrimaryButton onClick={() => handleAddToCart(id)}>
                   Add to Cart
                 </PrimaryButton>
