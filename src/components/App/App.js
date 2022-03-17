@@ -11,7 +11,7 @@ import SingleProductPage from "../../pages/SingleProductPage/SingleProductPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <GlobalStyle />
       <Header />
       <Routes>
@@ -22,7 +22,7 @@ function App() {
         <Route path="cart" element={<CartPage />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
