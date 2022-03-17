@@ -27,7 +27,7 @@ function SingleProductPage() {
   const navigate = useNavigate();
   const { singleProduct, fetchSingleProduct, loading } =
     useContext(ProductsContext);
-  const { handleAddToCart } = useContext(CartContext);
+  const { handleAddToCart, cart } = useContext(CartContext);
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
@@ -59,12 +59,18 @@ function SingleProductPage() {
                 {count} reviews
               </span>
               <p>${price.toFixed(2)}</p>
-              <PrimaryButton onClick={()=>handleAddToCart(id)}>Add to Cart</PrimaryButton>
-              {/* <SpecialButton>
+              {/* if this item is in the cart switch the button */}
+              {cart.length === 0 ? (
+                <PrimaryButton onClick={() => handleAddToCart(id)}>
+                  Add to Cart
+                </PrimaryButton>
+              ) : (
+                <SpecialButton>
                   <ToggleButton>-</ToggleButton>
-                  <span> 1 added </span>
+                  <span> X added </span>
                   <ToggleButton>+</ToggleButton>
-                </SpecialButton> */}
+                </SpecialButton>
+              )}
             </ProductWrapper>
             <StyledDetails>
               <summary>Product Description</summary>

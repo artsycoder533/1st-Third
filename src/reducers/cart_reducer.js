@@ -13,9 +13,16 @@ export const cart_reducer = (state, action) => {
   }
   
   if (action.type === "UPDATE_CART_COUNT") {
-    const { cart, totalNumCartItems } = state;
+    const { cart} = state;
     const count = cart.length;
     return { ...state, totalNumCartItems: count };
+  }
+
+  if (action.type === "REMOVE_CART") {
+    const { cart } = state;
+    const copyOfCart = [...cart];
+    
+    return {...state };
   }
 
   //if theres no matching action, throw error

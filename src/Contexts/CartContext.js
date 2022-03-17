@@ -25,8 +25,16 @@ const CartContextProvider = ({ children }) => {
         dispatch({type: "UPDATE_CART_COUNT"})
     }, [state.cart]);
 
-    const handleAddToCart = (id) => {
+    const handleAddToCart = () => {
         dispatch({ type: "ADD_TO_CART", payload: singleProduct });
+    }
+
+    const removeFromCart = () => {
+        dispatch({ type: "REMOVE_ITEM" });
+    }
+
+    const clearCart = () => {
+        
     }
 
     return (
