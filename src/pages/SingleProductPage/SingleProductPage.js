@@ -66,9 +66,9 @@ function SingleProductPage() {
                 </PrimaryButton>
               ) : (
                 <SpecialButton>
-                  <ToggleButton>-</ToggleButton>
+                  <span>-</span>
                   <span> X added </span>
-                  <ToggleButton>+</ToggleButton>
+                  <span onClick={()=> handleAddToCart(id)}>+</span>
                 </SpecialButton>
               )}
             </ProductWrapper>
