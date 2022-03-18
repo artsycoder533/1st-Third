@@ -43,6 +43,10 @@ export const SecondaryButton = styled.button`
 export const PrimaryButton = styled(SecondaryButton)`
   background: #800020;
   color: white;
+
+  &:hover {
+    
+  }
 `;
 
 export const SpecialButton = styled(PrimaryButton)`

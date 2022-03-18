@@ -33,7 +33,7 @@ export const FooterSection = styled.section`
   }
 `;
 
-export const StyledHeading = styled.h2`
+export const StyledHeading = styled.h3`
     color: white;
 `;
 
@@ -41,15 +41,30 @@ export const NavLink = styled(Link)`
     color: snow;
     text-decoration: none;
     font-weight: bold;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    gap: 0.25rem;
+    font-size: 1.1rem;
 `;
 
 export const StyledInstagram = styled(FiInstagram)`
     color: white;
+    font-size: 2rem;
+
+    &:hover {
+        color: yellow;
+    }
 `;
 
 export const StyledTwitter = styled(FiTwitter)`
-    color: white;
+  color: white;
+  font-size: 2rem;
+
+  &:hover {
+    color: yellow;
+  }
 `;
 
 export const StyledAttrition = styled.small`
