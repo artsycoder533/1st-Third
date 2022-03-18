@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { FilterContext } from "../../Contexts/FilterContext";
+import { Container } from "./style";
 
 function Filter({ categories, title }) {
   const { filters, handleFilters } =
@@ -7,7 +8,7 @@ function Filter({ categories, title }) {
   const { category } = filters;
 
   return (
-    <div>
+    <Container>
       <h2>{title}</h2>
       {categories.map((cat, index) => {
         return (
@@ -15,6 +16,7 @@ function Filter({ categories, title }) {
             <input
               type="radio"
               name={title.toLowerCase()}
+              id={cat}
               value={cat.toLowerCase()}
               onChange={handleFilters}
               checked={category === cat.toLowerCase()}></input>
@@ -22,7 +24,7 @@ function Filter({ categories, title }) {
           </div>
         );
       })}
-    </div>
+    </Container>
   );
 }
 
