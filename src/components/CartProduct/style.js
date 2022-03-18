@@ -25,3 +25,15 @@ export const StyledArticle = styled.article`
         object-fit: center;
     }
 `;
+
+export const RemoveButton = styled.button`
+    align-self: center;
+    margin-left: 2rem;
+`;
+
+export const CountButton = styled.button`
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+`;

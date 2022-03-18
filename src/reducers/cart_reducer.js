@@ -7,14 +7,22 @@ export const cart_reducer = (state, action) => {
   }
 
   if (action.type === "ADD_TO_CART") {
-    const { cart } = state;
+    const { cart, products } = state;
+    const id = Number(action.payload);
     const copyOfCart = [...cart];
 
+    //get the index of the product that matches the id
+    let product = products.find(item => {
+      console.log(item.id, id);
+      return item.id === id;
+    });
+    console.log(product);
+   
     //if cart is empty
     if (!cart.length) {
       copyOfCart.push({
         product: {
-          details: action.payload,
+          details: {...product}, //action.payload
           quantity: 1,
         },
       });
@@ -23,22 +31,22 @@ export const cart_reducer = (state, action) => {
       //check if it conains the item
       const index = copyOfCart.findIndex((item) => {
         console.log(item);
-        return item.product.details.id === action.payload.id;
+        return item.product.details.id === id; //action.payload.
       });
       //if a match update the quantity
       if (index > -1) {
         copyOfCart[index] = {
           product: {
-            details: action.payload,
-            quantity: copyOfCart[index].product.quantity + 1
-          }
-        }
+            details: {...product},
+            quantity: copyOfCart[index].product.quantity + 1,
+          },
+        };
       }
       //if not a match, add new item
       if(index === -1) {
         copyOfCart.push({
           product: {
-            details: action.payload,
+            details: product,
             quantity: 1,
           },
         });

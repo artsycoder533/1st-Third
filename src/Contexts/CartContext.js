@@ -9,7 +9,7 @@ const initialState = {
     cart: [],
     totalNumCartItems: 0,
     singleProductAmount: 0,
-    cartTotal: 0,
+    cart_total: 0,
     shipping_fee: 5.99
 };
 
@@ -25,8 +25,8 @@ const CartContextProvider = ({ children }) => {
        dispatch({type: "UPDATE_CART_COUNT"})
     }, [state.cart]);
 
-    const handleAddToCart = () => {
-        dispatch({ type: "ADD_TO_CART", payload: singleProduct });
+    const handleAddToCart = (id) => {
+        dispatch({ type: "ADD_TO_CART", payload: id });
     }
 
     const removeFromCart = () => {

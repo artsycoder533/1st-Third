@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
-import { StyledArticle } from './style';
+import { CountButton, RemoveButton, StyledArticle } from './style';
 import { CartContext } from '../../Contexts/CartContext';
 
-const CartProduct = ({ title, image, price, id }) => {
-    const { cart } = useContext(CartContext);
-    console.log(title, image, price);
+const CartProduct = ({ product}) => {
+    const { cart, handleAddToCart } = useContext(CartContext);
+    const { quantity, details } = product;
+    const { image, title, id, price } = details;
 
   return (
       <StyledArticle>
@@ -13,11 +14,12 @@ const CartProduct = ({ title, image, price, id }) => {
           </div>
           <div>
               <span>{title}</span>
-              <span>Qty. {cart.filter(item => {
-                  return item.id === id;
-              }).length}</span>
+              <CountButton>-</CountButton>
+              <span>Qty. {quantity}</span>
+              <CountButton onClick={()=>handleAddToCart(id)}>+</CountButton>
               <span>${price}</span>
           </div>
+          <RemoveButton>Remove Item</RemoveButton>
     </StyledArticle>
   )
 }
