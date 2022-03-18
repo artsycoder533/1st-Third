@@ -4,7 +4,7 @@ import CartProduct from "../CartProduct/CartProduct";
 
 
 const Cart = () => {
-    const { cart, shipping_fee, cart_total } = useContext(CartContext);
+    const { cart, shipping_fee, cart_total, clearCart } = useContext(CartContext);
 
   return (
     <>
@@ -12,7 +12,7 @@ const Cart = () => {
         {cart.map((item, index) => {
           return <CartProduct key={index} {...item} />;
         })}
-        <button>Clear Cart</button>
+        <button onClick={clearCart}>Clear Cart</button>
       </section>
       <section>
         <p>Subtotal:  </p>

@@ -51,7 +51,7 @@ export const cart_reducer = (state, action) => {
     return { ...state, cart: [...copyOfCart] };
   }
 
-  if (action.type === "REMOVE_ITEM") {
+  if (action.type === "DECREASE_COUNT") {
     const { cart } = state;
     const id = Number(action.payload);
     let copyOfCart = [...cart];
@@ -94,11 +94,19 @@ export const cart_reducer = (state, action) => {
     return { ...state, totalNumCartItems: total };
   }
 
-  if (action.type === "REMOVE_CART") {
+  if (action.type === "REMOVE_ITEM") {
     const { cart } = state;
-    const copyOfCart = [...cart];
+    const id = Number(action.payload);
+    let copyOfCart = [...cart];
+    copyOfCart = copyOfCart.filter((item) => {
+      return item.product.details.id !== id;
+    });
+    return { ...state, cart: [...copyOfCart] };
+  }
 
-    return { ...state };
+  if (action.type === "CLEAR_CART") {
+    const { cart } = state;
+    return { ...state, cart: [] };
   }
 
   //if theres no matching action, throw error

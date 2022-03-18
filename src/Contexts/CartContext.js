@@ -29,18 +29,23 @@ const CartContextProvider = ({ children }) => {
         dispatch({ type: "ADD_TO_CART", payload: id });
     }
 
-    const removeFromCart = (id) => {
-        dispatch({ type: "REMOVE_ITEM", payload: id });
+    const decreaseCartCount = (id) => {
+        dispatch({ type: "DECREASE_COUNT", payload: id });
+    }
+
+    const removeItemFromCart = (id) => {
+        dispatch({type: "REMOVE_ITEM", payload:id})
     }
 
     const clearCart = () => {
-        
+        dispatch({ type: "CLEAR_CART" });
     }
 
     return (
-        <CartContext.Provider value={{...state, handleAddToCart, removeFromCart, clearCart}}>
-            {children}
-        </CartContext.Provider>
+      <CartContext.Provider
+        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart }}>
+        {children}
+      </CartContext.Provider>
     );
 }
 
