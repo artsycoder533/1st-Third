@@ -10,7 +10,6 @@ const Cart = () => {
     <>
       <section>
         {cart.map((item, index) => {
-          console.log(item);
           return <CartProduct key={index} {...item} />;
         })}
         <button>Clear Cart</button>

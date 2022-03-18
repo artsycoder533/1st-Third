@@ -15,9 +15,9 @@ function CartPage() {
         <Link to="/shop">Continue Shopping</Link>
         {cart.length === 0 ? (
           <h2>There are no items in your cart....</h2>
-        ) : null}
-
-        <Cart />
+        ) : (
+          <Cart />
+        )}
       </Center>
     </main>
   );
