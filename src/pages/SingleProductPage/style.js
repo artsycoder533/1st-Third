@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SecondaryButton } from "../../components/Button/style";
+import { PrimaryButton, SecondaryButton } from "../../components/Button/style";
 
 export const ProductContainer = styled.div`
   display: flex;
@@ -18,8 +18,22 @@ export const ProductContainer = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
     flex-basis: 50%;
+  }
+
+  details {
+    max-width: 500px;
+    width: 90vw;
+    cursor: pointer;
+    padding: 1rem 0;
+    transition: all .5s ease-in-out;
+    max-height: 50px;
+  }
+
+  details[open] {
+    max-height: 400px;
+    transition: all .5s ease-in-out;
   }
 `;
 
@@ -31,14 +45,12 @@ export const Img = styled.img`
 export const ProductWrapper = styled.article`
   display: flex;
   flex-direction: column;
-  text-align: center;
   gap: 2rem;
 
   span {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    justify-content: center;
   }
 
   p {
@@ -52,13 +64,19 @@ export const ProductTitle = styled.h2`
 `;
 
 export const StyledDetails = styled.details`
-    max-width: 400px;
-    width: 100%;
-    cursor: pointer;
+  width: 100%;
+  cursor: pointer;
+  border-bottom: 1px solid lightgrey;
+  padding: 1rem;
+  transition: all 3s ease-in-out;
+  max-height: 50px;
+ 
 `;
 
 export const StyledParagraph = styled.p`
   padding: 1rem 0;
+  line-height: 1.5;
+  width: 100%;
 `;
 
 export const BackButton = styled(SecondaryButton)`
@@ -88,4 +106,8 @@ export const StyledSpan = styled.span`
     background: orange;
     color: white;
   }
+`;
+
+export const AddToCartButton = styled(PrimaryButton)`
+  align-self: flex-start;
 `;

@@ -10,6 +10,7 @@ import {
   StyledParagraph,
   BackButton,
   StyledSpan,
+  AddToCartButton,
 } from "./style";
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
@@ -36,12 +37,11 @@ function SingleProductPage() {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
 
-
   if (loading || Object.keys(singleProduct).length === 0) {
-    return <Loading />
+    return <Loading />;
   }
 
-  const { image, title, rating, price, description, category} = singleProduct;
+  const { image, title, rating, price, description, category } = singleProduct;
   const { rate, count } = rating;
 
   return (
@@ -66,47 +66,41 @@ function SingleProductPage() {
               <p>${price.toFixed(2)}</p>
               {/* if this item is in the cart switch the button */}
               {isItemInCart(id, cart) ? (
-                <SpecialButton style={{cursor: "none"}}>
-                  <StyledSpan role="button" onClick={() => decreaseCartCount(id)}>-</StyledSpan>
-                   In Cart 
-                  <StyledSpan role="button" onClick={() => handleAddToCart(id)}>+</StyledSpan>
+                <SpecialButton style={{ cursor: "none" }}>
+                  <StyledSpan
+                    role="button"
+                    onClick={() => decreaseCartCount(id)}>
+                    -
+                  </StyledSpan>
+                  In Cart
+                  <StyledSpan role="button" onClick={() => handleAddToCart(id)}>
+                    +
+                  </StyledSpan>
                 </SpecialButton>
               ) : (
-                <PrimaryButton onClick={() => handleAddToCart(id)}>
+                <AddToCartButton onClick={() => handleAddToCart(id)}>
                   Add to Cart
-                </PrimaryButton>
+                </AddToCartButton>
               )}
-
-              {/* {!cart.includes(singleProduct) ? (
-                <PrimaryButton onClick={() => handleAddToCart(id)}>
-                  Add to Cart
-                </PrimaryButton>
-              ) : (
-                <SpecialButton>
-                  <span>-</span>
-                  <span> X added </span>
-                  <span onClick={() => handleAddToCart(id)}>+</span>
-                </SpecialButton>
-              )} */}
             </ProductWrapper>
-
-            <StyledDetails>
+            <details>
               <summary>Product Description</summary>
-              <StyledParagraph>{description}</StyledParagraph>
-            </StyledDetails>
-            <StyledDetails>
+              <div>
+                <StyledParagraph>{description}</StyledParagraph>
+              </div>
+            </details>
+            <details>
               <summary>Specifications</summary>
-              <StyledParagraph>Category: {category}</StyledParagraph>
-            </StyledDetails>
+              <div>
+                <StyledParagraph>Category: {category}</StyledParagraph>
+              </div>
+            </details>
           </div>
         </ProductContainer>
       </Center>
       {/* </Container> */}
     </main>
   );
-  
-
-  
 }
 
 export default SingleProductPage;
