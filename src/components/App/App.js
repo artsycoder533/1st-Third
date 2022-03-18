@@ -20,6 +20,7 @@ function App() {
         <Route path="shop/:id" element={<SingleProductPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<CartPage />} />
+        <Route path="checkout" />
       </Routes>
       <Footer />
     </HashRouter>

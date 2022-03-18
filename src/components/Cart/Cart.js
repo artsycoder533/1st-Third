@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../Contexts/CartContext";
 import CartProduct from "../CartProduct/CartProduct";
-
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const { cart, shipping_fee, cart_total, clearCart, subtotal } = useContext(CartContext);
@@ -19,6 +19,7 @@ const Cart = () => {
         <p>Shipping: ${shipping_fee}</p>
         <p>Total: ${cart_total}</p>
       </section>
+      <Link to="/checkout">Checkout</Link>
     </>
   );
 };
