@@ -24,6 +24,9 @@ export const NavLinks = styled.ul`
   height: calc(100vh - 59px);
   align-items: center;
   
+  li {
+    position: relative;
+  }
 
   @media all and (min-width: 992px) {
     flex-direction: row;
@@ -55,8 +58,18 @@ export const StyledNavLink = styled(NavLink)`
 
   @media all and (min-width: 992px) {
     text-align: left;
-    padding: 0;
+    /* padding: 0; */
     color: black;
     font-size: 1rem;
   }
+`;
+
+export const StyledSpan = styled.span`
+  position: absolute;
+  background: #800020;
+  color: white;
+  padding: 0 0.10rem;
+  right: -0px;
+  bottom: 55%;
+  font-weight: bold;
 `;

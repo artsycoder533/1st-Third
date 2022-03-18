@@ -22,10 +22,10 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        min-height: calc(100vh - 270px);
+        min-height: calc(100vh - 60px - 270px);
         display: flex;
         flex-direction: column;
-        margin-top: 60px;
+        margin-top: 67px;
         
     }
 

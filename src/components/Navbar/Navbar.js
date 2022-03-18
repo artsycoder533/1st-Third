@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyledNav, NavLinks, StyledNavLink } from "./style";
+import { StyledNav, NavLinks, StyledNavLink, StyledSpan } from "./style";
 import { links } from "./data";
 import { ProductsContext } from "../../Contexts/ProductsContext";
 import { CartContext } from "../../Contexts/CartContext";
@@ -15,13 +15,13 @@ function Navbar() {
           const { url, text, icon } = link;
           return (
             <li key={index}>
+              {text === "Cart" && totalNumCartItems > 0 ? (
+                <StyledSpan>
+                  {totalNumCartItems > 0 ? totalNumCartItems : null}
+                </StyledSpan>
+              ) : null}
               <StyledNavLink to={url} onClick={toggleMenu}>
                 {text} {icon}
-                {text === "Cart" ? (
-                  <span>
-                    {totalNumCartItems > 0 ? totalNumCartItems : null}
-                  </span>
-                ) : null}
               </StyledNavLink>
             </li>
           );
