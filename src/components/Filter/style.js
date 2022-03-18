@@ -6,7 +6,7 @@ export const Container = styled.div`
   gap: 0.15rem;
 
   h2 {
-    margin-bottom: 0.5rem;
+    
   }
 
   div {
