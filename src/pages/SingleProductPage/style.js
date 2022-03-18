@@ -71,10 +71,9 @@ export const BackButton = styled(SecondaryButton)`
 `;
 
 export const StyledSpan = styled.span`
-  border: 1px solid white;
   padding: 0 0.5rem;
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: white;
   color: #800020;
@@ -83,4 +82,10 @@ export const StyledSpan = styled.span`
   justify-content: center;
   font-size: 1.75rem;
   cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+    background: orange;
+    color: white;
+  }
 `;
