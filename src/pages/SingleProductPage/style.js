@@ -48,7 +48,7 @@ export const ProductWrapper = styled.article`
 `;
 
 export const ProductTitle = styled.h2`
-    
+    font-family: "Roboto";
 `;
 
 export const StyledDetails = styled.details`
@@ -68,4 +68,19 @@ export const BackButton = styled(SecondaryButton)`
   &:hover {
     border: 3px solid white;
   }
+`;
+
+export const StyledSpan = styled.span`
+  border: 1px solid white;
+  padding: 0 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: white;
+  color: #800020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  cursor: pointer;
 `;
