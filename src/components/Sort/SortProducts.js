@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { FilterContext } from "../../Contexts/FilterContext";
-import { Container, SortForm } from "./style";
-import {SecondaryButton} from "../Button/style"
+import { Container, FilterButton, SortForm } from "./style";
 
 function SortProducts() {
-  const { sort_type, handleSort, toggleFilters } = useContext(FilterContext);
+  const { sort_type, handleSort, toggleFilters, showFilters } = useContext(FilterContext);
 
   return (
     <Container>
-      <SecondaryButton onClick={toggleFilters}>Show Filters</SecondaryButton>
+      <FilterButton onClick={toggleFilters}>{showFilters ? "+ Filters" : "- Filters" }</FilterButton>
       <SortForm>
         <label htmlFor="sort_type">Sort By:</label>
         <select

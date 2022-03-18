@@ -33,6 +33,11 @@ export const SecondaryButton = styled.button`
   background: transparent;
   border: 2px solid #800020;
   color: #800020;
+
+  &:hover {
+    background: #800020;
+    color: white;
+  }
 `;
 
 export const PrimaryButton = styled(SecondaryButton)`

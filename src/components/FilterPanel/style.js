@@ -4,15 +4,16 @@ export const Container = styled.div`
   padding: 1rem;
   width: 100%;
   gap: 1rem;
-  width: 250px;
+  width: 100%;
   border: 1px solid lightgrey;
-  display: ${({ showFilters }) => showFilters ? "none" : "block"};
-  //z-index: 2;
+  display: ${({ showFilters }) => (showFilters ? "none" : "block")};
   position: absolute;
   background: white;
 
   @media all and (min-width: 992px) {
     flex-direction: column;
     display: flex;
+    width: 250px;
+    position: initial;
   }
 `;

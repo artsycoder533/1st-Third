@@ -50,7 +50,6 @@ export const blink = keyframes`
 `;
 
 export const StyledHeading = styled.h2`
-  margin-top: 60px;
   height: 150px;
   display: flex;
   justify-content: center;
