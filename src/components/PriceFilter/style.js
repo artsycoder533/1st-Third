@@ -16,8 +16,13 @@ export const Container = styled.section`
   }
 
   input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  input[type="checkbox"],
+  label {
+    cursor: pointer;
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -16,8 +16,8 @@ export const Container = styled.div`
   }
 
   input[type="radio"] {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   input[type="radio"],

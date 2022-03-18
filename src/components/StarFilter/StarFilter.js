@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { FilterContext } from "../../Contexts/FilterContext";
 import Star from "../../components/Star/Star";
+import { Container } from "./style";
 
 function StarFilter({ stars, title }) {
   const { handleFilters, isRatingChecked } = useContext(FilterContext);
 
   return (
-    <div>
+    <Container>
       <h2>{title}</h2>
       {stars.map((star, index) => {
         return (
@@ -24,7 +25,7 @@ function StarFilter({ stars, title }) {
           </div>
         );
       })}
-    </div>
+    </Container>
   );
 }
 
