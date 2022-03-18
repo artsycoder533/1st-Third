@@ -110,5 +110,4 @@ export const StyledSpan = styled.span`
 
 export const AddToCartButton = styled(PrimaryButton)`
   align-self: flex-start;
-
 `;

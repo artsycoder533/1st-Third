@@ -16,6 +16,9 @@ export const ButtonLink = styled(Link)`
   text-decoration: none;
 
   &:hover {
+    transform: scale(1.2);
+    border: 2px solid white;
+    transition: border 0.3s ease-in-out;
   }
 `;
 
@@ -45,7 +48,7 @@ export const PrimaryButton = styled(SecondaryButton)`
   color: white;
 
   &:hover {
-    
+  
   }
 `;
 
