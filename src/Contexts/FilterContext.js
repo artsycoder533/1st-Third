@@ -70,7 +70,13 @@ const FilterContextProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ ...state, handleSort, resetFilters, handleFilters, toggleFilters }}>
+      value={{
+        ...state,
+        handleSort,
+        resetFilters,
+        handleFilters,
+        toggleFilters,
+      }}>
       {children}
     </FilterContext.Provider>
   );

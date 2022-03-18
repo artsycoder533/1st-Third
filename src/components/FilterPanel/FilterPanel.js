@@ -8,10 +8,10 @@ import { Container } from "./style";
 import { PrimaryButton } from "../Button/style";
 
 const FilterPanel = () => {
-  const { resetFilters } = useContext(FilterContext);
+  const { resetFilters, showFilters } = useContext(FilterContext);
 
   return (
-    <Container>
+    <Container showFilters={showFilters}>
       <Filter categories={categories} title={"Category"} />
       <PriceFilter prices={prices} title={"Price"} />
       <StarFilter stars={stars} title={"Customer Ratings"} />

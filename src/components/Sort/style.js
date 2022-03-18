@@ -5,6 +5,8 @@ export const Container = styled.section`
   width: 100%;
   justify-content: space-between;
   padding: 0.5rem 0;
+
+
 `;
 
 export const SortForm = styled.form`

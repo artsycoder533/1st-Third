@@ -6,11 +6,13 @@ export const Container = styled.div`
   gap: 1rem;
   width: 250px;
   border: 1px solid lightgrey;
-  display: none;
-
+  display: ${({ showFilters }) => showFilters ? "none" : "block"};
+  //z-index: 2;
+  position: absolute;
+  background: white;
 
   @media all and (min-width: 992px) {
-    flex-direction: column; 
+    flex-direction: column;
     display: flex;
   }
 `;
