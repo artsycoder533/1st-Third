@@ -8,6 +8,7 @@ import Shop from "../../pages/Shop/Shop";
 import Contact from "../../pages/Contact/Contact";
 import CartPage from "../../pages/Cart/CartPage";
 import SingleProductPage from "../../pages/SingleProductPage/SingleProductPage";
+import Checkout from "../../pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="shop/:id" element={<SingleProductPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path="checkout" />
+        <Route path="checkout" element={<Checkout />}/>
       </Routes>
       <Footer />
     </HashRouter>
