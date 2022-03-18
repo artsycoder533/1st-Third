@@ -22,11 +22,11 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        min-height: calc(100vh - 60px);
+        min-height: calc(100vh - 270px);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         margin-top: 60px;
+        
     }
 
     h1, h2, h3 {
@@ -35,9 +35,9 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Center = styled.div`
-    max-width: 1400px;
-    width: 90vw;
-    margin: 0 auto;
+  max-width: 1400px;
+  width: 90vw;
+  margin: 0 auto;
 `;
 
 export const blink = keyframes`

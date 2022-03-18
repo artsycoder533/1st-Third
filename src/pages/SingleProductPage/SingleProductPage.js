@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { Center } from "../../components/App/style";
+import { Center, StyledHeading } from "../../components/App/style";
 import {
   Container,
   ProductContainer,
@@ -8,6 +8,7 @@ import {
   ProductTitle,
   StyledDetails,
   StyledParagraph,
+  BackButton,
 } from "./style";
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
@@ -29,6 +30,7 @@ function SingleProductPage() {
     useContext(ProductsContext);
   const { handleAddToCart, cart } = useContext(CartContext);
 
+
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
@@ -43,46 +45,51 @@ function SingleProductPage() {
 
   return (
     <main>
-      <Container>
+      <StyledHeading>
+        <BackButton onClick={() => navigate(-1)}>
+          Back to All Products
+        </BackButton>
+      </StyledHeading>
+      {/* <Container> */}
         <Center>
-          <SecondaryButton onClick={() => navigate(-1)}>
-            Back to All Products
-          </SecondaryButton>
-
           <ProductContainer>
             <Img src={image} alt={title} />
-            <ProductWrapper>
-              <ProductTitle>{title}</ProductTitle>
+            <div>
+              <ProductWrapper>
+                <ProductTitle>{title}</ProductTitle>
 
-              <span>
-                <Star rate={rate} />
-                {count} reviews
-              </span>
-              <p>${price.toFixed(2)}</p>
-              {/* if this item is in the cart switch the button */}
-              {!cart.includes(singleProduct) ? (
-                <PrimaryButton onClick={() => handleAddToCart(id)}>
-                  Add to Cart
-                </PrimaryButton>
-              ) : (
-                <SpecialButton>
-                  <span>-</span>
-                  <span> X added </span>
-                  <span onClick={()=> handleAddToCart(id)}>+</span>
-                </SpecialButton>
-              )}
-            </ProductWrapper>
-            <StyledDetails>
-              <summary>Product Description</summary>
-              <StyledParagraph>{description}</StyledParagraph>
-            </StyledDetails>
-            <StyledDetails>
-              <summary>Specifications</summary>
-              <StyledParagraph>Category: {category}</StyledParagraph>
-            </StyledDetails>
+                <span>
+                  <Star rate={rate} />
+                  {count} reviews
+                </span>
+                <p>${price.toFixed(2)}</p>
+                {/* if this item is in the cart switch the button */}
+                {!cart.includes(singleProduct) ? (
+                  <PrimaryButton onClick={() => handleAddToCart(id)}>
+                    Add to Cart
+                  </PrimaryButton>
+                ) : (
+                  <SpecialButton>
+                    <span>-</span>
+                    <span> X added </span>
+                    <span onClick={() => handleAddToCart(id)}>+</span>
+                  </SpecialButton>
+                )}
+              </ProductWrapper>
+
+              <StyledDetails>
+                <summary>Product Description</summary>
+                <StyledParagraph>{description}</StyledParagraph>
+              </StyledDetails>
+              <StyledDetails>
+                <summary>Specifications</summary>
+                <StyledParagraph>Category: {category}</StyledParagraph>
+              </StyledDetails>
+            </div>
           </ProductContainer>
+          
         </Center>
-      </Container>
+      {/* </Container> */}
     </main>
   );
   
