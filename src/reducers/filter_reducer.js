@@ -166,6 +166,12 @@ const filter_reducer = (state, action) => {
     };
   }
 
+  if (action.type === "TOGGLE_FILTERS") {
+    const { showFilters } = state;
+
+    return {...state, showFilters: !showFilters}
+  }
+
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);
 };

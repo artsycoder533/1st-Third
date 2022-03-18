@@ -48,3 +48,14 @@ export const blink = keyframes`
         transform: scale(0.75);
     }
 `;
+
+export const StyledHeading = styled.h2`
+  margin-top: 60px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #800020;
+  color: white;
+  font-size: 2rem;
+`;

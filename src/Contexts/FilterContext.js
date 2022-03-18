@@ -16,6 +16,7 @@ const initialState = {
     selected_prices: [],
     selected_ratings: [],
   },
+  showFilters: false
 };
 
 const FilterContextProvider = ({ children }) => {
@@ -63,9 +64,13 @@ const FilterContextProvider = ({ children }) => {
     dispatch({ type: "RESET_FILTERS" });
   };
 
+  const toggleFilters = () => {
+    dispatch({ type: "TOGGLE_FILTERS" });
+  }
+
   return (
     <FilterContext.Provider
-      value={{ ...state, handleSort, resetFilters, handleFilters }}>
+      value={{ ...state, handleSort, resetFilters, handleFilters, toggleFilters }}>
       {children}
     </FilterContext.Provider>
   );

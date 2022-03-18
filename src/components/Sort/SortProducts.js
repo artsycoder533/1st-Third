@@ -3,11 +3,11 @@ import { FilterContext } from "../../Contexts/FilterContext";
 import { Container, SortForm } from "./style";
 
 function SortProducts() {
-  const { sort_type, handleSort } = useContext(FilterContext);
+  const { sort_type, handleSort, toggleFilters } = useContext(FilterContext);
 
   return (
     <Container>
-      
+      <button onClick={toggleFilters}>Show Filters</button>
       <SortForm>
         <label htmlFor="sort_type">Sort By:</label>
         <select

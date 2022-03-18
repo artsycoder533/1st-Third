@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from '../../components/Form/Form';
-import { MapContainer, StyledHeading, StyledIframe } from './style';
+import { MapContainer, StyledIframe } from './style';
+import { StyledHeading } from '../../components/App/style';
 
 function Contact() {
   return (

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const StyledTitle = styled.h2`
-  margin-top: 60px;
-  padding: 3rem 0;
+export const Container = styled.section`
+    border: 1px solid red;
+    display: flex;
+    gap: 2rem;
 `;
