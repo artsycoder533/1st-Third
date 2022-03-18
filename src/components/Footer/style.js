@@ -47,6 +47,7 @@ export const NavLink = styled(Link)`
     padding: 0.25rem;
     gap: 0.25rem;
     font-size: 1.1rem;
+    position: relative;
 `;
 
 export const StyledInstagram = styled(FiInstagram)`
@@ -85,4 +86,16 @@ export const FooterLogo = styled.p`
   font-weight: bold;
   align-self: center;
   font-family: "Playfair Display", serif;
+`;
+
+export const StyledSpan = styled.span`
+  position: absolute;
+  background: white;
+  color: #800020;
+  padding: 0 0.1rem;
+  right: -0px;
+  bottom: 55%;
+  font-weight: bold;
+  right: 50%;
+  transform: translateX(35px);
 `;

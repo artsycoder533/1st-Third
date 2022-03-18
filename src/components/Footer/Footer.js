@@ -7,6 +7,7 @@ import {
   StyledFooter,
   StyledHeading,
   FooterLogo,
+  StyledSpan,
 } from "./style";
 import { Center } from "../App/style";
 import { social } from "./footerdata";
@@ -29,10 +30,10 @@ function Footer() {
               return (
                 <NavLink to={url} key={index}>
                   {text} {icon}
-                  {text === "Cart" ? (
-                    <span>
+                  {text === "Cart" && totalNumCartItems > 0 ? (
+                    <StyledSpan>
                       {totalNumCartItems > 0 ? totalNumCartItems : null}
-                    </span>
+                    </StyledSpan>
                   ) : null}
                 </NavLink>
               );
