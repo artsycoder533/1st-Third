@@ -8,7 +8,7 @@ const initialState = {
     products: [],
     cart: [],
     totalNumCartItems: 0,
-    singleProductAmount: 0,
+    subtotal: 0,
     cart_total: 0,
     shipping_fee: 5.99
 };
@@ -22,8 +22,14 @@ const CartContextProvider = ({ children }) => {
     }, [products]);
 
     useEffect(() => {
-       dispatch({type: "UPDATE_CART_COUNT"})
+        dispatch({ type: "UPDATE_CART_COUNT" });
+        dispatch({ type: "CART_SUBTOTAL" });
+         dispatch({ type: "CART_TOTAL" });
     }, [state.cart]);
+
+    useEffect(() => {
+        
+    })
 
     const handleAddToCart = (id) => {
         dispatch({ type: "ADD_TO_CART", payload: id });
@@ -41,9 +47,17 @@ const CartContextProvider = ({ children }) => {
         dispatch({ type: "CLEAR_CART" });
     }
 
+    const getSubtotal = () => {
+        dispatch({ type: "CART_SUBTOTAL" });
+    }
+
+    const getTotal = () => {
+        dispatch({ type: "CART_TOTAL" });
+    }
+
     return (
       <CartContext.Provider
-        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart }}>
+        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal }}>
         {children}
       </CartContext.Provider>
     );

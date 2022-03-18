@@ -109,6 +109,23 @@ export const cart_reducer = (state, action) => {
     return { ...state, cart: [] };
   }
 
+  if (action.type === "CART_SUBTOTAL") {
+    const { cart } = state;
+    let total = cart.reduce((acc, curr) => {
+      const sum = curr.product.quantity * curr.product.details.price;
+      return acc + sum;
+    }, 0);
+    total = Number(total.toFixed(2));
+    return { ...state, subtotal: total };
+  }
+
+  if (action.type === "CART_TOTAL") {
+    const { shipping_fee, subtotal } = state;
+    let total = subtotal + shipping_fee;
+    total = total.toFixed(2);
+    return { ...state, cart_total: total};
+  }
+
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);
 };

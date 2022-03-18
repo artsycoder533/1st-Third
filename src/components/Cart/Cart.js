@@ -4,7 +4,7 @@ import CartProduct from "../CartProduct/CartProduct";
 
 
 const Cart = () => {
-    const { cart, shipping_fee, cart_total, clearCart } = useContext(CartContext);
+    const { cart, shipping_fee, cart_total, clearCart, subtotal } = useContext(CartContext);
 
   return (
     <>
@@ -15,7 +15,7 @@ const Cart = () => {
         <button onClick={clearCart}>Clear Cart</button>
       </section>
       <section>
-        <p>Subtotal:  </p>
+        <p>Subtotal: ${subtotal} </p>
         <p>Shipping: ${shipping_fee}</p>
         <p>Total: ${cart_total}</p>
       </section>
