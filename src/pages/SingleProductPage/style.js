@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PrimaryButton, SecondaryButton } from "../../components/Button/style";
+import { PrimaryButton, SecondaryButton, SpecialButton } from "../../components/Button/style";
 
 export const ProductContainer = styled.div`
   display: flex;
@@ -109,5 +109,9 @@ export const StyledSpan = styled.span`
 `;
 
 export const AddToCartButton = styled(PrimaryButton)`
+  align-self: flex-start;
+`;
+
+export const UpdateQuantityButton = styled(SpecialButton)`
   align-self: flex-start;
 `;
