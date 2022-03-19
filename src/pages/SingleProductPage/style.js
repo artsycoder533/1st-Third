@@ -124,9 +124,13 @@ export const AddToCartButton = styled(PrimaryButton)`
 `;
 
 export const UpdateQuantityButton = styled(SpecialButton)`
-  align-self: flex-start;
+  align-self: center;
   background: transparent;
   color: #800020;
+
+  @media all and (min-width: 768px){
+    align-self: flex-start;
+  }
 
   &:hover {
     background: transparent;
