@@ -19,7 +19,8 @@ export const SortForm = styled.form`
     padding: 0.5rem;
     cursor: pointer;
     background: #f5f5f5;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
+    font-weight: bold
   }
 
   select:focus,
