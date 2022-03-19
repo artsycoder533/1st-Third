@@ -7,7 +7,7 @@ function SortProducts() {
 
   return (
     <Container>
-      <FilterButton onClick={toggleFilters}>{showFilters ? "+ Filters" : "- Filters" }</FilterButton>
+      <FilterButton onClick={toggleFilters}>{showFilters ? "- Filters" : "+ Filters" }</FilterButton>
       <SortForm>
         <label htmlFor="sort_type">Sort By:</label>
         <select
