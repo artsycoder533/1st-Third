@@ -6,7 +6,7 @@ export const ProductsContext = createContext();
 
 const initialState = {
   openMenu: false,
-  loading: true,
+  loading: false,
   products: [],
   singleProduct: {},
 };
