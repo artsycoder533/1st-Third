@@ -55,6 +55,14 @@ export const StyledNavLink = styled(NavLink)`
     color: #800020;
   }
 
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: orange;
+    text-decoration-thickness: 3px;
+    text-decoration-style: wavy;
+    text-underline-offset: 0.1rem;
+  }
+
 
   @media all and (min-width: 992px) {
     text-align: left;

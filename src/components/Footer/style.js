@@ -38,16 +38,24 @@ export const StyledHeading = styled.h3`
 `;
 
 export const NavLink = styled(Link)`
-    color: snow;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    gap: 0.25rem;
-    font-size: 1.1rem;
-    position: relative;
+  color: snow;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  position: relative;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: orange;
+    text-decoration-thickness: 3px;
+    text-decoration-style: wavy;
+    text-underline-offset: 0.1rem;
+  }
 `;
 
 export const StyledInstagram = styled(FiInstagram)`
@@ -76,8 +84,16 @@ export const StyledAttrition = styled.small`
 `;
 
 export const StyledExternalLink = styled.a`
-    color: white;
-    font-weight: bold;
+  color: white;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: orange;
+    text-decoration-thickness: 3px;
+    text-decoration-style: wavy;
+    text-underline-offset: 0.1rem;
+  }
 `;
 
 export const FooterLogo = styled.p`
