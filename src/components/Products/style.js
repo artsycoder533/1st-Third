@@ -16,11 +16,14 @@ export const Cards = styled.section`
   }
 
   @media all and (min-width: 992px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    //padding: 3rem 0;
+    grid-template-columns: 1fr 1fr;
   }
 
-  @media all and (min-width: 1200px) {
+  @media all and (min-width: 1200px){
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media all and (min-width: 1400px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
