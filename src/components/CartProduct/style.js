@@ -6,22 +6,21 @@ export const StyledArticle = styled.article`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-template-rows: 200px;
+  height: auto;
   border-bottom: 1px solid lightgrey;
-  padding: 1rem;
+  padding-bottom: 0.5rem;
   gap: 1rem;
+  margin-top: 2rem;
 
   @media all and (min-width: 600px) {
     display: grid;
     grid-template-columns: auto 1fr auto;
+    grid-template-rows: 200px;
   }
 
   @media all and (min-width: 992px) {
-    display: grid;
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: 200px;
     border-bottom: 1px solid lightgrey;
-    padding: 1rem;
     gap: 1rem;
   }
 `;
@@ -29,6 +28,7 @@ export const StyledArticle = styled.article`
 export const ImageWrapper = styled.div`
   display: flex;
   width: 200px;
+  height: 200px;
   justify-content: center;
   align-items: center;
 
@@ -64,12 +64,12 @@ export const StyledDetails = styled.div`
 
 export const RemoveButton = styled(FiTrash2)`
   align-self: flex-end;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: red;
   cursor: pointer;
   text-align: center;
 
-  @media all and (min-width: 1000px) {
+  @media all and (min-width: 768px) {
     align-self: center;
   }
 `;
