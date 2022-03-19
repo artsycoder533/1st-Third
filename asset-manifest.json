@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/1st-Third/static/js/main.f246614d.js",
+    "main.js": "/1st-Third/static/js/main.ec457458.js",
     "static/media/heroDesktop.jpg": "/1st-Third/static/media/heroDesktop.4791ea255623c52bafe6.jpg",
     "index.html": "/1st-Third/index.html",
-    "main.f246614d.js.map": "/1st-Third/static/js/main.f246614d.js.map"
+    "main.ec457458.js.map": "/1st-Third/static/js/main.ec457458.js.map"
   },
   "entrypoints": [
-    "static/js/main.f246614d.js"
+    "static/js/main.ec457458.js"
   ]
 }
