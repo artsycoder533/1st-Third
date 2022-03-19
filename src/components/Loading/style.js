@@ -36,15 +36,15 @@ export const Spinner = styled.section`
   }
 
   div:nth-of-type(1) {
-    animation: ${LoadingDots} 2s infinite;
+    animation: ${LoadingDots} 1s infinite;
   }
 
   div:nth-of-type(2) {
-    animation: ${LoadingDots} 2s infinite;
-    animation-delay: 0.5s;
+    animation: ${LoadingDots} 1s infinite;
+    animation-delay: 0.25s;
   }
   div:nth-of-type(3) {
-    animation: ${LoadingDots} 2s infinite;
-    animation-delay: 1s;
+    animation: ${LoadingDots} 1s infinite;
+    animation-delay: 5s;
   }
 `;
