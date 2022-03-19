@@ -1,4 +1,4 @@
-import styled, {createGlobalStyle, keyframes} from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     *,
@@ -31,6 +31,11 @@ export const GlobalStyle = createGlobalStyle`
 
     h1, h2, h3 {
         font-family: 'Playfair Display', serif;
+    }
+
+    a, 
+    button {
+        font-family: 'Roboto', sans-serif;
     }
 `;
 

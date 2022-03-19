@@ -41,10 +41,10 @@ export const StyledDetails = styled.div`
 `;
 
 export const RemoveButton = styled(FiTrash2)`
-    align-self: center;
-    //margin-left: 2rem;
-    font-size: 1.5rem;
-    color: red;
+  align-self: center;
+  font-size: 1.5rem;
+  color: red;
+  cursor: pointer;
 `;
 
 export const CountButton = styled.button`
@@ -56,6 +56,7 @@ export const CountButton = styled.button`
     border: none;
     background: #800020;
     color: white;
+    cursor: pointer;
 `;
 
 
