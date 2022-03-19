@@ -48,7 +48,9 @@ export const PrimaryButton = styled(SecondaryButton)`
   color: white;
 
   &:hover {
-  
+    background: white;
+    color: #800020;
+    border: 3px solid #800020;
   }
 `;
 

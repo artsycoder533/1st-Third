@@ -11,7 +11,7 @@ import {
   BackButton,
   StyledSpan,
   AddToCartButton,
-  UpdateQuantityButton
+  UpdateQuantityButton,
 } from "./style";
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
@@ -52,7 +52,6 @@ function SingleProductPage() {
           Back to All Products
         </BackButton>
       </StyledHeading>
-      {/* <Container> */}
       <Center>
         <ProductContainer>
           <Img src={image} alt={title} />
@@ -67,7 +66,7 @@ function SingleProductPage() {
               <p>${price.toFixed(2)}</p>
               {/* if this item is in the cart switch the button */}
               {isItemInCart(id, cart) ? (
-                <UpdateQuantityButton style={{ cursor: "none" }}>
+                <UpdateQuantityButton>
                   <StyledSpan
                     role="button"
                     onClick={() => decreaseCartCount(id)}>
@@ -99,7 +98,6 @@ function SingleProductPage() {
           </div>
         </ProductContainer>
       </Center>
-      {/* </Container> */}
     </main>
   );
 }

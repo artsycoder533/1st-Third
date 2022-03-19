@@ -20,7 +20,6 @@ export const ProductContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    //flex-basis: 50%;
   }
 
   details {
@@ -106,11 +105,13 @@ export const StyledSpan = styled.span`
   justify-content: center;
   font-size: 1.75rem;
   cursor: pointer;
+  border: 1px solid #800020;
 
   &:hover {
     transform: scale(1.2);
     background: orange;
     color: white;
+    border: none;
   }
 `;
 
@@ -124,4 +125,11 @@ export const AddToCartButton = styled(PrimaryButton)`
 
 export const UpdateQuantityButton = styled(SpecialButton)`
   align-self: flex-start;
+  background: transparent;
+  color: #800020;
+
+  &:hover {
+    background: transparent;
+    color: #800020;
+  }
 `;
