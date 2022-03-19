@@ -72,6 +72,10 @@ export const RemoveButton = styled(FiTrash2)`
   @media all and (min-width: 768px) {
     align-self: center;
   }
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export const CountButton = styled.button`

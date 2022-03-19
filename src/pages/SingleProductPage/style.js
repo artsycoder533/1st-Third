@@ -57,6 +57,10 @@ export const ProductWrapper = styled.article`
     font-weight: bold;
     font-size: 1.5rem;
   }
+
+  @media all and (min-width: 992px){
+
+  }
 `;
 
 export const ProductTitle = styled.h2`

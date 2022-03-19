@@ -55,7 +55,7 @@ export const StyledInstagram = styled(FiInstagram)`
     font-size: 2rem;
 
     &:hover {
-        color: yellow;
+        color: orange;
     }
 `;
 
@@ -64,7 +64,7 @@ export const StyledTwitter = styled(FiTwitter)`
   font-size: 2rem;
 
   &:hover {
-    color: yellow;
+    color: orange;
   }
 `;
 
