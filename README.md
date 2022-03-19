@@ -51,19 +51,26 @@ To start the project I first thought about the different pieces I would need to 
         background-image: url(${Img});
     ```
 
+
 - Problem:  Where should I hold the state for the hamburger button?
 
     - Solution:  I decided to hold the state in Header Component because it is the most common parent for both the Navbar and Hamburger components.  I use props with styled components so I needed both components to have access to the state.
 
+
+
 - Problem:  How to get the mobile menu to close after clicking on a link?
 
     - Solution:  I added an onClick handler to the NavLink that toggled the state as if the hamburger button had been clicked.
+
+
 
 - Problem:  How do you navigate to a single product page when you click on a product on the shop page?
 
     - Solution: Import the useParams Hook from React Router Dom so that we can create a dynamic route based on the products id.
 
     - Resources: [https://www.youtube.com/playlist?list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG](https://www.youtube.com/playlist?list=PLC3y8-rFHvwjkxt8TOteFdT_YmzwpBlrG)
+
+
 
 - Problem:  How do you style the active page link?
 
@@ -76,13 +83,17 @@ To start the project I first thought about the different pieces I would need to 
     }
     ```
 
+
 - Problem: How to handle multiple checkboxes?
 
     - Solution: To start, I gave all of the checkboxes in group the same name attribute.  I saved the checked state in an array and kept track of each individual checkbox but its index.  I used controlled inputs, so when a user clicks on a checkbox the value and the same index as the checkbox in the isChecked array is toggled.  
 
+
+
 - Problem: How do you implement a filter with multiple conditions?
 
     - Solution:  To start any category that would need to be filtered with multiple conditions I used a checkbox.  I created a second array for each category that held only the values that corresponded to checkboxes that had been checked.  If a user deselects a checkbox I then search the array of selected values for that specific value and filter out and values that are equal to it.  As a result the the products displayed update based on only those that meet the criteria of selected filters.  To implement the filter functionality, I used a nested filter method on the original array of products.  The nested filter acts as a loop to iterate over the array of selected values and returns only those products who meet the criteria inside of the callback in the nested filter method.
+    
 
 - Problem:  When I deployed to github the base url of my site was incorrect.
 
