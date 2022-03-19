@@ -6,7 +6,7 @@ export const Container = styled.div`
   gap: 1rem;
   width: 100%;
   border: 1px solid lightgrey;
-  transform: ${({ showFilters }) => (showFilters ? "scale(1)" : "scale(0)")};
+  transform: ${({ showFilters }) => (showFilters ? "scale(0)" : "scale(1)")};
   transition: all 0.4s ease-in-out;
   position: absolute;
   background: white;
@@ -17,5 +17,6 @@ export const Container = styled.div`
     display: flex;
     width: 250px;
     position: initial;
+    transform: scale(1);
   }
 `;
