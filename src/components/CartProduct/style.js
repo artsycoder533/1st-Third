@@ -1,34 +1,50 @@
 import styled from "styled-components";
+import { FiTrash2 } from "react-icons/fi";
 
 export const StyledArticle = styled.article`
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 200px;
     border-bottom: 1px solid lightgrey;
     padding: 1rem;
-
-    div {
-        height: 200px;
-        width: 200px;
-    }
-
-    div:nth-of-type(2){
-        flex: 1;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-left: 2rem;
-    }
-
-    img {
-        max-width: 100%;
-        height: 100%;
-        object-fit: center;
-    }
+    
+    gap: 1rem;
 `;
 
-export const RemoveButton = styled.button`
+export const ImageWrapper = styled.div`
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+export const StyledDetails = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.5fr;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  span {
+    display: block;
+  }
+`;
+
+export const RemoveButton = styled(FiTrash2)`
     align-self: center;
-    margin-left: 2rem;
+    //margin-left: 2rem;
+    font-size: 1.5rem;
+    color: red;
 `;
 
 export const CountButton = styled.button`
@@ -36,4 +52,11 @@ export const CountButton = styled.button`
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
+    margin: 1rem;
+    border: none;
+    background: #800020;
+    color: white;
 `;
+
+
+

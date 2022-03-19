@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         /* font-family: 'Playfair Display', serif; */
-        min-height: 100vh;
+        //min-height: 100vh;
         font-family: 'Roboto', sans-serif;
         
     }

@@ -3,7 +3,8 @@ import { ButtonLink, SecondaryButton } from '../../components/Button/style';
 import Cart from '../../components/Cart/Cart';
 import { CartContext } from '../../Contexts/CartContext';
 import { Link } from 'react-router-dom';
-import { Center } from "../../components/App/style";
+import { Center, StyledHeading } from "../../components/App/style";
+import { Container, StyledLink } from './style';
 
 function CartPage() {
   const { cart } = useContext(CartContext);
@@ -11,13 +12,17 @@ function CartPage() {
 
   return (
     <main>
+      <StyledHeading>Cart</StyledHeading>
       <Center>
-        <Link to="/shop">Continue Shopping</Link>
-        {cart.length === 0 ? (
-          <h2>There are no items in your cart....</h2>
-        ) : (
-          <Cart />
-        )}
+        <Container>
+          <StyledLink to="/shop">Continue Shopping</StyledLink>
+
+          {cart.length === 0 ? (
+            <h2>Your cart is currently empty....</h2>
+          ) : (
+            <Cart />
+          )}
+        </Container>
       </Center>
     </main>
   );
