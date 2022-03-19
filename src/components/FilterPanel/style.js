@@ -6,9 +6,11 @@ export const Container = styled.div`
   gap: 1rem;
   width: 100%;
   border: 1px solid lightgrey;
-  display: ${({ showFilters }) => (showFilters ? "none" : "block")};
+  transform: ${({ showFilters }) => (showFilters ? "scale(1)" : "scale(0)")};
+  transition: all 0.4s ease-in-out;
   position: absolute;
   background: white;
+  display: block;
 
   @media all and (min-width: 992px) {
     flex-direction: column;
