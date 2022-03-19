@@ -5,12 +5,13 @@ export const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100%;
   gap: 3rem;
   height: 100%;
   padding: 4rem 0;
 
-  @media all and (min-width: 992px) {
+  @media all and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
   }
@@ -19,7 +20,7 @@ export const ProductContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    flex-basis: 50%;
+    //flex-basis: 50%;
   }
 
   details {
@@ -39,12 +40,13 @@ export const ProductContainer = styled.div`
 
 export const Img = styled.img`
     max-width: 100%;
-    width: 400px;
+    width: 300px;
 `;
 
 export const ProductWrapper = styled.article`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
 
   span {
@@ -58,8 +60,8 @@ export const ProductWrapper = styled.article`
     font-size: 1.5rem;
   }
 
-  @media all and (min-width: 992px){
-
+  @media all and (min-width: 768px) {
+    align-items: flex-start;
   }
 `;
 
@@ -113,7 +115,11 @@ export const StyledSpan = styled.span`
 `;
 
 export const AddToCartButton = styled(PrimaryButton)`
-  align-self: flex-start;
+  align-self: center;
+
+  @media all and (min-width: 768px){
+    align-self: flex-start;
+  }
 `;
 
 export const UpdateQuantityButton = styled(SpecialButton)`
