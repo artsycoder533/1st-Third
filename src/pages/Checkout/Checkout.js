@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
-import { Container } from "./style";
+import { Container, StyledButton } from "./style";
+import { PrimaryButton } from "../../components/Button/style";
+import { FiArrowRight } from "react-icons/fi";
 
 const Checkout = () => {
   const [view, setView] = useState(0);
+
+  const changeView = () => {
+    setView(view++);
+  }
 
   return (
     <main>
       <StyledHeading>Checkout</StyledHeading>
       <Center>
-        <Link to="/cart">Back to Cart</Link>
+        <StyledButton to="/cart">Back to Cart</StyledButton>
         <Container>
           <form action="">
             {view === 0 ? (
@@ -148,7 +154,7 @@ const Checkout = () => {
                 <input type="submit" value="Pay" />
               </fieldset>
             )}
-            <button>Next</button>
+            <PrimaryButton onClick={setView}>Next <FiArrowRight /></PrimaryButton>
           </form>
           <OrderSummary />
         </Container>

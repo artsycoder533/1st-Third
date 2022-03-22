@@ -43,6 +43,8 @@ export const Center = styled.div`
   max-width: 1400px;
   width: 90vw;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const blink = keyframes`
