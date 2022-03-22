@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { Link } from "react-router-dom";
 import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
@@ -6,13 +6,12 @@ import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import { Container, StyledButton } from "./style";
 import { PrimaryButton } from "../../components/Button/style";
 import { FiArrowRight } from "react-icons/fi";
+import { CartContext } from "../../Contexts/CartContext";
 
 const Checkout = () => {
+  const { checkout_form, changeView } = useContext(CartContext);
   const [view, setView] = useState(0);
 
-  const changeView = () => {
-    setView(view++);
-  }
 
   return (
     <main>
@@ -35,7 +34,7 @@ const Checkout = () => {
                   htmlFor="lname"
                   label="Last Name:"
                   type="text"
-                  name="lnane"
+                  name="lname"
                   id="lname"
                 />
                 <FormInput
@@ -154,7 +153,7 @@ const Checkout = () => {
                 <input type="submit" value="Pay" />
               </fieldset>
             )}
-            <PrimaryButton onClick={setView}>Next <FiArrowRight /></PrimaryButton>
+            <PrimaryButton onClick={changeView}>Next <FiArrowRight /></PrimaryButton>
           </form>
           <OrderSummary />
         </Container>

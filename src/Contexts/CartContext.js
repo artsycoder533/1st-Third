@@ -10,7 +10,26 @@ const initialState = {
     totalNumCartItems: 0,
     subtotal: 0,
     cart_total: 0,
-    shipping_fee: 5.99
+    shipping_fee: 5.99,
+    checkout_form: {
+        view: 0,
+        fname: "",
+        lname: "",
+        email: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        match: "",
+        billing_address: "",
+        billing_city: "",
+        billing_state: "",
+        billing_zip: "",
+        card_name: "",
+        card_number: "",
+        expiration: "",
+        card_zip: ""
+    }
 };
 
 const CartContextProvider = ({ children }) => {
@@ -55,9 +74,13 @@ const CartContextProvider = ({ children }) => {
         dispatch({ type: "CART_TOTAL" });
     }
 
+    const changeView = () => {
+        dispatch({type: "CHANGE_VIEW"})
+    }
+
     return (
       <CartContext.Provider
-        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal }}>
+        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal, changeView }}>
         {children}
       </CartContext.Provider>
     );
