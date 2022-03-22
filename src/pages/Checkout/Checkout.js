@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Center, StyledHeading } from "../../components/App/style";
+import FormInput from "../../components/FormInput/FormInput";
 
 const Checkout = () => {
   return (
@@ -11,45 +12,137 @@ const Checkout = () => {
         <form action="">
           <fieldset>
             <legend>Customer Details:</legend>
-            <label htmlFor="fname">First Name:</label>
-            <input type="text" name="fname" id="fname" />
-            <label htmlFor="lname">Last Name:</label>
-            <input type="text" name="lname" id="lname" />
-            <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email" />
+            <FormInput
+              htmlFor="fname"
+              label="First Name:"
+              type="text"
+              name="fname"
+              id="fname"
+            />
+            <FormInput
+              htmlFor="lname"
+              label="Last Name:"
+              type="text"
+              name="lnane"
+              id="lname"
+            />
+            <FormInput
+              htmlFor="email"
+              label="Email:"
+              type="email"
+              name="email"
+              id="email"
+            />
           </fieldset>
 
           <fieldset>
-            <legend>Shipping Details:</legend>
-            <label htmlFor="address">Street Address:</label>
-            <input type="text" name="address" id="address" />
-            <label htmlFor="city">City:</label>
-            <input type="text" name="city" id="city" />
-            <label htmlFor="state">State:</label>
-            <input type="text" name="state" id="state" />
-            <label htmlFor="zip">Zip Code:</label>
-            <input type="number" name="zip" id="zip" />
+            <legend>Shipping Address:</legend>
+            <FormInput
+              htmlFor="address"
+              label="Street Address:"
+              type="text"
+              name="address"
+              id="address"
+            />
+            <FormInput
+              htmlFor="city"
+              label="City:"
+              type="text"
+              name="city"
+              id="city"
+            />
+            <FormInput
+              htmlFor="state"
+              label="State:"
+              type="text"
+              name="state"
+              id="state"
+            />
+            <FormInput
+              htmlFor="zip"
+              label="Zip Code:"
+              type="number"
+              name="zip"
+              id="zip"
+            />
           </fieldset>
 
           <fieldset>
-            <legend>Billing Details:</legend>
+            <legend>Billing Address:</legend>
+            <FormInput
+              htmlFor="match"
+              label="Same as shipping?:"
+              type="checkbox"
+              name="match"
+              id="match"
+            />
+
+            {/* if a match show this */}
             <label htmlFor="match">Same as shipping:</label>
             <input type="checkbox" name="match" id="match" />
 
-            <label htmlFor="address">Street Address:</label>
-            <input type="text" name="address" id="address" />
-            <label htmlFor="city">City:</label>
-            <input type="text" name="city" id="city" />
-            <label htmlFor="state">State:</label>
-            <input type="text" name="state" id="state" />
-            <label htmlFor="zip">Zip Code:</label>
-            <input type="number" name="zip" id="zip" />
+            <FormInput
+              htmlFor="billing_address"
+              label="Street Address:"
+              type="text"
+              name="billing_address"
+              id="billing_address"
+            />
+            <FormInput
+              htmlFor="billing_city"
+              label="City:"
+              type="text"
+              name="billing_city"
+              id="billing_city"
+            />
+            <FormInput
+              htmlFor="billing_state"
+              label="State:"
+              type="billing_state"
+              name="billing_state"
+              id="billing_state"
+            />
+            <FormInput
+              htmlFor="billing_zip"
+              label="Zip Code:"
+              type="billing_zip"
+              name="billing_zip"
+              id="billing_zip"
+            />
           </fieldset>
 
           <fieldset>
-            <legend>Payment: </legend>
-            
+            <legend>Payment Details: </legend>
+            <FormInput
+              htmlFor="card_name"
+              label="Name on Card:"
+              type="text"
+              name="card_name"
+              id="card_name"
+            />
+            <FormInput
+              htmlFor="card_number"
+              label="Credit Card Number:"
+              type="number"
+              name="card_number"
+              id="card_number"
+            />
+            <FormInput
+              htmlFor="expiration"
+              label="Expires:"
+              type="date"
+              name="expiration"
+              id="expiration"
+            />
+            <FormInput
+              htmlFor="card_zip"
+              label="Zip Code:"
+              type="number"
+              name="card_zip"
+              id="card_zip"
+            />
           </fieldset>
+          <input type="submit" value="Pay" />
         </form>
       </Center>
     </main>

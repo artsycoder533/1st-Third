@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../Contexts/CartContext";
 import CartProduct from "../CartProduct/CartProduct";
-import { Link } from "react-router-dom";
-import { ButtonContainer, StyledLink, CartTotals } from "../Cart/style";
+import { ButtonContainer, StyledLink } from "../Cart/style";
 import { SecondaryButton } from "../Button/style";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 const Cart = () => {
-    const { cart, shipping_fee, cart_total, clearCart, subtotal } = useContext(CartContext);
+  const { cart, clearCart} =
+    useContext(CartContext);
 
   return (
     <>
@@ -19,11 +20,7 @@ const Cart = () => {
         <SecondaryButton onClick={clearCart}>Clear Cart</SecondaryButton>
         <StyledLink to="/checkout">Checkout</StyledLink>
       </ButtonContainer>
-      <CartTotals>
-        <p>Subtotal: ${subtotal} </p>
-        <p>Shipping: ${shipping_fee}</p>
-        <p>Total: ${cart_total}</p>
-      </CartTotals>
+      <OrderSummary />
     </>
   );
 };
