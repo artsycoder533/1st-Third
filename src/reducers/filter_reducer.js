@@ -172,6 +172,7 @@ const filter_reducer = (state, action) => {
     return {...state, showFilters: !showFilters}
   }
 
+
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);
 };

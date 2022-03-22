@@ -9,8 +9,9 @@ import { FiArrowRight } from "react-icons/fi";
 import { CartContext } from "../../Contexts/CartContext";
 
 const Checkout = () => {
-  const { checkout_form, changeView } = useContext(CartContext);
-  const [view, setView] = useState(0);
+  const { checkout_form, changeView, handleInput } = useContext(CartContext);
+  const { view } = checkout_form;
+ 
 
 
   return (

@@ -126,6 +126,14 @@ export const cart_reducer = (state, action) => {
     return { ...state, cart_total: total};
   }
 
+  if (action.type === "CHANGE_VIEW") {
+    const { checkout_form } = state;
+    return {
+      ...state,
+      checkout_form: { ...checkout_form, view: checkout_form.view + 1 },
+    };
+  }
+
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);
 };

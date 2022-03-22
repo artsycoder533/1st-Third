@@ -75,12 +75,17 @@ const CartContextProvider = ({ children }) => {
     }
 
     const changeView = () => {
+        //e.preventDefault();
         dispatch({type: "CHANGE_VIEW"})
+    }
+
+    const handleInput = () => {
+        
     }
 
     return (
       <CartContext.Provider
-        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal, changeView }}>
+        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal, changeView, handleInput }}>
         {children}
       </CartContext.Provider>
     );
