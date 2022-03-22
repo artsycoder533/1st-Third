@@ -134,6 +134,13 @@ export const cart_reducer = (state, action) => {
     };
   }
 
+  if (action.type === "UPDATE_INPUT") {
+    const { checkout_form } = state;
+    const { name, value } = action.payload;
+    console.log(name, value);
+    return { ...state, checkout_form: { ...checkout_form, [name]:value  } };
+  }
+
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);
 };

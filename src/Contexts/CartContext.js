@@ -75,12 +75,14 @@ const CartContextProvider = ({ children }) => {
     }
 
     const changeView = () => {
-        //e.preventDefault();
         dispatch({type: "CHANGE_VIEW"})
     }
 
-    const handleInput = () => {
-        
+    const handleInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name, value)
+        dispatch({ type: "UPDATE_INPUT", payload: {name, value} });
     }
 
     return (

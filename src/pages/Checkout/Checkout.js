@@ -10,7 +10,7 @@ import { CartContext } from "../../Contexts/CartContext";
 
 const Checkout = () => {
   const { checkout_form, changeView, handleInput } = useContext(CartContext);
-  const { view } = checkout_form;
+  const { view, fname, lname, email } = checkout_form;
  
 
 
@@ -30,6 +30,8 @@ const Checkout = () => {
                   type="text"
                   name="fname"
                   id="fname"
+                  value={fname}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="lname"
@@ -37,6 +39,8 @@ const Checkout = () => {
                   type="text"
                   name="lname"
                   id="lname"
+                  value={lname}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="email"
@@ -44,6 +48,8 @@ const Checkout = () => {
                   type="email"
                   name="email"
                   id="email"
+                  value={email}
+                  onChange={handleInput}
                 />
               </fieldset>
             ) : view === 1 ? (
@@ -154,7 +160,9 @@ const Checkout = () => {
                 <input type="submit" value="Pay" />
               </fieldset>
             )}
-            <PrimaryButton onClick={changeView}>Next <FiArrowRight /></PrimaryButton>
+            <PrimaryButton onClick={changeView}>
+              Next <FiArrowRight />
+            </PrimaryButton>
           </form>
           <OrderSummary />
         </Container>
