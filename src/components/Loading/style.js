@@ -45,6 +45,5 @@ export const Spinner = styled.section`
   }
   div:nth-of-type(3) {
     animation: ${LoadingDots} 1s infinite;
-    animation-delay: 5s;
   }
 `;
