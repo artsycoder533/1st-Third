@@ -157,12 +157,12 @@ export const cart_reducer = (state, action) => {
         status = false;
       }
     }
-    if (status === false && disabled === false) {
-      status = false;
-    }
-    else {
-      status = true;
-    }
+    // if (status === false && disabled === false) {
+    //   status = false;
+    // }
+    // else {
+    //   status = true;
+    // }
 
     return { ...state, checkout_form: { ...checkout_form, [name]:value, error: status, disabled:error } };
   }

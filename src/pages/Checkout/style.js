@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  flex-direction: column;
+ // justify-content: space-around;
+  justify-content:center;
+  //align-items: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  @media all and (min-width: 768px){
+    flex-direction: row;
+    justify-content: space-around;
+   
+  }
 
   form {
     max-width: 500px;

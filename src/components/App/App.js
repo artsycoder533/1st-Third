@@ -9,6 +9,7 @@ import Contact from "../../pages/Contact/Contact";
 import CartPage from "../../pages/Cart/CartPage";
 import SingleProductPage from "../../pages/SingleProductPage/SingleProductPage";
 import Checkout from "../../pages/Checkout/Checkout";
+import Error from "../../pages/Error/Error";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="shop/:id" element={<SingleProductPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path="checkout" element={<Checkout />}/>
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </HashRouter>
