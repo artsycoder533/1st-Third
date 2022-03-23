@@ -13,6 +13,8 @@ const initialState = {
     shipping_fee: 5.99,
     checkout_form: {
         view: 0,
+        disabled: true,
+        error: true,
         fname: "",
         lname: "",
         email: "",
@@ -47,7 +49,7 @@ const CartContextProvider = ({ children }) => {
     }, [state.cart]);
 
     useEffect(() => {
-        
+       // dispatch({ type: "CHECK_INPUTS" });
     })
 
     const handleAddToCart = (id) => {
@@ -81,8 +83,12 @@ const CartContextProvider = ({ children }) => {
     const handleInput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        console.log(name, value)
+       // console.log(name, value)
         dispatch({ type: "UPDATE_INPUT", payload: {name, value} });
+    }
+
+    const handleCustomerDetails = (e) => {
+        
     }
 
     return (

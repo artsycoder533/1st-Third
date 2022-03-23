@@ -52,6 +52,10 @@ export const PrimaryButton = styled(SecondaryButton)`
     color: #800020;
     border: 3px solid #800020;
   }
+
+  &:disabled {
+    background: gray;
+  }
 `;
 
 export const SpecialButton = styled(PrimaryButton)`

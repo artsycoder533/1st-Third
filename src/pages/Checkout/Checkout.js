@@ -3,22 +3,27 @@ import { Link } from "react-router-dom";
 import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
-import { Container, StyledButton } from "./style";
+import { Container, StyledLink } from "./style";
 import { PrimaryButton } from "../../components/Button/style";
 import { FiArrowRight } from "react-icons/fi";
 import { CartContext } from "../../Contexts/CartContext";
+import Checkbox from "../../components/Checkbox/Checkbox";
 
 const Checkout = () => {
   const { checkout_form, changeView, handleInput } = useContext(CartContext);
-  const { view, fname, lname, email } = checkout_form;
- 
+  const { view, fname, lname, email, address, city, state, zip, match, billing_address, billing_city, billing_state, billing_zip, card_name, card_zip, expiration, card_number, disabled } = checkout_form;
+ // console.log(fname !== "" && lname !== "" && email !== "");
+  
+  const customerError = () => {
+    
+  }
 
 
   return (
     <main>
       <StyledHeading>Checkout</StyledHeading>
       <Center>
-        <StyledButton to="/cart">Back to Cart</StyledButton>
+        <StyledLink to="/cart">Back to Cart</StyledLink>
         <Container>
           <form action="">
             {view === 0 ? (
@@ -51,6 +56,11 @@ const Checkout = () => {
                   value={email}
                   onChange={handleInput}
                 />
+                <PrimaryButton
+                  onClick={changeView}
+                  disabled={disabled}>
+                  Next <FiArrowRight />
+                </PrimaryButton>
               </fieldset>
             ) : view === 1 ? (
               <fieldset>
@@ -61,6 +71,8 @@ const Checkout = () => {
                   type="text"
                   name="address"
                   id="address"
+                  value={address}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="city"
@@ -68,6 +80,8 @@ const Checkout = () => {
                   type="text"
                   name="city"
                   id="city"
+                  value={city}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="state"
@@ -75,6 +89,8 @@ const Checkout = () => {
                   type="text"
                   name="state"
                   id="state"
+                  value={state}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="zip"
@@ -82,27 +98,39 @@ const Checkout = () => {
                   type="number"
                   name="zip"
                   id="zip"
+                  value={zip}
+                  onChange={handleInput}
                 />
+                <PrimaryButton
+                  onClick={changeView}
+                  disabled={disabled}>
+                  Next <FiArrowRight />
+                </PrimaryButton>
               </fieldset>
             ) : view === 2 ? (
               <fieldset>
                 <legend>Billing Address:</legend>
-                <FormInput
+
+                <Checkbox
                   htmlFor="match"
                   label="Same as shipping?:"
                   type="checkbox"
                   name="match"
                   id="match"
+                  value={match}
+                  onChange={handleInput}
+                  checked={match}
                 />
-                {/* if a match show this */}
-                <label htmlFor="match">Same as shipping:</label>
-                <input type="checkbox" name="match" id="match" />
+                {/* if a match populate these fields */}
+
                 <FormInput
                   htmlFor="billing_address"
                   label="Street Address:"
                   type="text"
                   name="billing_address"
                   id="billing_address"
+                  value={billing_address}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="billing_city"
@@ -110,6 +138,8 @@ const Checkout = () => {
                   type="text"
                   name="billing_city"
                   id="billing_city"
+                  value={billing_city}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="billing_state"
@@ -117,6 +147,8 @@ const Checkout = () => {
                   type="billing_state"
                   name="billing_state"
                   id="billing_state"
+                  value={billing_state}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="billing_zip"
@@ -124,7 +156,14 @@ const Checkout = () => {
                   type="billing_zip"
                   name="billing_zip"
                   id="billing_zip"
+                  value={billing_zip}
+                  onChange={handleInput}
                 />
+                <PrimaryButton
+                  onClick={changeView}
+                  disabled={disabled}>
+                  Next <FiArrowRight />
+                </PrimaryButton>
               </fieldset>
             ) : (
               <fieldset>
@@ -135,6 +174,8 @@ const Checkout = () => {
                   type="text"
                   name="card_name"
                   id="card_name"
+                  value={card_name}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="card_number"
@@ -142,6 +183,8 @@ const Checkout = () => {
                   type="number"
                   name="card_number"
                   id="card_number"
+                  value={card_number}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="expiration"
@@ -149,6 +192,8 @@ const Checkout = () => {
                   type="date"
                   name="expiration"
                   id="expiration"
+                  value={expiration}
+                  onChange={handleInput}
                 />
                 <FormInput
                   htmlFor="card_zip"
@@ -156,13 +201,20 @@ const Checkout = () => {
                   type="number"
                   name="card_zip"
                   id="card_zip"
+                  value={card_zip}
+                  onChange={handleInput}
                 />
-                <input type="submit" value="Pay" />
+                <PrimaryButton
+                        onClick={changeView}
+                        disabled={disabled}
+                  >
+                  Pay <FiArrowRight />
+                </PrimaryButton>
               </fieldset>
             )}
-            <PrimaryButton onClick={changeView}>
+            {/* <PrimaryButton onClick={changeView} disabled={disabled}>
               Next <FiArrowRight />
-            </PrimaryButton>
+            </PrimaryButton> */}
           </form>
           <OrderSummary />
         </Container>

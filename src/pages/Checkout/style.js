@@ -31,7 +31,7 @@ export const Container = styled.div`
   }
 `;
 
-export const StyledButton = styled(Link)`
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
