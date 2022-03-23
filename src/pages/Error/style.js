@@ -7,6 +7,7 @@ export const Container = styled.section`
     justify-content: center;
     gap: 2rem;
     height: calc(100vh - 60px - 558px);
+    margin-top: 2rem;
 
     img {
         max-width: 100%;

@@ -73,4 +73,16 @@ export const ToggleButton = styled.button`
   font-weight: bold;
 `;
 
+export const SecondaryLink = styled(ButtonLink)`
+  background: transparent;
+  border: 2px solid #800020;
+  color: #800020;
 
+  &:hover {
+    background: #800020;
+    color: white;
+    transform: scale(1);
+    border: 2px solid #800020;
+    transition: none;
+  }
+`;
