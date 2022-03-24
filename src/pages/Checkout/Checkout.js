@@ -23,6 +23,7 @@ const Checkout = () => {
     handleBillingSubmit
   } = useContext(CheckoutContext);
   const {
+    isChecked,
     fname,
     lname,
     email,
@@ -132,6 +133,7 @@ const Checkout = () => {
                   type="text"
                   name="zip"
                     id="zip"
+                    min={5}
                     maxLength={5}
                     value={zip}
                   onChange={handleInput}
@@ -155,7 +157,7 @@ const Checkout = () => {
                   id="match"
                   value={match}
                   onChange={handleInput}
-                  checked={match}
+                  checked={isChecked}
                 />
 
                 {/* if a match populate these fields */}

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export const checkout_reducer = (state, action) => {
   if (action.type === "UPDATE_INPUT") {
     const { checkout_form } = state;
@@ -76,8 +78,56 @@ export const checkout_reducer = (state, action) => {
     const { shipping_errors, checkout_form } = state;
   }
 
+  if (action.type === "FILL_IN_INPUTS") {
+    const { checkout_form } = state;
+    const { isChecked, address, city, st, zip } = checkout_form;
+    if (!isChecked) {
+      return {
+        ...state,
+        checkout_form: {
+          ...checkout_form,
+          isChecked: true,
+          billing_address: address,
+          billing_state: st,
+          billing_city: city,
+          billing_zip: zip,
+        },
+      };
+    }
+    else {
+      return {
+        ...state,
+        checkout_form: {
+          ...checkout_form,
+          isChecked: false,
+          billing_address: "",
+          billing_state: "",
+          billing_city: "",
+          billing_zip: "",
+        },
+      };
+    }
+    
+  }
+  
+  if (action.type === "REMOVE_INPUTS") {
+    const { checkout_form } = state;
+  
+    return {
+      ...state,
+      checkout_form: {
+        ...checkout_form,
+        billing_address: "",
+        billing_state: "",
+        billing_city: "",
+        billing_zip: "",
+      },
+    };
+  }
+
   if (action.type === "CHECK_BILLING_ERRORS") {
     const { address_hours, checkout_form } = state;
+    return { ...state };
   }
 
   if (action.type === "CHANGE_CUSTOMER_VIEW") {
@@ -114,7 +164,19 @@ export const checkout_reducer = (state, action) => {
     
 
     if (action.type === "CHANGE_BILLING_VIEW") {
-        
+      const { view, isBillingValid } = state;
+      let changeView;
+
+      if (isBillingValid) {
+        if (view >= 3) {
+          changeView = 0;
+        } else {
+          changeView = view + 1;
+        }
+      } else {
+        changeView = view;
+      }
+      return { ...state, view: changeView };
     }
 
   //if theres no matching action, throw error
