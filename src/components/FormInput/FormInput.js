@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./style";
 
-const FormInput = ({ htmlFor, label, type, name, id, value, onChange }) => {
+const FormInput = ({ htmlFor, label, type, name, id, value, onChange, maxLength }) => {
   return (
     <Container>
       <label htmlFor={htmlFor}>{label}</label>
@@ -11,7 +11,7 @@ const FormInput = ({ htmlFor, label, type, name, id, value, onChange }) => {
         id={id}
         value={value}
         onChange={onChange}
-        required
+        maxLength={maxLength}
       />
     </Container>
   );

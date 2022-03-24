@@ -43,7 +43,7 @@ export const checkout_reducer = (state, action) => {
     let addressErr, cityErr, stateErr, zipErr;
     let status = true;
 
-    if (address.trim() === "" || !address.startsWith(/\d/)) {
+    if (address.trim() === "" || !address.match(/^\d/)) {
       addressErr = "Enter a valid address";
       status = false;
     }
@@ -55,7 +55,7 @@ export const checkout_reducer = (state, action) => {
       stateErr = "Enter a valid state";
       status = false;
     }
-    if (zip.trim() === "" || zip.match(/\w/)) {
+    if (zip.trim() === "" || zip.match("[a-zA-z]+") ){
       zipErr = "Enter a valid zip code";
       status = false;
     }

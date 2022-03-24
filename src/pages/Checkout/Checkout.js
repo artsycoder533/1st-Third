@@ -120,7 +120,7 @@ const Checkout = () => {
                   htmlFor="state"
                   label="State:"
                   type="text"
-                  name="state"
+                  name="st"
                   id="state"
                   value={st}
                   onChange={handleInput}
@@ -129,10 +129,11 @@ const Checkout = () => {
                 <FormInput
                   htmlFor="zip"
                   label="Zip Code:"
-                  type="number"
+                  type="text"
                   name="zip"
-                  id="zip"
-                  value={zip}
+                    id="zip"
+                    maxLength={5}
+                    value={zip}
                   onChange={handleInput}
                 />
                 <StyledError>{zipError}</StyledError>
@@ -196,7 +197,8 @@ const Checkout = () => {
                   name="billing_zip"
                   id="billing_zip"
                   value={billing_zip}
-                  onChange={handleInput}
+                      onChange={handleInput}
+                      maxLength={5}
                 />
                 <StyledError>{billing_zipError}</StyledError>
                 <PrimaryButton onClick={handleBillingSubmit}>
@@ -222,7 +224,8 @@ const Checkout = () => {
                   label="Credit Card Number:"
                   type="number"
                   name="card_number"
-                  id="card_number"
+                        id="card_number"
+                        maxLength={16}
                   value={card_number}
                   onChange={handleInput}
                 />

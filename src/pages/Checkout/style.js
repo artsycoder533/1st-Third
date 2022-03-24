@@ -31,7 +31,7 @@ export const Container = styled.div`
       border: 2px solid #800020;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      //gap: 1rem;
     }
 
     button {
@@ -86,4 +86,5 @@ export const StyledLink = styled(Link)`
 
 export const StyledError = styled.small`
   color: red;
+  padding-bottom: 1rem;
 `;
