@@ -88,6 +88,13 @@ export const CountButton = styled.button`
     background: #800020;
     color: white;
     cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+      color: orange;
+      font-weight: bold;
+      border: 2px solid orange;
+    }
 `;
 
 
