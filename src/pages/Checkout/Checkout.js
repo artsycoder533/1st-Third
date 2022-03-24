@@ -11,10 +11,16 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import { CheckoutContext } from "../../Contexts/CheckoutContext";
 
 const Checkout = () => {
-  const { checkout_form, handleInput } =
-    useContext(CheckoutContext);
   const {
     view,
+    checkout_form,
+    handleInput,
+    customer_errors,
+    validateCustomer,
+    changeView,
+    handleCustomerSubmit,
+  } = useContext(CheckoutContext);
+  const {
     fname,
     lname,
     email,
@@ -33,38 +39,8 @@ const Checkout = () => {
     card_number,
     disabled,
   } = checkout_form;
-  const { customerErrors, validateCustomer, changeView, handleCustomerSubmit } = useContext(CheckoutContext);
+ 
   const navigate = useNavigate();
- // const [disabled, setDisabled] = useState(false);
-  
-  // const [customerErrors, setCustomerErrors] = useState({
-  //   fnameError: "",
-  //   lnameError: "",
-  //   emailError: ""
-  // })
-
-  // const validateCustomer = () => {
-  //   let fnameErr, lnameErr, emailErr;
-  //   let isValid = true;
-  //   if (fname.trim() === "" || fname.match(/\d/)) {
-  //     fnameErr = "Enter a valid first name"
-  //     isValid = false;
-  //   }
-  //   if (lname.trim() === "" || lname.match(/\d/)) {
-  //     lnameErr = "Enter a valid last name"
-  //     isValid = false;
-  //   }
-  //   if (email.trim() === "" || !email.includes("@")) {
-  //     emailErr = "Enter a valid email"
-  //     isValid = false;
-  //   }
-  //   setCustomerErrors({
-  //     fnameError: fnameErr,
-  //     lnameError: lnameErr,
-  //     emailError: emailErr
-  //   })
-  //   return isValid;
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,7 +54,8 @@ const Checkout = () => {
     }
   }
 
-  const { fnameError, lnameError, emailError } = customerErrors;
+  const { fnameError, lnameError, emailError } = customer_errors;
+
   return (
     <main>
       <StyledHeading>Checkout</StyledHeading>
@@ -139,6 +116,7 @@ const Checkout = () => {
                   value={address}
                   onChange={handleInput}
                 />
+                <StyledError>{lnameError}</StyledError>
                 <FormInput
                   htmlFor="city"
                   label="City:"
@@ -166,10 +144,9 @@ const Checkout = () => {
                   value={zip}
                   onChange={handleInput}
                 />
-                <input type="submit" value="Next" onClick={changeView} />
-                {/* <PrimaryButton onClick={changeView}>
+                <PrimaryButton onClick={handleCustomerSubmit}>
                   Next <FiArrowRight />
-                </PrimaryButton> */}
+                </PrimaryButton>
               </fieldset>
             </form>
           ) : view === 2 ? (
@@ -225,7 +202,11 @@ const Checkout = () => {
                   value={billing_zip}
                   onChange={handleInput}
                 />
-                <input type="submit" value="Next" onClick={changeView} />
+                <input
+                  type="submit"
+                  value="Next"
+                  onClick={handleCustomerSubmit}
+                />
                 {/* <PrimaryButton onClick={changeView}>
                   Next <FiArrowRight />
                 </PrimaryButton> */}
@@ -274,7 +255,7 @@ const Checkout = () => {
                   onChange={handleInput}
                 />
                 {/* <input type="submit" value="Pay" /> */}
-                <PrimaryButton onClick={() => navigate("/confirmation")}>
+                <PrimaryButton onClick={handleCustomerSubmit}>
                   Pay <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
@@ -288,3 +269,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+//navigate("/confirmation")

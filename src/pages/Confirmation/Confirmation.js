@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import { CartContext } from '../../Contexts/CartContext';
 import { Center } from '../../components/App/style';
 import { SecondaryLink } from '../../components/Button/style';
+import { CheckoutContext } from '../../Contexts/CheckoutContext';
 
 const Confirmation = () => {
-    const { checkout_form } = useContext(CartContext);
+    const { checkout_form } = useContext(CheckoutContext);
     const { email } = checkout_form;
     console.log(email);
 
