@@ -39,7 +39,7 @@ export const checkout_reducer = (state, action) => {
     };
   }
 
-  if (action.type === "CHECK_ADDRESS_ERRORS") {
+  if (action.type === "CHECK_SHIPPING_ERRORS") {
     const { address_errors, checkout_form } = state;
     const { address, city, st, zip } = checkout_form;
     let addressErr, cityErr, stateErr, zipErr;
@@ -57,7 +57,7 @@ export const checkout_reducer = (state, action) => {
       stateErr = "Enter a valid state";
       status = false;
     }
-    if (zip.trim() === "" || zip.match("[a-zA-z]+") ){
+    if (zip.trim() === "" || zip.match("[a-zA-z]+")) {
       zipErr = "Enter a valid zip code";
       status = false;
     }
@@ -72,10 +72,6 @@ export const checkout_reducer = (state, action) => {
         zipError: zipErr,
       },
     };
-  }
-
-  if (action.type === "CHECK_SHIPPING_ERRORS") {
-    const { shipping_errors, checkout_form } = state;
   }
 
   if (action.type === "FILL_IN_INPUTS") {
@@ -93,8 +89,7 @@ export const checkout_reducer = (state, action) => {
           billing_zip: zip,
         },
       };
-    }
-    else {
+    } else {
       return {
         ...state,
         checkout_form: {
@@ -107,12 +102,11 @@ export const checkout_reducer = (state, action) => {
         },
       };
     }
-    
   }
-  
+
   if (action.type === "REMOVE_INPUTS") {
     const { checkout_form } = state;
-  
+
     return {
       ...state,
       checkout_form: {
@@ -126,7 +120,41 @@ export const checkout_reducer = (state, action) => {
   }
 
   if (action.type === "CHECK_BILLING_ERRORS") {
-    const { address_hours, checkout_form } = state;
+    const { billing_errors, checkout_form } = state;
+    const { billing_address, billing_city, billing_state, billing_zip } = checkout_form;
+    let billingAddressErr, billingCityErr, billingStateErr, billingZipErr;
+    let status = true;
+
+    if (billing_address.trim() === "" || !billing_address.match(/^\d/)) {
+      billingAddressErr = "Enter a valid address";
+      status = false;
+    }
+    if (billing_city.trim() === "" || billing_city.match(/\d/)) {
+      billingCityErr = "Enter a valid address";
+      status = false;
+    }
+    if (billing_state.trim() === "" || billing_state.match(/\d/)) {
+      billingStateErr = "Enter a valid state";
+      status = false;
+    }
+    if (billing_zip.trim() === "" || billing_zip.match("[a-zA-z]+")) {
+      billingZipErr = "Enter a valid zip code";
+      status = false;
+    }
+    return {
+      ...state,
+      isBillingValid: status,
+      billing_errors: {
+        ...billing_errors,
+        billing_addressError: billingAddressErr,
+        billing_cityError: billingCityErr,
+        billing_stateError: billingStateErr,
+        billing_zipError: billingZipErr,
+      },
+    };
+  }
+
+  if (action.type === "CHECK_PAYMENT_ERRORS") {
     return { ...state };
   }
 
@@ -146,7 +174,7 @@ export const checkout_reducer = (state, action) => {
     return { ...state, view: changeView };
   }
 
-  if (action.type === "CHANGE_ADDRESS_VIEW") {
+  if (action.type === "CHANGE_SHIPPING_VIEW") {
     const { view, isAddressValid } = state;
     let changeView;
 
@@ -160,24 +188,23 @@ export const checkout_reducer = (state, action) => {
       changeView = view;
     }
     return { ...state, view: changeView };
-    }
-    
+  }
 
-    if (action.type === "CHANGE_BILLING_VIEW") {
-      const { view, isBillingValid } = state;
-      let changeView;
+  if (action.type === "CHANGE_BILLING_VIEW") {
+    const { view, isBillingValid } = state;
+    let changeView;
 
-      if (isBillingValid) {
-        if (view >= 3) {
-          changeView = 0;
-        } else {
-          changeView = view + 1;
-        }
+    if (isBillingValid) {
+      if (view >= 3) {
+        changeView = 0;
       } else {
-        changeView = view;
+        changeView = view + 1;
       }
-      return { ...state, view: changeView };
+    } else {
+      changeView = view;
     }
+    return { ...state, view: changeView };
+  }
 
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);

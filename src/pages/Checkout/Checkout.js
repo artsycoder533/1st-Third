@@ -18,9 +18,11 @@ const Checkout = () => {
     customer_errors,
     address_errors,
     billing_errors,
+    card_errors,
     handleCustomerSubmit,
     handleAddressSubmit,
-    handleBillingSubmit
+    handleBillingSubmit,
+    handlePaymentSubmit,
   } = useContext(CheckoutContext);
   const {
     isChecked,
@@ -41,12 +43,20 @@ const Checkout = () => {
     expiration,
     card_number,
   } = checkout_form;
- 
+
   const navigate = useNavigate();
 
   const { fnameError, lnameError, emailError } = customer_errors;
   const { addressError, cityError, stateError, zipError } = address_errors;
-  const {billing_addressError, billing_cityError, billing_stateError, billing_zipError } = billing_errors;
+  const {
+    billing_addressError,
+    billing_cityError,
+    billing_stateError,
+    billing_zipError,
+  } = billing_errors;
+  const { card_nameError, card_numberError, expirationError, card_zipError } =
+    card_errors;
+
   return (
     <main>
       <StyledHeading>Checkout</StyledHeading>
@@ -132,10 +142,10 @@ const Checkout = () => {
                   label="Zip Code:"
                   type="text"
                   name="zip"
-                    id="zip"
-                    min={5}
-                    maxLength={5}
-                    value={zip}
+                  id="zip"
+                  min={5}
+                  maxLength={5}
+                  value={zip}
                   onChange={handleInput}
                 />
                 <StyledError>{zipError}</StyledError>
@@ -199,8 +209,8 @@ const Checkout = () => {
                   name="billing_zip"
                   id="billing_zip"
                   value={billing_zip}
-                      onChange={handleInput}
-                      maxLength={5}
+                  onChange={handleInput}
+                  maxLength={5}
                 />
                 <StyledError>{billing_zipError}</StyledError>
                 <PrimaryButton onClick={handleBillingSubmit}>
@@ -221,16 +231,18 @@ const Checkout = () => {
                   value={card_name}
                   onChange={handleInput}
                 />
+                <StyledError>{card_nameError}</StyledError>
                 <FormInput
                   htmlFor="card_number"
                   label="Credit Card Number:"
                   type="number"
                   name="card_number"
-                        id="card_number"
-                        maxLength={16}
+                  id="card_number"
+                  maxLength={16}
                   value={card_number}
                   onChange={handleInput}
                 />
+                <StyledError>{card_numberError}</StyledError>
                 <FormInput
                   htmlFor="expiration"
                   label="Expires:"
@@ -240,18 +252,20 @@ const Checkout = () => {
                   value={expiration}
                   onChange={handleInput}
                 />
+                <StyledError>{expirationError}</StyledError>
                 <FormInput
                   htmlFor="card_zip"
                   label="Zip Code:"
-                  type="number"
+                  type="text"
                   name="card_zip"
                   id="card_zip"
+                  min={16}
+                  maxLength={16}
                   value={card_zip}
-                  min="5"
-                  max="5"
                   onChange={handleInput}
                 />
-                <PrimaryButton onClick={handleCustomerSubmit}>
+                <StyledError>{card_zipError}</StyledError>
+                <PrimaryButton onClick={handlePaymentSubmit}>
                   Pay <FiArrowRight />
                 </PrimaryButton>
               </fieldset>

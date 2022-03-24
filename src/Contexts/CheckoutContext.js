@@ -4,7 +4,7 @@ import { checkout_reducer } from "../reducers/checkout_reducer";
 export const CheckoutContext = createContext();
 
 const initialState = {
-  view: 1,
+  view: 0,
   isCustomerValid: true,
   isShippingValid: true,
   isBillingValid: true,
@@ -27,6 +27,9 @@ const initialState = {
     expiration: "",
     card_zip: "",
   },
+  checkoutData: {
+
+  },
   customer_errors: {
     fnameError: "",
     lnameError: "",
@@ -43,6 +46,12 @@ const initialState = {
     billing_stateError: "",
     billing_zipError: "",
   },
+  card_errors: {
+    card_nameError: "",
+    card_numberError: "",
+    expirationError: "",
+    card_zipError:""
+  }
 };
 
 const CheckoutContextProvider = ({ children }) => {
@@ -54,7 +63,6 @@ const CheckoutContextProvider = ({ children }) => {
     if (name === "match") {
       dispatch({ type: "FILL_IN_INPUTS" });
     }
-
     dispatch({ type: "UPDATE_INPUT", payload: { name, value } });
   };
 
@@ -66,8 +74,8 @@ const CheckoutContextProvider = ({ children }) => {
 
   const handleAddressSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: "CHECK_ADDRESS_ERRORS" });
-    dispatch({ type: "CHANGE_ADDRESS_VIEW" });
+    dispatch({ type: "CHECK_SHIPPING_ERRORS" });
+    dispatch({ type: "CHANGE_SHIPPING_VIEW" });
   };
 
   const handleBillingSubmit = (e) => {
@@ -75,6 +83,12 @@ const CheckoutContextProvider = ({ children }) => {
     dispatch({ type: "CHECK_BILLING_ERRORS" });
     dispatch({ type: "CHANGE_BILLING_VIEW" });
   };
+
+  const handlePaymentSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: "CHECK_PAYMENT_ERRORS" });
+    //dispatch({ type: "RESET" });
+  }
 
   return (
     <CheckoutContext.Provider
@@ -84,6 +98,7 @@ const CheckoutContextProvider = ({ children }) => {
         handleCustomerSubmit,
         handleAddressSubmit,
         handleBillingSubmit,
+        handlePaymentSubmit
       }}>
       {children}
     </CheckoutContext.Provider>
