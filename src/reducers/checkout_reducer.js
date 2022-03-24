@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { getCurrentDate } from "../utility/utils";
 
 export const checkout_reducer = (state, action) => {
   if (action.type === "UPDATE_INPUT") {
@@ -22,7 +23,10 @@ export const checkout_reducer = (state, action) => {
       lnameErr = "Enter a valid last name";
       status = false;
     }
-    if (email.trim() === "" || !email.includes("@")) {
+    if (
+      email.trim() === "" ||
+      !email.match(/^([a-z\d\.-_]+)@([a-z\d\.-_]+)\.([a-z]{2,})$/)
+    ) {
       emailErr = "Enter a valid email";
       status = false;
     }
@@ -76,7 +80,7 @@ export const checkout_reducer = (state, action) => {
 
   if (action.type === "FILL_IN_INPUTS") {
     const { checkout_form } = state;
-    const { isChecked, address, city, st, zip } = checkout_form;
+    const { isChecked, address, city, st, zip, fname, lname } = checkout_form;
     if (!isChecked) {
       return {
         ...state,
@@ -87,6 +91,8 @@ export const checkout_reducer = (state, action) => {
           billing_state: st,
           billing_city: city,
           billing_zip: zip,
+          card_name: `${fname} ${lname}`,
+          card_zip: zip
         },
       };
     } else {
@@ -155,7 +161,37 @@ export const checkout_reducer = (state, action) => {
   }
 
   if (action.type === "CHECK_PAYMENT_ERRORS") {
-    return { ...state };
+    const { card_errors, checkout_form } = state;
+    const { card_name, card_number, expiration, card_zip } = checkout_form;
+    let cardNameErr, cardNumberErr, expirationErr, cardZipErr; 
+    let status = true;
+
+    if (card_name.trim() === "" || card_name.match(/\d/)) {
+      cardNameErr = "Enter a valid name";
+      status = false;
+    } 
+    if (card_number.trim() === "" || card_number.match("[a-zA-z]+")) {
+      cardNumberErr = "Enter a valid card number";
+      status = false;
+    }
+    if (expiration.trim() === "" ) {
+      expirationErr = "Date cannot be blank";
+      status = false;
+    }
+    if (card_zip.trim() === "" || card_zip.match("[a-zA-z]+")) {
+      cardZipErr = "Enter a valid zip code";
+      status = false;
+    }
+      return {
+        ...state,
+        card_errors: {
+          ...card_errors,
+          card_nameError: cardNameErr,
+          card_numberError: cardNumberErr,
+          expirationError: expirationErr,
+          card_zipError: cardZipErr,
+        },
+      };
   }
 
   if (action.type === "CHANGE_CUSTOMER_VIEW") {
@@ -204,6 +240,38 @@ export const checkout_reducer = (state, action) => {
       changeView = view;
     }
     return { ...state, view: changeView };
+  }
+
+  if (action.type === "PROCESS_PAYMENT") {
+    const { navigate } = action.payload;
+    const { checkout_form } = state;
+    //redirect to confirmation page
+    navigate("/confirmation");
+
+
+    return {
+      ...state,
+      checkoutData: { ...checkout_form },
+      checkout_form: {
+        isChecked: false,
+        fname: "",
+        lname: "",
+        email: "",
+        address: "",
+        city: "",
+        st: "",
+        zip: "",
+        match: "",
+        billing_address: "",
+        billing_city: "",
+        billing_state: "",
+        billing_zip: "",
+        card_name: "",
+        card_number: "",
+        expiration: "",
+        card_zip: "",
+      },
+    };
   }
 
   //if theres no matching action, throw error

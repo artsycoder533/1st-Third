@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 import { checkout_reducer } from "../reducers/checkout_reducer";
 
 export const CheckoutContext = createContext();
@@ -51,7 +51,7 @@ const initialState = {
     card_numberError: "",
     expirationError: "",
     card_zipError:""
-  }
+  },
 };
 
 const CheckoutContextProvider = ({ children }) => {
@@ -84,10 +84,10 @@ const CheckoutContextProvider = ({ children }) => {
     dispatch({ type: "CHANGE_BILLING_VIEW" });
   };
 
-  const handlePaymentSubmit = (e) => {
+  const handlePaymentSubmit = (e, navigate) => {
     e.preventDefault();
     dispatch({ type: "CHECK_PAYMENT_ERRORS" });
-    //dispatch({ type: "RESET" });
+    dispatch({ type: "PROCESS_PAYMENT", payload: navigate});
   }
 
   return (

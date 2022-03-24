@@ -9,3 +9,14 @@ export const isItemInCart = (id, cart) => {
     return false;
   }
 };
+
+export const getCurrentDate = () => {
+   const date = new Date();
+   const year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  month < 10 ? (month = `0${month}`) : (month = month);
+  let day = date.getDate();
+  day < 10 ? day = `0${day}` : day = day;
+   const currentDate = `${year}-${month}-${day}`;
+   return currentDate;
+}

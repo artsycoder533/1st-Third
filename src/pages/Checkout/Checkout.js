@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
@@ -9,6 +9,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { CartContext } from "../../Contexts/CartContext";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import { CheckoutContext } from "../../Contexts/CheckoutContext";
+import { getCurrentDate } from "../../utility/utils";
 
 const Checkout = () => {
   const {
@@ -43,7 +44,7 @@ const Checkout = () => {
     expiration,
     card_number,
   } = checkout_form;
-
+  //const formRef = useRef(null);
   const navigate = useNavigate();
 
   const { fnameError, lnameError, emailError } = customer_errors;
@@ -63,8 +64,8 @@ const Checkout = () => {
       <Center>
         <StyledLink to="/cart">Back to Cart</StyledLink>
         <Container>
-          {view === 0 ? (
-            <form action="">
+          <form action="">
+            {view === 0 ? (
               <fieldset>
                 <legend>Customer Details:</legend>
                 <FormInput
@@ -102,9 +103,7 @@ const Checkout = () => {
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            </form>
-          ) : view === 1 ? (
-            <form action="">
+            ) : view === 1 ? (
               <fieldset>
                 <legend>Shipping Address:</legend>
                 <FormInput
@@ -153,9 +152,7 @@ const Checkout = () => {
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            </form>
-          ) : view === 2 ? (
-            <form action="">
+            ) : view === 2 ? (
               <fieldset>
                 <legend>Billing Address:</legend>
 
@@ -217,9 +214,7 @@ const Checkout = () => {
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            </form>
-          ) : (
-            <form action="">
+            ) : (
               <fieldset>
                 <legend>Payment Details: </legend>
                 <FormInput
@@ -235,9 +230,10 @@ const Checkout = () => {
                 <FormInput
                   htmlFor="card_number"
                   label="Credit Card Number:"
-                  type="number"
+                  type="text"
                   name="card_number"
                   id="card_number"
+                  min={16}
                   maxLength={16}
                   value={card_number}
                   onChange={handleInput}
@@ -249,6 +245,7 @@ const Checkout = () => {
                   type="date"
                   name="expiration"
                   id="expiration"
+                  min={getCurrentDate()}
                   value={expiration}
                   onChange={handleInput}
                 />
@@ -259,18 +256,18 @@ const Checkout = () => {
                   type="text"
                   name="card_zip"
                   id="card_zip"
-                  min={16}
-                  maxLength={16}
+                  min={5}
+                  maxLength={5}
                   value={card_zip}
                   onChange={handleInput}
                 />
                 <StyledError>{card_zipError}</StyledError>
-                <PrimaryButton onClick={handlePaymentSubmit}>
+                <PrimaryButton type="submit" onClick={(e) => handlePaymentSubmit(navigate)}>
                   Pay <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            </form>
-          )}
+            )}
+          </form>
           <OrderSummary />
         </Container>
       </Center>
