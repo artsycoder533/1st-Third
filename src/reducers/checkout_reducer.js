@@ -110,7 +110,12 @@ export const checkout_reducer = (state, action) => {
       changeView = view;
     }
     return { ...state, view: changeView };
-  }
+    }
+    
+
+    if (action.type === "CHANGE_BILLING_VIEW") {
+        
+    }
 
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);

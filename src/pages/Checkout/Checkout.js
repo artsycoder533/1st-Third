@@ -17,8 +17,10 @@ const Checkout = () => {
     handleInput,
     customer_errors,
     address_errors,
+    billing_errors,
     handleCustomerSubmit,
     handleAddressSubmit,
+    handleBillingSubmit
   } = useContext(CheckoutContext);
   const {
     fname,
@@ -43,7 +45,7 @@ const Checkout = () => {
 
   const { fnameError, lnameError, emailError } = customer_errors;
   const { addressError, cityError, stateError, zipError } = address_errors;
-
+  const {billing_addressError, billing_cityError, billing_stateError, billing_zipError } = billing_errors;
   return (
     <main>
       <StyledHeading>Checkout</StyledHeading>
@@ -85,7 +87,7 @@ const Checkout = () => {
                   onChange={handleInput}
                 />
                 <StyledError>{emailError}</StyledError>
-                <PrimaryButton type="submit" onClick={handleCustomerSubmit}>
+                <PrimaryButton onClick={handleCustomerSubmit}>
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
@@ -134,7 +136,7 @@ const Checkout = () => {
                   onChange={handleInput}
                 />
                 <StyledError>{zipError}</StyledError>
-                <PrimaryButton type="submit" onClick={handleAddressSubmit}>
+                <PrimaryButton onClick={handleAddressSubmit}>
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
@@ -154,6 +156,7 @@ const Checkout = () => {
                   onChange={handleInput}
                   checked={match}
                 />
+
                 {/* if a match populate these fields */}
 
                 <FormInput
@@ -165,6 +168,7 @@ const Checkout = () => {
                   value={billing_address}
                   onChange={handleInput}
                 />
+                <StyledError>{billing_addressError}</StyledError>
                 <FormInput
                   htmlFor="billing_city"
                   label="City:"
@@ -174,6 +178,7 @@ const Checkout = () => {
                   value={billing_city}
                   onChange={handleInput}
                 />
+                <StyledError>{billing_cityError}</StyledError>
                 <FormInput
                   htmlFor="billing_state"
                   label="State:"
@@ -183,6 +188,7 @@ const Checkout = () => {
                   value={billing_state}
                   onChange={handleInput}
                 />
+                <StyledError>{billing_stateError}</StyledError>
                 <FormInput
                   htmlFor="billing_zip"
                   label="Zip Code:"
@@ -192,14 +198,10 @@ const Checkout = () => {
                   value={billing_zip}
                   onChange={handleInput}
                 />
-                <input
-                  type="submit"
-                  value="Next"
-                  onClick={handleCustomerSubmit}
-                />
-                {/* <PrimaryButton onClick={changeView}>
+                <StyledError>{billing_zipError}</StyledError>
+                <PrimaryButton onClick={handleBillingSubmit}>
                   Next <FiArrowRight />
-                </PrimaryButton> */}
+                </PrimaryButton>
               </fieldset>
             </form>
           ) : (
@@ -244,7 +246,6 @@ const Checkout = () => {
                   max="5"
                   onChange={handleInput}
                 />
-                {/* <input type="submit" value="Pay" /> */}
                 <PrimaryButton onClick={handleCustomerSubmit}>
                   Pay <FiArrowRight />
                 </PrimaryButton>

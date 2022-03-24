@@ -39,33 +39,13 @@ const initialState = {
   billing_errors: {
     billing_addressError: "",
     billing_cityError: "",
-    billing_stateError: "",
+      billing_stateError: "",
+    billing_zipError: ""
   },
 };
 
 const CheckoutContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(checkout_reducer, initialState);
-
-    const changeView = (e) => {
-        e.preventDefault();
-        dispatch({ type: "CHANGE_VIEW" });
-    }
-
-    const validateCustomer = () => {
-        dispatch({ type: "CHECK_CUSTOMER_ERRORS" });
-    }
-    
-    const validateAddress = () => {
-        dispatch({ type: "CHECK_ADDRESS_ERRORS" });
-    }
-
-    const validateShipping = () => {
-        dispatch({ type: "CHECK_SHIPPING_ERRORS" });
-    }
-
-    const validateBilling = () => {
-      dispatch({ type: "CHECK_BILLING_ERRORS" });
-    };
 
     const handleInput = (e) => {
         const name = e.target.name;
@@ -85,7 +65,14 @@ const CheckoutContextProvider = ({ children }) => {
       dispatch({ type: "CHANGE_ADDRESS_VIEW" });
     };
 
-    return <CheckoutContext.Provider value={{...state, validateCustomer, validateAddress, validateShipping, validateBilling, changeView, handleInput, handleCustomerSubmit, handleAddressSubmit}}>
+
+      const handleBillingSubmit = (e) => {
+        e.preventDefault();
+        dispatch({ type: "CHECK_BILLING_ERRORS" });
+        dispatch({ type: "CHANGE_BILLING_VIEW" });
+      };
+
+    return <CheckoutContext.Provider value={{...state, handleInput, handleCustomerSubmit, handleAddressSubmit, handleBillingSubmit}}>
         {children}
     </CheckoutContext.Provider>
 }
