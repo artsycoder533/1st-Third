@@ -4,7 +4,7 @@ import { checkout_reducer } from "../reducers/checkout_reducer";
 export const CheckoutContext = createContext();
 
 const initialState = {
-  view: 0,
+  view: 1,
   isCustomerValid: true,
   isShippingValid: true,
   isBillingValid: true,
@@ -14,7 +14,7 @@ const initialState = {
     email: "",
     address: "",
     city: "",
-    state: "",
+    st: "",
     zip: "",
     match: "",
     billing_address: "",
@@ -76,10 +76,16 @@ const CheckoutContextProvider = ({ children }) => {
     const handleCustomerSubmit = (e) => {
         e.preventDefault();
         dispatch({ type: "CHECK_CUSTOMER_ERRORS" });
-        dispatch({ type: "CHANGE_VIEW" });
+        dispatch({ type: "CHANGE_CUSTOMER_VIEW" });
     }
 
-    return <CheckoutContext.Provider value={{...state, validateCustomer, changeView, handleInput, handleCustomerSubmit}}>
+    const handleAddressSubmit = (e) => {
+      e.preventDefault();
+      dispatch({ type: "CHECK_ADDRESS_ERRORS" });
+      dispatch({ type: "CHANGE_ADDRESS_VIEW" });
+    };
+
+    return <CheckoutContext.Provider value={{...state, validateCustomer, validateAddress, validateShipping, validateBilling, changeView, handleInput, handleCustomerSubmit, handleAddressSubmit}}>
         {children}
     </CheckoutContext.Provider>
 }

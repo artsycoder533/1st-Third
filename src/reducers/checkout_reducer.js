@@ -35,35 +35,82 @@ export const checkout_reducer = (state, action) => {
         emailError: emailErr,
       },
     };
+  }
+
+  if (action.type === "CHECK_ADDRESS_ERRORS") {
+    const { address_errors, checkout_form } = state;
+    const { address, city, st, zip } = checkout_form;
+    let addressErr, cityErr, stateErr, zipErr;
+    let status = true;
+
+    if (address.trim() === "" || !address.startsWith(/\d/)) {
+      addressErr = "Enter a valid address";
+      status = false;
     }
-    
-    if (action.type === "CHECK_ADDRESS_ERRORS") {
-        const { address_hours, checkout_form } = state;
-
+    if (city.trim() === "" || city.match(/\d/)) {
+      cityErr = "Enter a valid address";
+      status = false;
     }
-
-      if (action.type === "CHECK_SHIPPING_ERRORS") {
-        const { shipping_errors, checkout_form } = state;
+    if (st.trim() === "" || st.match(/\d/)) {
+      stateErr = "Enter a valid state";
+      status = false;
     }
-     if (action.type === "CHECK_BILLING_ERRORS") {
-       const { address_hours, checkout_form } = state;
-     }
+    if (zip.trim() === "" || zip.match(/\w/)) {
+      zipErr = "Enter a valid zip code";
+      status = false;
+    }
+    return {
+      ...state,
+      isAddressValid: status,
+      address_errors: {
+        ...address_errors,
+        addressError: addressErr,
+        cityError: cityErr,
+        stateError: stateErr,
+        zipError: zipErr,
+      },
+    };
+  }
 
-      if (action.type === "CHANGE_VIEW") {
-        const { view, customer_errors, isCustomerValid } = state;
-        let changeView;
+  if (action.type === "CHECK_SHIPPING_ERRORS") {
+    const { shipping_errors, checkout_form } = state;
+  }
 
-        if (isCustomerValid) {
-          if (view >= 3) {
-            changeView = 0;
-          } else {
-            changeView = view + 1;
-          }
-        } else {
-          changeView = view;
-        }
-        return { ...state, view: changeView };
+  if (action.type === "CHECK_BILLING_ERRORS") {
+    const { address_hours, checkout_form } = state;
+  }
+
+  if (action.type === "CHANGE_CUSTOMER_VIEW") {
+    const { view, isCustomerValid } = state;
+    let changeView;
+
+    if (isCustomerValid) {
+      if (view >= 3) {
+        changeView = 0;
+      } else {
+        changeView = view + 1;
       }
+    } else {
+      changeView = view;
+    }
+    return { ...state, view: changeView };
+  }
+
+  if (action.type === "CHANGE_ADDRESS_VIEW") {
+    const { view, isAddressValid } = state;
+    let changeView;
+
+    if (isAddressValid) {
+      if (view >= 3) {
+        changeView = 0;
+      } else {
+        changeView = view + 1;
+      }
+    } else {
+      changeView = view;
+    }
+    return { ...state, view: changeView };
+  }
 
   //if theres no matching action, throw error
   throw new Error(`No Matching "${action.type}" - action type`);

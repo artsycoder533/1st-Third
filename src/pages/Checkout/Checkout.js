@@ -16,9 +16,9 @@ const Checkout = () => {
     checkout_form,
     handleInput,
     customer_errors,
-    validateCustomer,
-    changeView,
+    address_errors,
     handleCustomerSubmit,
+    handleAddressSubmit,
   } = useContext(CheckoutContext);
   const {
     fname,
@@ -26,7 +26,7 @@ const Checkout = () => {
     email,
     address,
     city,
-    state,
+    st,
     zip,
     match,
     billing_address,
@@ -37,24 +37,12 @@ const Checkout = () => {
     card_zip,
     expiration,
     card_number,
-    disabled,
   } = checkout_form;
  
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const isValid = validateCustomer();
-    console.log(isValid);
-    if (isValid) {
-      changeView();
-    }
-    else {
-      return;
-    }
-  }
-
   const { fnameError, lnameError, emailError } = customer_errors;
+  const { addressError, cityError, stateError, zipError } = address_errors;
 
   return (
     <main>
@@ -97,7 +85,6 @@ const Checkout = () => {
                   onChange={handleInput}
                 />
                 <StyledError>{emailError}</StyledError>
-                {/* <input type="submit" value="Next" onSubmit={changeView} /> */}
                 <PrimaryButton type="submit" onClick={handleCustomerSubmit}>
                   Next <FiArrowRight />
                 </PrimaryButton>
@@ -116,7 +103,7 @@ const Checkout = () => {
                   value={address}
                   onChange={handleInput}
                 />
-                <StyledError>{lnameError}</StyledError>
+                <StyledError>{addressError}</StyledError>
                 <FormInput
                   htmlFor="city"
                   label="City:"
@@ -126,15 +113,17 @@ const Checkout = () => {
                   value={city}
                   onChange={handleInput}
                 />
+                <StyledError>{cityError}</StyledError>
                 <FormInput
                   htmlFor="state"
                   label="State:"
                   type="text"
                   name="state"
                   id="state"
-                  value={state}
+                  value={st}
                   onChange={handleInput}
                 />
+                <StyledError>{stateError}</StyledError>
                 <FormInput
                   htmlFor="zip"
                   label="Zip Code:"
@@ -144,7 +133,8 @@ const Checkout = () => {
                   value={zip}
                   onChange={handleInput}
                 />
-                <PrimaryButton onClick={handleCustomerSubmit}>
+                <StyledError>{zipError}</StyledError>
+                <PrimaryButton type="submit" onClick={handleAddressSubmit}>
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
