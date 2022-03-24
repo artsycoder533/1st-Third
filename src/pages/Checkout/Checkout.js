@@ -1,32 +1,92 @@
-import React, {useState, useContext} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
-import { Container, StyledLink } from "./style";
+import { Container, StyledLink, StyledError } from "./style";
 import { PrimaryButton } from "../../components/Button/style";
 import { FiArrowRight } from "react-icons/fi";
 import { CartContext } from "../../Contexts/CartContext";
 import Checkbox from "../../components/Checkbox/Checkbox";
+import { CheckoutContext } from "../../Contexts/CheckoutContext";
 
 const Checkout = () => {
-  const { checkout_form, changeView, handleInput } = useContext(CartContext);
-  const { view, fname, lname, email, address, city, state, zip, match, billing_address, billing_city, billing_state, billing_zip, card_name, card_zip, expiration, card_number, disabled } = checkout_form;
- // console.log(fname !== "" && lname !== "" && email !== "");
+  const { checkout_form, handleInput } =
+    useContext(CheckoutContext);
+  const {
+    view,
+    fname,
+    lname,
+    email,
+    address,
+    city,
+    state,
+    zip,
+    match,
+    billing_address,
+    billing_city,
+    billing_state,
+    billing_zip,
+    card_name,
+    card_zip,
+    expiration,
+    card_number,
+    disabled,
+  } = checkout_form;
+  const { customerErrors, validateCustomer, changeView, handleCustomerSubmit } = useContext(CheckoutContext);
+  const navigate = useNavigate();
+ // const [disabled, setDisabled] = useState(false);
   
-  const customerError = () => {
-    
+  // const [customerErrors, setCustomerErrors] = useState({
+  //   fnameError: "",
+  //   lnameError: "",
+  //   emailError: ""
+  // })
+
+  // const validateCustomer = () => {
+  //   let fnameErr, lnameErr, emailErr;
+  //   let isValid = true;
+  //   if (fname.trim() === "" || fname.match(/\d/)) {
+  //     fnameErr = "Enter a valid first name"
+  //     isValid = false;
+  //   }
+  //   if (lname.trim() === "" || lname.match(/\d/)) {
+  //     lnameErr = "Enter a valid last name"
+  //     isValid = false;
+  //   }
+  //   if (email.trim() === "" || !email.includes("@")) {
+  //     emailErr = "Enter a valid email"
+  //     isValid = false;
+  //   }
+  //   setCustomerErrors({
+  //     fnameError: fnameErr,
+  //     lnameError: lnameErr,
+  //     emailError: emailErr
+  //   })
+  //   return isValid;
+  // };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = validateCustomer();
+    console.log(isValid);
+    if (isValid) {
+      changeView();
+    }
+    else {
+      return;
+    }
   }
 
-
+  const { fnameError, lnameError, emailError } = customerErrors;
   return (
     <main>
       <StyledHeading>Checkout</StyledHeading>
       <Center>
         <StyledLink to="/cart">Back to Cart</StyledLink>
         <Container>
-          <form action="">
-            {view === 0 ? (
+          {view === 0 ? (
+            <form action="">
               <fieldset>
                 <legend>Customer Details:</legend>
                 <FormInput
@@ -37,7 +97,9 @@ const Checkout = () => {
                   id="fname"
                   value={fname}
                   onChange={handleInput}
+                  required
                 />
+                <StyledError>{fnameError}</StyledError>
                 <FormInput
                   htmlFor="lname"
                   label="Last Name:"
@@ -47,6 +109,7 @@ const Checkout = () => {
                   value={lname}
                   onChange={handleInput}
                 />
+                <StyledError>{lnameError}</StyledError>
                 <FormInput
                   htmlFor="email"
                   label="Email:"
@@ -56,13 +119,15 @@ const Checkout = () => {
                   value={email}
                   onChange={handleInput}
                 />
-                <PrimaryButton
-                  onClick={changeView}
-                  disabled={disabled}>
+                <StyledError>{emailError}</StyledError>
+                {/* <input type="submit" value="Next" onSubmit={changeView} /> */}
+                <PrimaryButton type="submit" onClick={handleCustomerSubmit}>
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            ) : view === 1 ? (
+            </form>
+          ) : view === 1 ? (
+            <form action="">
               <fieldset>
                 <legend>Shipping Address:</legend>
                 <FormInput
@@ -101,13 +166,14 @@ const Checkout = () => {
                   value={zip}
                   onChange={handleInput}
                 />
-                <PrimaryButton
-                  onClick={changeView}
-                  disabled={disabled}>
+                <input type="submit" value="Next" onClick={changeView} />
+                {/* <PrimaryButton onClick={changeView}>
                   Next <FiArrowRight />
-                </PrimaryButton>
+                </PrimaryButton> */}
               </fieldset>
-            ) : view === 2 ? (
+            </form>
+          ) : view === 2 ? (
+            <form action="">
               <fieldset>
                 <legend>Billing Address:</legend>
 
@@ -159,13 +225,14 @@ const Checkout = () => {
                   value={billing_zip}
                   onChange={handleInput}
                 />
-                <PrimaryButton
-                  onClick={changeView}
-                  disabled={disabled}>
+                <input type="submit" value="Next" onClick={changeView} />
+                {/* <PrimaryButton onClick={changeView}>
                   Next <FiArrowRight />
-                </PrimaryButton>
+                </PrimaryButton> */}
               </fieldset>
-            ) : (
+            </form>
+          ) : (
+            <form action="">
               <fieldset>
                 <legend>Payment Details: </legend>
                 <FormInput
@@ -202,20 +269,17 @@ const Checkout = () => {
                   name="card_zip"
                   id="card_zip"
                   value={card_zip}
+                  min="5"
+                  max="5"
                   onChange={handleInput}
                 />
-                <PrimaryButton
-                        onClick={changeView}
-                        disabled={disabled}
-                  >
+                {/* <input type="submit" value="Pay" /> */}
+                <PrimaryButton onClick={() => navigate("/confirmation")}>
                   Pay <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            )}
-            {/* <PrimaryButton onClick={changeView} disabled={disabled}>
-              Next <FiArrowRight />
-            </PrimaryButton> */}
-          </form>
+            </form>
+          )}
           <OrderSummary />
         </Container>
       </Center>

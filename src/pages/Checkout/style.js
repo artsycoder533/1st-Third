@@ -4,16 +4,15 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
- // justify-content: space-around;
-  justify-content:center;
+  // justify-content: space-around;
+  justify-content: center;
   //align-items: flex-start;
   align-items: center;
   gap: 1rem;
 
-  @media all and (min-width: 768px){
+  @media all and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
-   
   }
 
   form {
@@ -24,7 +23,7 @@ export const Container = styled.div`
     gap: 1rem;
 
     legend {
-        padding: 0 1rem;
+      padding: 0 1rem;
     }
 
     fieldset {
@@ -37,6 +36,27 @@ export const Container = styled.div`
 
     button {
       align-self: flex-end;
+    }
+
+    input[type="submit"] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 0.75rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      align-self: flex-end;
+      text-decoration: none;
+      background: #800020;
+      color: white;
+      border: 2px solid #800020;
+
+      &:hover {
+        background: transparent;
+        color: #800020;
+      }
     }
   }
 `;
@@ -62,4 +82,8 @@ export const StyledLink = styled(Link)`
     background: #800020;
     color: white;
   }
+`;
+
+export const StyledError = styled.small`
+  color: red;
 `;
