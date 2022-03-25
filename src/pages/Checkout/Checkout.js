@@ -4,12 +4,12 @@ import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import { Container, StyledLink, StyledError } from "./style";
-import { PrimaryButton } from "../../components/Button/style";
+import { PrimaryButton, PrimaryLink } from "../../components/Button/style";
 import { FiArrowRight } from "react-icons/fi";
-import { CartContext } from "../../Contexts/CartContext";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import { CheckoutContext } from "../../Contexts/CheckoutContext";
 import { getCurrentDate } from "../../utility/utils";
+import OrderReview from "../../components/OrderReview/OrderReview";
 
 const Checkout = () => {
   const {
@@ -44,8 +44,6 @@ const Checkout = () => {
     expiration,
     card_number,
   } = checkout_form;
-  //const formRef = useRef(null);
-  const navigate = useNavigate();
 
   const { fnameError, lnameError, emailError } = customer_errors;
   const { addressError, cityError, stateError, zipError } = address_errors;
@@ -64,8 +62,8 @@ const Checkout = () => {
       <Center>
         <StyledLink to="/cart">Back to Cart</StyledLink>
         <Container>
-          <form action="">
-            {view === 0 ? (
+          {view === 0 ? (
+            <form>
               <fieldset>
                 <legend>Customer Details:</legend>
                 <FormInput
@@ -103,7 +101,9 @@ const Checkout = () => {
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            ) : view === 1 ? (
+            </form>
+          ) : view === 1 ? (
+            <form>
               <fieldset>
                 <legend>Shipping Address:</legend>
                 <FormInput
@@ -152,7 +152,9 @@ const Checkout = () => {
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            ) : view === 2 ? (
+            </form>
+          ) : view === 2 ? (
+            <form>
               <fieldset>
                 <legend>Billing Address:</legend>
 
@@ -166,9 +168,6 @@ const Checkout = () => {
                   onChange={handleInput}
                   checked={isChecked}
                 />
-
-                {/* if a match populate these fields */}
-
                 <FormInput
                   htmlFor="billing_address"
                   label="Street Address:"
@@ -214,7 +213,9 @@ const Checkout = () => {
                   Next <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            ) : (
+            </form>
+          ) : view === 3 ? (
+            <form>
               <fieldset>
                 <legend>Payment Details: </legend>
                 <FormInput
@@ -262,13 +263,21 @@ const Checkout = () => {
                   onChange={handleInput}
                 />
                 <StyledError>{card_zipError}</StyledError>
-                <PrimaryButton type="submit" onClick={(e) => handlePaymentSubmit(navigate)}>
-                  Pay <FiArrowRight />
+                <PrimaryButton type="submit" onClick={handlePaymentSubmit}>
+                  Review Order <FiArrowRight />
                 </PrimaryButton>
               </fieldset>
-            )}
-          </form>
-          <OrderSummary />
+            </form>
+          ) : (
+            <OrderReview />
+          )}
+          <div>
+            <OrderSummary />
+            <PrimaryLink to="/confirmation">
+              Pay Now
+              <FiArrowRight />
+            </PrimaryLink>
+          </div>
         </Container>
       </Center>
     </main>

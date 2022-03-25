@@ -4,7 +4,7 @@ import { checkout_reducer } from "../reducers/checkout_reducer";
 export const CheckoutContext = createContext();
 
 const initialState = {
-  view: 0,
+  view: 4,
   isCustomerValid: true,
   isShippingValid: true,
   isBillingValid: true,
@@ -84,10 +84,11 @@ const CheckoutContextProvider = ({ children }) => {
     dispatch({ type: "CHANGE_BILLING_VIEW" });
   };
 
-  const handlePaymentSubmit = (e, navigate) => {
+  const handlePaymentSubmit = (e) => {
     e.preventDefault();
     dispatch({ type: "CHECK_PAYMENT_ERRORS" });
-    dispatch({ type: "PROCESS_PAYMENT", payload: navigate});
+    dispatch({ type: "CHANGE_PAYMENT_VIEW" });
+    dispatch({ type: "PROCESS_PAYMENT"});
   }
 
   return (

@@ -86,3 +86,13 @@ export const SecondaryLink = styled(ButtonLink)`
     transition: none;
   }
 `;
+
+export const PrimaryLink = styled(SecondaryLink)`
+  background: #800020;
+  color: white;
+
+  &:hover {
+    background: transparent;
+    color: #800020;
+  }
+`;
