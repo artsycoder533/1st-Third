@@ -1,13 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import { getCurrentDate } from "../utility/utils";
-
 export const checkout_reducer = (state, action) => {
-  if (action.type === "UPDATE_INPUT") {
-    const { checkout_form } = state;
-    const { name, value } = action.payload;
-
-    return { ...state, checkout_form: { ...checkout_form, [name]: value } };
+  if (action.type === "LOAD_CART") {
+    const { cart } = action.payload;
+    return { ...state, cart: cart };
   }
+
+    if (action.type === "UPDATE_INPUT") {
+      const { checkout_form } = state;
+      const { name, value } = action.payload;
+
+      return { ...state, checkout_form: { ...checkout_form, [name]: value } };
+    }
 
   if (action.type === "CHECK_CUSTOMER_ERRORS") {
     const { customer_errors, checkout_form } = state;
@@ -54,10 +56,10 @@ export const checkout_reducer = (state, action) => {
       status = false;
     }
     if (city.trim() === "" || city.match(/\d/)) {
-      cityErr = "Enter a valid address";
+      cityErr = "Enter a valid city";
       status = false;
     }
-    if (st.trim() === "" || st.match(/\d/)) {
+    if (st.trim() === "" || st.match(/[^a-zA-Z]/)) {
       stateErr = "Enter a valid state";
       status = false;
     }
@@ -67,7 +69,7 @@ export const checkout_reducer = (state, action) => {
     }
     return {
       ...state,
-      isAddressValid: status,
+      isShippingValid: status,
       address_errors: {
         ...address_errors,
         addressError: addressErr,
@@ -137,7 +139,7 @@ export const checkout_reducer = (state, action) => {
       status = false;
     }
     if (billing_city.trim() === "" || billing_city.match(/\d/)) {
-      billingCityErr = "Enter a valid address";
+      billingCityErr = "Enter a valid city";
       status = false;
     }
     if (billing_state.trim() === "" || billing_state.match(/\d/)) {
@@ -183,9 +185,13 @@ export const checkout_reducer = (state, action) => {
       cardZipErr = "Enter a valid zip code";
       status = false;
     }
+
+    
     return {
       ...state,
+      showReview: status,
       isPaymentValid: status,
+      checkoutData: { ...checkout_form },
       card_errors: {
         ...card_errors,
         card_nameError: cardNameErr,
@@ -201,30 +207,27 @@ export const checkout_reducer = (state, action) => {
     let changeView;
 
     if (isCustomerValid) {
-      if (view >= 3) {
-        changeView = 0;
-      } else {
+      if (view < 4) {
         changeView = view + 1;
       }
-    } else {
+    } 
+    else {
       changeView = view;
     }
     return { ...state, view: changeView };
   }
 
-  if (action.type === "CHANGE_SHIPPING_VIEW") {
-    const { view, isAddressValid } = state;
-    let changeView;
+    if (action.type === "CHANGE_SHIPPING_VIEW") {
+      const { view, isShippingValid } = state;
+      let changeView;
 
-    if (isAddressValid) {
-      if (view >= 3) {
-        changeView = 0;
+      if (isShippingValid) {
+        if (view < 4) {
+          changeView = view + 1;
+        }
       } else {
-        changeView = view + 1;
+        changeView = view;
       }
-    } else {
-      changeView = view;
-    }
     return { ...state, view: changeView };
   }
 
@@ -233,9 +236,7 @@ export const checkout_reducer = (state, action) => {
     let changeView;
 
     if (isBillingValid) {
-      if (view >= 3) {
-        changeView = 0;
-      } else {
+      if (view < 4) {
         changeView = view + 1;
       }
     } else {
@@ -245,14 +246,61 @@ export const checkout_reducer = (state, action) => {
   }
 
   if (action.type === "CHANGE_PAYMENT_VIEW") {
-    const { view, isPaymentValid } = state;
+    const { view, isPaymentValid, checkout_form } = state;
     let changeView;
     if (isPaymentValid) {
-      if (view < 3) {
+      if (view < 4) {
         changeView = view + 1;
-      } 
+      }
+    } else {
+      changeView = view;
     }
-    return { ...state, view: changeView };
+    return {
+      ...state,
+      cart: [],
+      view: changeView,
+      checkout_form: {
+        isChecked: false,
+        fname: "",
+        lname: "",
+        email: "",
+        address: "",
+        city: "",
+        st: "",
+        zip: "",
+        match: "",
+        billing_address: "",
+        billing_city: "",
+        billing_state: "",
+        billing_zip: "",
+        card_name: "",
+        card_number: "",
+        expiration: "",
+        card_zip: "",
+      },
+      customer_errors: {
+        fnameError: "",
+        lnameError: "",
+        emailError: "",
+      },
+      address_errors: {
+        cityError: "",
+        stateError: "",
+        zipError: "",
+      },
+      billing_errors: {
+        billing_addressError: "",
+        billing_cityError: "",
+        billing_stateError: "",
+        billing_zipError: "",
+      },
+      card_errors: {
+        card_nameError: "",
+        card_numberError: "",
+        expirationError: "",
+        card_zipError: "",
+      },
+    };
   }
 
   if (action.type === "PROCESS_PAYMENT") {
@@ -260,6 +308,7 @@ export const checkout_reducer = (state, action) => {
 
     return {
       ...state,
+      cart: [],
       view: 0,
       checkoutData: { ...checkout_form },
       checkout_form: {

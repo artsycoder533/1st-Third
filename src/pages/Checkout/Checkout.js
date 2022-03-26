@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { Center, StyledHeading } from "../../components/App/style";
 import FormInput from "../../components/FormInput/FormInput";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
-import { Container, StyledLink, StyledError } from "./style";
+import { Container, StyledLink, StyledError, Wrapper } from "./style";
 import { PrimaryButton, PrimaryLink } from "../../components/Button/style";
 import { FiArrowRight } from "react-icons/fi";
 import Checkbox from "../../components/Checkbox/Checkbox";
@@ -12,21 +11,190 @@ import { getCurrentDate } from "../../utility/utils";
 import OrderReview from "../../components/OrderReview/OrderReview";
 
 const Checkout = () => {
+  // const {
+  //   view,
+  //   checkoutData,
+  //   handleInput,
+  //   showReview,
+  //   customer_errors,
+  //   address_errors,
+  //   billing_errors,
+  //   card_errors,
+  //   handleCustomerSubmit,
+  //   handleAddressSubmit,
+  //   handleBillingSubmit,
+  //   handlePaymentSubmit,
+  // } = useContext(CheckoutContext);
+  // const {
+  //   isChecked,
+  //   fname,
+  //   lname,
+  //   email,
+  //   address,
+  //   city,
+  //   st,
+  //   zip,
+  //   match,
+  //   billing_address,
+  //   billing_city,
+  //   billing_state,
+  //   billing_zip,
+  //   card_name,
+  //   card_zip,
+  //   expiration,
+  //   card_number,
+  // } = checkoutData;
+  const [isValid, setIsValid] = useState(true);
+  const [formInfo, setFormInfo] = useState({});
+  const [view, setView] = useState(0);
+  const [showReview, setShowReview] = useState(false);
+  const [checkout_form, setCheckout_Form] = useState({
+    isChecked: false,
+    fname: "",
+    lname: "",
+    email: "",
+    address: "",
+    city: "",
+    st: "",
+    zip: "",
+    match: "",
+    billing_address: "",
+    billing_city: "",
+    billing_state: "",
+    billing_zip: "",
+    card_name: "",
+    card_number: "",
+    expiration: "",
+    card_zip: "",
+  });
+  const [errors, setErrors] = useState({
+    fnameError: "",
+    lnameError: "",
+    emailError: "",
+    addressError: "",
+    cityError: "",
+    stateError: "",
+    zipError: "",
+    card_nameError: "",
+    card_numberError: "",
+    expirationError: "",
+    card_zipError: "",
+  });
+
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setCheckout_Form({
+      ...checkout_form,
+      [name]: value,
+    });
+    
+  };
+
+  const handlePaymentSubmit = (e) => {
+    e.preventDefault();
+    const status = validateForm();
+    console.log(status);
+    if (status) {
+      setIsValid(true);
+      setShowReview(true);
+    }
+    else {
+      setIsValid(false);
+    }
+  };
+
+  const validateForm = () => {
+    let status = true;
+    let fnameErr, lnameErr, emailErr;
+    let addressErr, cityErr, stateErr, zipErr;
+    let cardNameErr, cardNumberErr, expirationErr, cardZipErr;
+
+    if (fname.trim() === "" || fname.match(/\d/)) {
+      fnameErr = "Enter a valid first name";
+      status = false;
+    }
+    if (lname.trim() === "" || lname.match(/\d/)) {
+      lnameErr = "Enter a valid last name";
+      status = false;
+    }
+    if (
+      email.trim() === "" ||
+      !email.match(/^([a-z\d\.-_]+)@([a-z\d\.-_]+)\.([a-z]{2,})$/)
+    ) {
+      emailErr = "Enter a valid email";
+      status = false;
+    }
+    if (address.trim() === "" || !address.match(/^\d/)) {
+      addressErr = "Enter a valid address";
+      status = false;
+    }
+    if (city.trim() === "" || city.match(/\d/)) {
+      cityErr = "Enter a valid city";
+      status = false;
+    }
+    if (st.trim() === "" || st.match(/[^a-zA-Z]/)) {
+      stateErr = "Enter a valid state";
+      status = false;
+    }
+    if (zip.trim() === "" || zip.match("[a-zA-z]+")) {
+      zipErr = "Enter a valid zip code";
+      status = false;
+    }
+    if (card_name.trim() === "" || card_name.match(/\d/)) {
+      cardNameErr = "Enter a valid name";
+      status = false;
+    }
+    if (card_number.trim() === "" || card_number.match("[a-zA-z]+")) {
+      cardNumberErr = "Enter a valid card number";
+      status = false;
+    }
+    if (expiration.trim() === "") {
+      expirationErr = "Date cannot be blank";
+      status = false;
+    }
+    if (card_zip.trim() === "" || card_zip.match("[a-zA-z]+")) {
+      cardZipErr = "Enter a valid zip code";
+      status = false;
+    }
+    setErrors({
+      fnameError: fnameErr,
+      lnameError: lnameErr,
+      emailError: emailErr,
+      addressError: addressErr,
+      cityError: cityErr,
+      stateError: stateErr,
+      zipError: zipErr,
+      card_nameError: cardNameErr,
+      card_numberError: cardNumberErr,
+      expirationError: expirationErr,
+      card_zipError: cardZipErr,
+    });
+    return status;
+  };
+
+  const resetForm = (e) => {
+    setCheckout_Form({
+      fname: "",
+      lname: "",
+      email: "",
+      address: "",
+      city: "",
+      st: "",
+      zip: "",
+      match: "",
+      billing_address: "",
+      billing_city: "",
+      billing_state: "",
+      billing_zip: "",
+      card_name: "",
+      card_number: "",
+      expiration: "",
+      card_zip: "",
+    });
+  };
+
   const {
-    view,
-    checkout_form,
-    handleInput,
-    customer_errors,
-    address_errors,
-    billing_errors,
-    card_errors,
-    handleCustomerSubmit,
-    handleAddressSubmit,
-    handleBillingSubmit,
-    handlePaymentSubmit,
-  } = useContext(CheckoutContext);
-  const {
-    isChecked,
     fname,
     lname,
     email,
@@ -34,27 +202,24 @@ const Checkout = () => {
     city,
     st,
     zip,
-    match,
-    billing_address,
-    billing_city,
-    billing_state,
-    billing_zip,
     card_name,
-    card_zip,
-    expiration,
     card_number,
+    expiration,
+    card_zip,
   } = checkout_form;
-
-  const { fnameError, lnameError, emailError } = customer_errors;
-  const { addressError, cityError, stateError, zipError } = address_errors;
   const {
-    billing_addressError,
-    billing_cityError,
-    billing_stateError,
-    billing_zipError,
-  } = billing_errors;
-  const { card_nameError, card_numberError, expirationError, card_zipError } =
-    card_errors;
+    fnameError,
+    lnameError,
+    emailError,
+    cityError,
+    stateError,
+    zipError,
+    addressError,
+    card_nameError,
+    card_numberError,
+    expirationError,
+    card_zipError,
+  } = errors;
 
   return (
     <main>
@@ -62,100 +227,178 @@ const Checkout = () => {
       <Center>
         <StyledLink to="/cart">Back to Cart</StyledLink>
         <Container>
-          {view === 0 ? (
+          {showReview ? (
+            <div>
+              <OrderReview />{" "}
+              <PrimaryLink to="/confirmation">
+                Pay Now
+                <FiArrowRight />
+              </PrimaryLink>
+            </div>
+          ) : (
             <form>
-              <fieldset>
-                <legend>Customer Details:</legend>
-                <FormInput
-                  htmlFor="fname"
-                  label="First Name:"
-                  type="text"
-                  name="fname"
-                  id="fname"
-                  value={fname}
-                  onChange={handleInput}
-                  required
-                />
-                <StyledError>{fnameError}</StyledError>
-                <FormInput
-                  htmlFor="lname"
-                  label="Last Name:"
-                  type="text"
-                  name="lname"
-                  id="lname"
-                  value={lname}
-                  onChange={handleInput}
-                />
-                <StyledError>{lnameError}</StyledError>
-                <FormInput
-                  htmlFor="email"
-                  label="Email:"
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={handleInput}
-                />
-                <StyledError>{emailError}</StyledError>
-                <PrimaryButton onClick={handleCustomerSubmit}>
-                  Next <FiArrowRight />
-                </PrimaryButton>
-              </fieldset>
+              <Wrapper>
+                <div>
+                  <FormInput
+                    htmlFor="fname"
+                    label="First Name:"
+                    type="text"
+                    name="fname"
+                    id="fname"
+                    value={fname}
+                    onChange={handleInput}
+                    required
+                  />
+                  <StyledError>{fnameError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="lname"
+                    label="Last Name:"
+                    type="text"
+                    name="lname"
+                    id="lname"
+                    value={lname}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{lnameError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="email"
+                    label="Email:"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{emailError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="address"
+                    label="Street Address:"
+                    type="text"
+                    name="address"
+                    id="address"
+                    value={address}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{addressError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="city"
+                    label="City:"
+                    type="text"
+                    name="city"
+                    id="city"
+                    value={city}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{cityError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="state"
+                    label="State:"
+                    type="text"
+                    name="st"
+                    id="state"
+                    value={st}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{stateError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="zip"
+                    label="Zip Code:"
+                    type="text"
+                    name="zip"
+                    id="zip"
+                    min={5}
+                    maxLength={5}
+                    value={zip}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{zipError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="card_name"
+                    label="Name on Card:"
+                    type="text"
+                    name="card_name"
+                    id="card_name"
+                    value={card_name}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{card_nameError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="card_number"
+                    label="Credit Card Number:"
+                    type="text"
+                    name="card_number"
+                    id="card_number"
+                    min={16}
+                    maxLength={16}
+                    value={card_number}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{card_numberError}</StyledError>
+                </div>
+                <div>
+                  <FormInput
+                    htmlFor="expiration"
+                    label="Expires:"
+                    type="date"
+                    name="expiration"
+                    id="expiration"
+                    min={getCurrentDate()}
+                    value={expiration}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{expirationError}</StyledError>
+                </div>
+                <div>
+                  {/* <FormInput
+                    htmlFor="card_zip"
+                    label="Zip Code:"
+                    type="text"
+                    name="card_zip"
+                    id="card_zip"
+                    min={5}
+                    maxLength={5}
+                    value={card_zip}
+                    onChange={handleInput}
+                  />
+                  <StyledError>{card_zipError}</StyledError> */}
+                </div>
+              </Wrapper>
+              <PrimaryButton type="submit" onClick={handlePaymentSubmit}>
+                Review Order <FiArrowRight />
+              </PrimaryButton>
             </form>
-          ) : view === 1 ? (
-            <form>
-              <fieldset>
-                <legend>Shipping Address:</legend>
-                <FormInput
-                  htmlFor="address"
-                  label="Street Address:"
-                  type="text"
-                  name="address"
-                  id="address"
-                  value={address}
-                  onChange={handleInput}
-                />
-                <StyledError>{addressError}</StyledError>
-                <FormInput
-                  htmlFor="city"
-                  label="City:"
-                  type="text"
-                  name="city"
-                  id="city"
-                  value={city}
-                  onChange={handleInput}
-                />
-                <StyledError>{cityError}</StyledError>
-                <FormInput
-                  htmlFor="state"
-                  label="State:"
-                  type="text"
-                  name="st"
-                  id="state"
-                  value={st}
-                  onChange={handleInput}
-                />
-                <StyledError>{stateError}</StyledError>
-                <FormInput
-                  htmlFor="zip"
-                  label="Zip Code:"
-                  type="text"
-                  name="zip"
-                  id="zip"
-                  min={5}
-                  maxLength={5}
-                  value={zip}
-                  onChange={handleInput}
-                />
-                <StyledError>{zipError}</StyledError>
-                <PrimaryButton onClick={handleAddressSubmit}>
-                  Next <FiArrowRight />
-                </PrimaryButton>
-              </fieldset>
-            </form>
-          ) : view === 2 ? (
-            <form>
-              <fieldset>
+          )}
+
+          {/* <PrimaryButton onClick={handleCustomerSubmit}>
+                Next <FiArrowRight />
+              </PrimaryButton> */}
+          {/* </fieldset> */}
+
+          {/* <fieldset> */}
+          {/* <legend>Shipping Address:</legend> */}
+
+          {/* <PrimaryButton onClick={handleAddressSubmit}>
+                Next <FiArrowRight />
+              </PrimaryButton> */}
+          {/* </fieldset> */}
+
+          {/* <fieldset>
                 <legend>Billing Address:</legend>
 
                 <Checkbox
@@ -212,71 +455,19 @@ const Checkout = () => {
                 <PrimaryButton onClick={handleBillingSubmit}>
                   Next <FiArrowRight />
                 </PrimaryButton>
-              </fieldset>
-            </form>
-          ) : view === 3 ? (
-            <form>
-              <fieldset>
-                <legend>Payment Details: </legend>
-                <FormInput
-                  htmlFor="card_name"
-                  label="Name on Card:"
-                  type="text"
-                  name="card_name"
-                  id="card_name"
-                  value={card_name}
-                  onChange={handleInput}
-                />
-                <StyledError>{card_nameError}</StyledError>
-                <FormInput
-                  htmlFor="card_number"
-                  label="Credit Card Number:"
-                  type="text"
-                  name="card_number"
-                  id="card_number"
-                  min={16}
-                  maxLength={16}
-                  value={card_number}
-                  onChange={handleInput}
-                />
-                <StyledError>{card_numberError}</StyledError>
-                <FormInput
-                  htmlFor="expiration"
-                  label="Expires:"
-                  type="date"
-                  name="expiration"
-                  id="expiration"
-                  min={getCurrentDate()}
-                  value={expiration}
-                  onChange={handleInput}
-                />
-                <StyledError>{expirationError}</StyledError>
-                <FormInput
-                  htmlFor="card_zip"
-                  label="Zip Code:"
-                  type="text"
-                  name="card_zip"
-                  id="card_zip"
-                  min={5}
-                  maxLength={5}
-                  value={card_zip}
-                  onChange={handleInput}
-                />
-                <StyledError>{card_zipError}</StyledError>
-                <PrimaryButton type="submit" onClick={handlePaymentSubmit}>
-                  Review Order <FiArrowRight />
-                </PrimaryButton>
-              </fieldset>
-            </form>
-          ) : (
-            <OrderReview />
-          )}
+              </fieldset> */}
+
+          {/* </form> */}
+
           <div>
             <OrderSummary />
-            <PrimaryLink to="/confirmation">
-              Pay Now
-              <FiArrowRight />
-            </PrimaryLink>
+            {/* <OrderReview /> */}
+            {view === 4 ? (
+              <PrimaryLink to="/confirmation">
+                Pay Now
+                <FiArrowRight />
+              </PrimaryLink>
+            ) : null}
           </div>
         </Container>
       </Center>
@@ -285,5 +476,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
-//navigate("/confirmation")

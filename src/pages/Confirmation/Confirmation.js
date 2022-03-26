@@ -7,7 +7,6 @@ import { Container } from './style';
 const Confirmation = () => {
     const { checkout_form } = useContext(CheckoutContext);
     const { email } = checkout_form;
-    console.log(email);
 
   return (
     <main>

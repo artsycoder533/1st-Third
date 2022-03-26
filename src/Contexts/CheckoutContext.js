@@ -1,10 +1,13 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { checkout_reducer } from "../reducers/checkout_reducer";
+import { CartContext } from "./CartContext";
 
 export const CheckoutContext = createContext();
 
 const initialState = {
-  view: 4,
+  cart: [],
+  view: 0,
+  showReview: false,
   isCustomerValid: true,
   isShippingValid: true,
   isBillingValid: true,
@@ -27,9 +30,7 @@ const initialState = {
     expiration: "",
     card_zip: "",
   },
-  checkoutData: {
-
-  },
+  checkoutData: {},
   customer_errors: {
     fnameError: "",
     lnameError: "",
@@ -50,12 +51,17 @@ const initialState = {
     card_nameError: "",
     card_numberError: "",
     expirationError: "",
-    card_zipError:""
+    card_zipError: "",
   },
 };
 
 const CheckoutContextProvider = ({ children }) => {
+  const { cart } = useContext(CartContext);
   const [state, dispatch] = useReducer(checkout_reducer, initialState);
+
+  useEffect(() => {
+    dispatch({ type: "LOAD_CART", payload: cart });
+  }, [cart]);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -68,6 +74,7 @@ const CheckoutContextProvider = ({ children }) => {
 
   const handleCustomerSubmit = (e) => {
     e.preventDefault();
+    console.log("here");
     dispatch({ type: "CHECK_CUSTOMER_ERRORS" });
     dispatch({ type: "CHANGE_CUSTOMER_VIEW" });
   };
@@ -86,10 +93,12 @@ const CheckoutContextProvider = ({ children }) => {
 
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
+    dispatch({ type: "CHECK_CUSTOMER_ERRORS" });
+    dispatch({ type: "CHECK_SHIPPING_ERRORS" });
     dispatch({ type: "CHECK_PAYMENT_ERRORS" });
-    dispatch({ type: "CHANGE_PAYMENT_VIEW" });
-    dispatch({ type: "PROCESS_PAYMENT"});
-  }
+   // dispatch({ type: "CHANGE_PAYMENT_VIEW" });
+   // dispatch({ type: "PROCESS_PAYMENT" });
+  };
 
   return (
     <CheckoutContext.Provider
@@ -99,7 +108,7 @@ const CheckoutContextProvider = ({ children }) => {
         handleCustomerSubmit,
         handleAddressSubmit,
         handleBillingSubmit,
-        handlePaymentSubmit
+        handlePaymentSubmit,
       }}>
       {children}
     </CheckoutContext.Provider>
