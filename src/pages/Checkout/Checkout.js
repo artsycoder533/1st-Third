@@ -9,6 +9,7 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import { CheckoutContext } from "../../Contexts/CheckoutContext";
 import { getCurrentDate } from "../../utility/utils";
 import OrderReview from "../../components/OrderReview/OrderReview";
+import { CartContext } from "../../Contexts/CartContext";
 
 const Checkout = () => {
   // const {
@@ -44,7 +45,8 @@ const Checkout = () => {
   //   expiration,
   //   card_number,
   // } = checkoutData;
-  const [isValid, setIsValid] = useState(true);
+  const { clearCart } = useContext(CartContext);
+  const [isValid, setIsValid] = useState(false);
   const [formInfo, setFormInfo] = useState({});
   const [view, setView] = useState(0);
   const [showReview, setShowReview] = useState(false);
@@ -96,11 +98,12 @@ const Checkout = () => {
     const status = validateForm();
     console.log(status);
     if (status) {
-      setIsValid(true);
+      //setIsValid(true);
       setShowReview(true);
     }
     else {
-      setIsValid(false);
+      setShowReview(false);
+      //setIsValid(false);
     }
   };
 
@@ -113,10 +116,12 @@ const Checkout = () => {
     if (fname.trim() === "" || fname.match(/\d/)) {
       fnameErr = "Enter a valid first name";
       status = false;
+      console.log("fname false");
     }
     if (lname.trim() === "" || lname.match(/\d/)) {
       lnameErr = "Enter a valid last name";
       status = false;
+      console.log("lname false");
     }
     if (
       email.trim() === "" ||
@@ -124,39 +129,49 @@ const Checkout = () => {
     ) {
       emailErr = "Enter a valid email";
       status = false;
+      console.log("email false");
     }
     if (address.trim() === "" || !address.match(/^\d/)) {
       addressErr = "Enter a valid address";
       status = false;
+      console.log("address false");
     }
     if (city.trim() === "" || city.match(/\d/)) {
       cityErr = "Enter a valid city";
       status = false;
+      console.log("city false");
     }
     if (st.trim() === "" || st.match(/[^a-zA-Z]/)) {
       stateErr = "Enter a valid state";
       status = false;
+      console.log("st false");
     }
     if (zip.trim() === "" || zip.match("[a-zA-z]+")) {
       zipErr = "Enter a valid zip code";
       status = false;
+      console.log("zip false");
     }
     if (card_name.trim() === "" || card_name.match(/\d/)) {
       cardNameErr = "Enter a valid name";
       status = false;
+      console.log("card name false");
     }
     if (card_number.trim() === "" || card_number.match("[a-zA-z]+")) {
       cardNumberErr = "Enter a valid card number";
       status = false;
+      console.log("number false");
     }
     if (expiration.trim() === "") {
       expirationErr = "Date cannot be blank";
       status = false;
+      console.log("date false");
     }
-    if (card_zip.trim() === "" || card_zip.match("[a-zA-z]+")) {
-      cardZipErr = "Enter a valid zip code";
-      status = false;
-    }
+    // if (card_zip.trim() === "" || card_zip.match("[a-zA-z]+")) {
+    //   cardZipErr = "Enter a valid zip code";
+    //   status = false;
+    //   console.log("paymnet zip false");
+    // }
+    console.log(status);
     setErrors({
       fnameError: fnameErr,
       lnameError: lnameErr,
@@ -229,7 +244,7 @@ const Checkout = () => {
         <Container>
           {showReview ? (
             <div>
-              <OrderReview />{" "}
+              <OrderReview checkout_form={checkout_form}/>{" "}
               <PrimaryLink to="/confirmation">
                 Pay Now
                 <FiArrowRight />
