@@ -100,6 +100,7 @@ const Checkout = () => {
     if (status) {
       //setIsValid(true);
       setShowReview(true);
+      //clearCart();
     }
     else {
       setShowReview(false);
@@ -188,7 +189,9 @@ const Checkout = () => {
     return status;
   };
 
-  const resetForm = (e) => {
+  const reset = (e) => {
+    clearCart();
+    setShowReview(false);
     setCheckout_Form({
       fname: "",
       lname: "",
@@ -245,7 +248,7 @@ const Checkout = () => {
           {showReview ? (
             <div>
               <OrderReview checkout_form={checkout_form}/>{" "}
-              <PrimaryLink to="/confirmation">
+              <PrimaryLink to="/confirmation" onClick={reset}>
                 Pay Now
                 <FiArrowRight />
               </PrimaryLink>
@@ -478,7 +481,7 @@ const Checkout = () => {
             <OrderSummary />
             {/* <OrderReview /> */}
             {view === 4 ? (
-              <PrimaryLink to="/confirmation">
+              <PrimaryLink to="/confirmation" onClick={clearCart}>
                 Pay Now
                 <FiArrowRight />
               </PrimaryLink>

@@ -5,8 +5,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  //align-items: center;
   margin-bottom: 4rem;
+  align-items: center;
+  gap: 2rem;
 
   form {
     max-width: 500px;
@@ -19,6 +20,7 @@ export const Container = styled.div`
   @media all and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-around;
+    align-items: flex-start;
   }
 `;
 
