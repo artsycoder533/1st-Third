@@ -39,7 +39,11 @@ To start the project I first thought about the different pieces I would need to 
 - Styled Components
 - React Router v6
 - Context API
-- Hooks
+- Hooks:
+    - useState
+    - useEffect
+    - useContext
+    - useReducer
 
 ### Challenges
 
