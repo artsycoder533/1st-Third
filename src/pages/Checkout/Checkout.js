@@ -58,7 +58,6 @@ const Checkout = () => {
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
     const status = validateForm();
-    console.log(status);
     if (status) {
       setShowReview(true);
     } else {
@@ -70,17 +69,14 @@ const Checkout = () => {
     let status = true;
     let fnameErr, lnameErr, emailErr;
     let addressErr, cityErr, stateErr, zipErr;
-    let cardNameErr, cardNumberErr, expirationErr, cardZipErr;
+    let cardNumberErr, expirationErr, cardZipErr;
 
     if (fname.trim() === "" || fname.match(/\d/)) {
       fnameErr = "Enter a valid first name";
       status = false;
-      console.log("fname false");
     }
     if (lname.trim() === "" || lname.match(/\d/)) {
       lnameErr = "Enter a valid last name";
-      status = false;
-      console.log("lname false");
     }
     if (
       email.trim() === "" ||
@@ -88,37 +84,30 @@ const Checkout = () => {
     ) {
       emailErr = "Enter a valid email";
       status = false;
-      console.log("email false");
     }
     if (address.trim() === "" || !address.match(/^\d/)) {
       addressErr = "Enter a valid address";
       status = false;
-      console.log("address false");
     }
     if (city.trim() === "" || city.match(/\d/)) {
       cityErr = "Enter a valid city";
       status = false;
-      console.log("city false");
     }
     if (st.trim() === "" || st.match(/[^a-zA-Z]/)) {
       stateErr = "Enter a valid state";
       status = false;
-      console.log("st false");
     }
     if (zip.trim() === "" || zip.match("[a-zA-z]+")) {
       zipErr = "Enter a valid zip code";
-      status = false;
-      console.log("zip false");
+      status = false
     }
     if (card_number.trim() === "" || card_number.match("[a-zA-z]+")) {
       cardNumberErr = "Enter a valid card number";
       status = false;
-      console.log("number false");
     }
     if (expiration.trim() === "") {
       expirationErr = "Date cannot be blank";
       status = false;
-      console.log("date false");
     }
 
     setErrors({
