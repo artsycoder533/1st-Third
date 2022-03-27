@@ -97,11 +97,11 @@ const Checkout = () => {
       stateErr = "Enter a valid state";
       status = false;
     }
-    if (zip.trim() === "" || zip.match("[a-zA-z]+")) {
+    if (zip.trim() === "" || zip.match("[a-zA-z]")) {
       zipErr = "Enter a valid zip code";
       status = false
     }
-    if (card_number.trim() === "" || card_number.match("[a-zA-z]+")) {
+    if (card_number.trim() === "" || card_number.match("[a-zA-z]")) {
       cardNumberErr = "Enter a valid card number";
       status = false;
     }
@@ -110,6 +110,7 @@ const Checkout = () => {
       status = false;
     }
 
+    saveEmail(email);
     setErrors({
       fnameError: fnameErr,
       lnameError: lnameErr,
@@ -126,7 +127,7 @@ const Checkout = () => {
   };
 
   const reset = () => {
-    saveEmail(email);
+    
     clearCart();
     setShowReview(false);
     setCheckout_Form({
