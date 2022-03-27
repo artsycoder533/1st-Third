@@ -1,26 +1,35 @@
-import React, {useState} from 'react'
-import { StyledForm, InputContainer, FormButton } from './style';
-import { PrimaryButton } from '../Button/style';
-import FormInput from '../FormInput/FormInput';
+import React, { useState } from "react";
+import { StyledForm, InputContainer, FormButton } from "./style";
+import { PrimaryButton } from "../Button/style";
+import FormInput from "../FormInput/FormInput";
 
 function Form() {
   const [formFields, setFormFields] = useState({
     nameInput: "",
     emailInput: "",
-    messageInput: ""
+    messageInput: "",
   });
   const [errors, setErrors] = useState({
     nameError: "",
     emailError: "",
-    messageError: ""
+    messageError: "",
   });
 
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormFields({
-      [name]: value
+      ...formFields,
+      [name]: value,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const status = validate();
+    if (status) {
+      resetForm();
+    }
   }
 
   const validate = () => {
@@ -45,17 +54,22 @@ function Form() {
     setErrors({
       nameError: nameErr,
       emailError: emailErr,
-      messageError: messageErr
+      messageError: messageErr,
     });
+  };
 
-    if (status) {
-      setFormFields({
-        nameInput: "",
-        emailInput: "",
-        messageInput: ""
-      })
-    }
-  }
+  const resetForm = () => {
+    setFormFields({
+      nameInput: "",
+      emailInput: "",
+      messageInput: "",
+    });
+    setErrors({
+      nameError: "",
+      emailError: "",
+      messageError: "",
+    });
+  };
 
   const { nameInput, emailInput, messageInput } = formFields;
   const { nameError, emailError, messageError } = errors;
@@ -67,8 +81,8 @@ function Form() {
         <FormInput
           htmlFor="name"
           type="text"
-          id="name"
-          name="name"
+          id="nameInput"
+          name="nameInput"
           label="Name:"
           value={nameInput}
           onChange={handleInput}
@@ -80,8 +94,8 @@ function Form() {
         <FormInput
           htmlFor="email"
           type="email"
-          id="email"
-          name="email"
+          id="emailInput"
+          name="emailInput"
           label="Email:"
           value={emailInput}
           onChange={handleInput}
@@ -92,18 +106,20 @@ function Form() {
       <InputContainer>
         <label htmlFor="message">Message</label>
         <textarea
-          name="meessage"
-          id="message"
+          name="messageInput"
+          id="messageInput"
           cols="30"
           rows="10"
           value={messageInput}
           onChange={handleInput}
-        required></textarea>
+          required></textarea>
         <span>{messageError}</span>
       </InputContainer>
-      <FormButton type="submit" onClick={validate}>Send Message</FormButton>
+      <FormButton type="submit" onClick={handleSubmit}>
+        Send Message
+      </FormButton>
     </StyledForm>
   );
 }
 
-export default Form
+export default Form;
