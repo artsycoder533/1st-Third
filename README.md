@@ -1,7 +1,5 @@
 # 1st & Third
 
-1st & Third is a React E-Commerce website where the user can browse and filter products pulled from the Fake Store API based on category, price, and customer rating, sort products based on price and item name, and add/update products in the cart. Coming Soon: checkout page UI.
-
 ## Table of Concepts
 
 - [Overview](#overview)
@@ -17,16 +15,23 @@
 
 ## Overview
 
+1st & Third is a React E-Commerce website where the user can browse and filter products pulled from the Fake Store API based on category, price, and customer rating, sort products based on price and item name, and add/update products in the cart. The user is then able to checkout by filling in their contact information in the checkout form with added form validation.  I utilized the Context API paired with reducers for global state management.
+
 ### Images
+
+- ![Desktop](/src/images/desktop1.png)
+- ![Desktop](/src/images/desktop2.png)
+- ![Mobile](/src/images/mobile1.png)
+- ![Mobile](/src/images/mobile2.png)
 
 ### Links
 
 - Repository URL: [https://github.com/artsycoder533/1st-Third.git](https://github.com/artsycoder533/1st-Third.git)
-- Live Site: []()
+- Live Site: [artsycoder533.github.io/1st-third/](artsycoder533.github.io/1st-third/)
 
 ## My Process
 
-To start the project I first thought about the different pieces I would need to make up the site.  I setup the file structure and added seperate folders for components, images, pages, and utilities.  I installed React Router v6, Styled Components, React Icons.  I first setup the Hero Section and then moved to the Hero.
+To start the project I first thought about the different pieces I would need to make up the site.  I setup the file structure and added seperate folders for components, images, pages, and utilities.  I installed React Router v6, Styled Components, React Icons.  I started with the Navbar component and then added the Hero/Home Page.  Next I added a Footer component since that was also going to be shown on every page. I realized I needed to utilize global state so I utilized the Context API pair with the useReducer hook to keep everything organized.  First, I created the Products Context so contain anything related to getting/manipulating the products from the Fake Store API. I also creaded a product reducer to contain only the functionality also pertaining to the products. The products would most likely need to be accessed everywhere so it is the outermost context.  Next, I created the Filter Context to contain anything needed to filter the products once theyve been received from the API and displayed on the Shop Page.  A user is able to filter the products by category, price and customer rating.  Since this will use the products heavily, this will be the second most nested context. I also added a filter reducer to contain only the funtionality of the filters. Last, I added the Cart Context to contain anything needed display/manipulate the products that have been added to the users cart.  A user is able to increase/decrease/remove products directly from the cart as well as clear the cart.  I also created a cart reducer to hold only the functionality to control the cart.  Last, I decided to hold the state variables for the Checkout Page inside that component, since it wouldnt be needed anywhere else.  The only variable that would be needed elsewhere is the email address to be shown on the confirmation page, so I added a function called saveEmail to the Cart Context that takes the email as a parameter and added to the state so it can be used later.  For the most part I tried to get the functionality working first then I went back and fine tuned the CSS and added little details that I had wrote down such as hover states, button styles, etc.
 
 ### Built With
 
@@ -114,30 +119,30 @@ To start the project I first thought about the different pieces I would need to 
 
 ### Continued Development
 
+I would like to learn about authentication and add a user login so that only logged in users can checkout.  I would also like to learn about backend development or Firebase so that a users cart can be saved and paired with their login so that when they decide to come back to the site, their cart is saved.
+
 ### Instructions
 
-## Available Scripts
+To run the project locally, you must clone the repository by clicking the green button that says "Code" and in the drop down click on "SSH" and copy the url below.  Open up your terminal and type:
 
-In the project directory, you can run:
+ - git clone, then past the url and hit enter
+ 
+ Navigate to the project directory:
 
-### `npm start`
+ - cd firstn3rd, then cd firstn3rd one more time to get to the apropriate level
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ Download the required dependencies by typing:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ - npm install
 
+ To start the development server type:
 
-### `npm run build`
+ - npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To build the app in production mode type:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- npm build
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## Author
 
