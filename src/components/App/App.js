@@ -14,7 +14,7 @@ import Confirmation from "../../pages/Confirmation/Confirmation";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <GlobalStyle />
       <Header />
       <Routes>
@@ -28,7 +28,7 @@ function App() {
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
