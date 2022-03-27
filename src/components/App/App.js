@@ -1,6 +1,6 @@
 import React from "react";
 import { GlobalStyle } from "./style";
-import { HashRouter, Routes, Route, BrowserRouter } from "react-router-dom";
+import { HashRouter, Routes, Route} from "react-router-dom";
 import Home from "../../pages/Home/Home";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -14,7 +14,7 @@ import Confirmation from "../../pages/Confirmation/Confirmation";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <GlobalStyle />
       <Header />
       <Routes>
@@ -28,7 +28,7 @@ function App() {
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
