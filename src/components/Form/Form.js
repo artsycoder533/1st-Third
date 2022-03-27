@@ -25,7 +25,6 @@ function Form() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const status = validate();
     if (status) {
       resetForm();
