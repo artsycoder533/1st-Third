@@ -24,12 +24,12 @@ function Form() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const status = validate();
     if (status) {
       resetForm();
     }
-  }
+  };
 
   const validate = () => {
     let nameErr, emailErr, messageErr;
