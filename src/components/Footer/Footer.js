@@ -14,6 +14,7 @@ import { social } from "./footerdata";
 import { links } from "../Navbar/data";
 import { NavLink } from "./style";
 import { CartContext } from "../../Contexts/CartContext";
+import { getYear } from "../../utility/utils";
 
 function Footer() {
   const { totalNumCartItems } = useContext(CartContext);
@@ -56,7 +57,7 @@ function Footer() {
           </FooterSection>
         </FooterContainer>
         <StyledAttrition>
-          Website created by:{" "}
+          &copy; {getYear()} Website created by:{" "}
           <StyledExternalLink
             href="https://natashajohnson.dev/"
             target="_blank noreferrer noopener">
