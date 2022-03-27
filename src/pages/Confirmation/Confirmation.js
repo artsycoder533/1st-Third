@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import { Center } from '../../components/App/style';
 import { SecondaryLink } from '../../components/Button/style';
-import { CheckoutContext } from '../../Contexts/CheckoutContext';
 import { CartContext } from '../../Contexts/CartContext';
 import { Container } from './style';
 

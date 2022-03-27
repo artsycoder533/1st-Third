@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container } from "./style";
-import { CheckoutContext } from "../../Contexts/CheckoutContext";
 
 const OrderReview = (props) => {
-  // const { checkout_form } = useContext(CheckoutContext);
   const { checkout_form } = props;
   const {
     fname,
@@ -13,11 +11,6 @@ const OrderReview = (props) => {
     city,
     st,
     zip,
-    billing_address,
-    billing_city,
-    billing_state,
-    billing_zip,
-    card_name,
     card_zip,
     expiration,
     card_number,
@@ -38,14 +31,10 @@ const OrderReview = (props) => {
       </div>
       <div>
         <h3>Payment Details</h3>
-        {/* <p>{card_name}</p> */}
         <p>XXXX-XXXX-XXXX-{card_number.substring(12)}</p>
         <p>Expires: {expiration}</p>
         <p>{card_zip}</p>
       </div>
-      {/* <h3>Billing Details</h3>
-      <p>{billing_address}</p>
-      <p>{`${billing_city}, ${billing_state} ${billing_zip}`}</p> */}
     </Container>
   );
 };

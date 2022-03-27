@@ -123,13 +123,13 @@ export const cart_reducer = (state, action) => {
     const { shipping_fee, subtotal } = state;
     let total = subtotal + shipping_fee;
     total = total.toFixed(2);
-    return { ...state, cart_total: total};
+    return { ...state, cart_total: total };
   }
 
   if (action.type === "SAVE_EMAIL") {
     const { email } = action.payload;
     return { ...state, email: email };
   }
-    //if theres no matching action, throw error
-    throw new Error(`No Matching "${action.type}" - action type`);
+  //if theres no matching action, throw error
+  throw new Error(`No Matching "${action.type}" - action type`);
 };
