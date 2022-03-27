@@ -5,50 +5,13 @@ import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import { Container, StyledLink, StyledError, Wrapper } from "./style";
 import { PrimaryButton, PrimaryLink } from "../../components/Button/style";
 import { FiArrowRight } from "react-icons/fi";
-import Checkbox from "../../components/Checkbox/Checkbox";
-import { CheckoutContext } from "../../Contexts/CheckoutContext";
 import { getCurrentDate } from "../../utility/utils";
 import OrderReview from "../../components/OrderReview/OrderReview";
 import { CartContext } from "../../Contexts/CartContext";
 
 const Checkout = () => {
-  // const {
-  //   view,
-  //   checkoutData,
-  //   handleInput,
-  //   showReview,
-  //   customer_errors,
-  //   address_errors,
-  //   billing_errors,
-  //   card_errors,
-  //   handleCustomerSubmit,
-  //   handleAddressSubmit,
-  //   handleBillingSubmit,
-  //   handlePaymentSubmit,
-  // } = useContext(CheckoutContext);
-  // const {
-  //   isChecked,
-  //   fname,
-  //   lname,
-  //   email,
-  //   address,
-  //   city,
-  //   st,
-  //   zip,
-  //   match,
-  //   billing_address,
-  //   billing_city,
-  //   billing_state,
-  //   billing_zip,
-  //   card_name,
-  //   card_zip,
-  //   expiration,
-  //   card_number,
-  // } = checkoutData;
+  const { saveEmail } = useContext(CartContext);
   const { clearCart } = useContext(CartContext);
-  const [isValid, setIsValid] = useState(false);
-  const [formInfo, setFormInfo] = useState({});
-  const [view, setView] = useState(0);
   const [showReview, setShowReview] = useState(false);
   const [checkout_form, setCheckout_Form] = useState({
     isChecked: false,
@@ -90,7 +53,6 @@ const Checkout = () => {
       ...checkout_form,
       [name]: value,
     });
-    
   };
 
   const handlePaymentSubmit = (e) => {
@@ -98,13 +60,9 @@ const Checkout = () => {
     const status = validateForm();
     console.log(status);
     if (status) {
-      //setIsValid(true);
       setShowReview(true);
-      //clearCart();
-    }
-    else {
+    } else {
       setShowReview(false);
-      //setIsValid(false);
     }
   };
 
@@ -152,11 +110,6 @@ const Checkout = () => {
       status = false;
       console.log("zip false");
     }
-    if (card_name.trim() === "" || card_name.match(/\d/)) {
-      cardNameErr = "Enter a valid name";
-      status = false;
-      console.log("card name false");
-    }
     if (card_number.trim() === "" || card_number.match("[a-zA-z]+")) {
       cardNumberErr = "Enter a valid card number";
       status = false;
@@ -167,12 +120,7 @@ const Checkout = () => {
       status = false;
       console.log("date false");
     }
-    // if (card_zip.trim() === "" || card_zip.match("[a-zA-z]+")) {
-    //   cardZipErr = "Enter a valid zip code";
-    //   status = false;
-    //   console.log("paymnet zip false");
-    // }
-    console.log(status);
+
     setErrors({
       fnameError: fnameErr,
       lnameError: lnameErr,
@@ -181,7 +129,6 @@ const Checkout = () => {
       cityError: cityErr,
       stateError: stateErr,
       zipError: zipErr,
-      card_nameError: cardNameErr,
       card_numberError: cardNumberErr,
       expirationError: expirationErr,
       card_zipError: cardZipErr,
@@ -189,7 +136,8 @@ const Checkout = () => {
     return status;
   };
 
-  const reset = (e) => {
+  const reset = () => {
+    saveEmail(email);
     clearCart();
     setShowReview(false);
     setCheckout_Form({
@@ -220,10 +168,8 @@ const Checkout = () => {
     city,
     st,
     zip,
-    card_name,
     card_number,
     expiration,
-    card_zip,
   } = checkout_form;
   const {
     fnameError,
@@ -233,10 +179,8 @@ const Checkout = () => {
     stateError,
     zipError,
     addressError,
-    card_nameError,
     card_numberError,
     expirationError,
-    card_zipError,
   } = errors;
 
   return (
@@ -247,7 +191,7 @@ const Checkout = () => {
         <Container>
           {showReview ? (
             <div>
-              <OrderReview checkout_form={checkout_form}/>{" "}
+              <OrderReview checkout_form={checkout_form} />{" "}
               <PrimaryLink to="/confirmation" onClick={reset}>
                 Pay Now
                 <FiArrowRight />
@@ -325,6 +269,8 @@ const Checkout = () => {
                     name="st"
                     id="state"
                     value={st}
+                    min={2}
+                    maxLength={2}
                     onChange={handleInput}
                   />
                   <StyledError>{stateError}</StyledError>
@@ -342,18 +288,6 @@ const Checkout = () => {
                     onChange={handleInput}
                   />
                   <StyledError>{zipError}</StyledError>
-                </div>
-                <div>
-                  <FormInput
-                    htmlFor="card_name"
-                    label="Name on Card:"
-                    type="text"
-                    name="card_name"
-                    id="card_name"
-                    value={card_name}
-                    onChange={handleInput}
-                  />
-                  <StyledError>{card_nameError}</StyledError>
                 </div>
                 <div>
                   <FormInput
@@ -382,110 +316,14 @@ const Checkout = () => {
                   />
                   <StyledError>{expirationError}</StyledError>
                 </div>
-                <div>
-                  {/* <FormInput
-                    htmlFor="card_zip"
-                    label="Zip Code:"
-                    type="text"
-                    name="card_zip"
-                    id="card_zip"
-                    min={5}
-                    maxLength={5}
-                    value={card_zip}
-                    onChange={handleInput}
-                  />
-                  <StyledError>{card_zipError}</StyledError> */}
-                </div>
               </Wrapper>
               <PrimaryButton type="submit" onClick={handlePaymentSubmit}>
                 Review Order <FiArrowRight />
               </PrimaryButton>
             </form>
           )}
-
-          {/* <PrimaryButton onClick={handleCustomerSubmit}>
-                Next <FiArrowRight />
-              </PrimaryButton> */}
-          {/* </fieldset> */}
-
-          {/* <fieldset> */}
-          {/* <legend>Shipping Address:</legend> */}
-
-          {/* <PrimaryButton onClick={handleAddressSubmit}>
-                Next <FiArrowRight />
-              </PrimaryButton> */}
-          {/* </fieldset> */}
-
-          {/* <fieldset>
-                <legend>Billing Address:</legend>
-
-                <Checkbox
-                  htmlFor="match"
-                  label="Same as shipping?:"
-                  type="checkbox"
-                  name="match"
-                  id="match"
-                  value={match}
-                  onChange={handleInput}
-                  checked={isChecked}
-                />
-                <FormInput
-                  htmlFor="billing_address"
-                  label="Street Address:"
-                  type="text"
-                  name="billing_address"
-                  id="billing_address"
-                  value={billing_address}
-                  onChange={handleInput}
-                />
-                <StyledError>{billing_addressError}</StyledError>
-                <FormInput
-                  htmlFor="billing_city"
-                  label="City:"
-                  type="text"
-                  name="billing_city"
-                  id="billing_city"
-                  value={billing_city}
-                  onChange={handleInput}
-                />
-                <StyledError>{billing_cityError}</StyledError>
-                <FormInput
-                  htmlFor="billing_state"
-                  label="State:"
-                  type="billing_state"
-                  name="billing_state"
-                  id="billing_state"
-                  value={billing_state}
-                  onChange={handleInput}
-                />
-                <StyledError>{billing_stateError}</StyledError>
-                <FormInput
-                  htmlFor="billing_zip"
-                  label="Zip Code:"
-                  type="billing_zip"
-                  name="billing_zip"
-                  id="billing_zip"
-                  value={billing_zip}
-                  onChange={handleInput}
-                  maxLength={5}
-                />
-                <StyledError>{billing_zipError}</StyledError>
-                <PrimaryButton onClick={handleBillingSubmit}>
-                  Next <FiArrowRight />
-                </PrimaryButton>
-              </fieldset> */}
-
-          {/* </form> */}
-
           <div>
             <OrderSummary />
-            {/* <OrderReview /> */}
-            {view === 4 ? (
-              <PrimaryLink to="/confirmation" onClick={clearCart}>
-                Pay Now
-                <FiArrowRight />
-              </PrimaryLink>
-            ) : null}
           </div>
         </Container>
       </Center>

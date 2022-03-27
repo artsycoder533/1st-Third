@@ -126,6 +126,10 @@ export const cart_reducer = (state, action) => {
     return { ...state, cart_total: total};
   }
 
-  //if theres no matching action, throw error
-  throw new Error(`No Matching "${action.type}" - action type`);
+  if (action.type === "SAVE_EMAIL") {
+    const { email } = action.payload;
+    return { ...state, email: email };
+  }
+    //if theres no matching action, throw error
+    throw new Error(`No Matching "${action.type}" - action type`);
 };

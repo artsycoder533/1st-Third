@@ -5,6 +5,7 @@ import { ProductsContext } from "./ProductsContext";
 export const CartContext = createContext();
 
 const initialState = {
+    user_email: "",
     products: [],
     cart: [],
     totalNumCartItems: 0,
@@ -51,9 +52,13 @@ const CartContextProvider = ({ children }) => {
         dispatch({ type: "CART_TOTAL" });
     }
 
+    const saveEmail = (email) => {
+        dispatch({ type: "SAVE_EMAIL", payload: email });
+    }
+
     return (
       <CartContext.Provider
-        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal }}>
+        value={{ ...state, handleAddToCart, decreaseCartCount, clearCart, removeItemFromCart, getSubtotal, getTotal, saveEmail }}>
         {children}
       </CartContext.Provider>
     );
